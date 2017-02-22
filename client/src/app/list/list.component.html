@@ -1,6 +1,12 @@
-<div>
+<div class="list-container">
 
-  <h5> {{ list.title }} </h5>
+  <div class="title">
+    <span [hidden]="hideSpan" (click)="hideSpan =! hideSpan"> {{ list.title }} </span>
+    <input class="list-title-input" type="text" name="title" placeholder="enter the title..." 
+            autocomplete="off" autofocus maxlength="512" [(ngModel)]="list.title"
+            (focus)="hideSpan = true" (blur)="hideSpan = false" [hidden]="!hideSpan" (keyup.enter)="onListEdit.emit(list)" />
+  </div>
+
   <p> {{ list | json }} </p>
 
   <button class="btn btn-danger" (click)="removeList()"> Delete </button>

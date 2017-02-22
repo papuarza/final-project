@@ -10,6 +10,7 @@ export class ListComponent implements OnInit {
 
   @Input() list: List;
   @Output() onListRemove = new EventEmitter<List>();
+  @Output() onListEdit = new EventEmitter<List>();
 
   constructor() { }
 
@@ -17,6 +18,10 @@ export class ListComponent implements OnInit {
 
   removeList() {
     this.onListRemove.emit(this.list);
+  }
+
+  editList(title) {
+    this.onListEdit.emit(this.list);
   }
 
 }

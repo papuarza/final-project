@@ -1,5 +1,10 @@
-body {
-    margin: 0px;
+html{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    max-height: 100vh;
+    background-color: rgb(0, 121, 191);
 }
 
 .trello-container {
@@ -17,6 +22,10 @@ body {
    color:    #dfdfdf;
    opacity:  1;
 }
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
+:-ms-input-placeholder {
    color:    #dfdfdf;
+}
+
+.alert {
+    border-radius: 0;
 }

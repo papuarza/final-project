@@ -13,6 +13,7 @@ export class BoardComponent implements OnInit {
 
   lists: Array<List> = [];
   error: any;
+  feedback: any;
 
   @ViewChild('confirmModal') confirmModal;
 
@@ -43,7 +44,9 @@ export class BoardComponent implements OnInit {
         title: name,
         position: this.lists.length * 100
       }).subscribe(
-        (res) => console.log('Added', res),
+        (newList) => {
+          this.lists.push(newList);
+        },
         (err) => {
           this.error = err;
         }
@@ -51,13 +54,35 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  onListEdit(list) {
+    this.listService.edit(list)
+      .subscribe(
+        (res) => {
+          this.feedback = res.message;
+          this.lists[this.lists.indexOf(list)] = res.list;
+        },
+        (err) => this.error = err.message
+      );
+  }
+
   onListRemove(list) {
     this.modalService
       .open(this.confirmModal)
       .result.then((result) => {
-        console.log(`Closed with: ${result}`);
+        this.removeList(list);
       }, (reason) => {
         console.log(`Dismissed ${reason}`);
       });
+  }
+
+  removeList(list) {
+    this.listService.remove(list)
+      .subscribe(
+        (res) => {
+          this.feedback = res.message;
+          this.lists.splice(this.lists.indexOf(list), 1);
+        },
+        (err) => this.error = err.message
+      );
   }
 }

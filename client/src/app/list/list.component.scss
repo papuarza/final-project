@@ -1,15 +1,39 @@
 $light-blue: lighten(rgb(0, 121, 191), 10%);
 $dark-blue: darken(rgb(0, 121, 191), 7%);
 
-.list-wrapper {
+$grey: rgb(226, 228, 230);
+$dark-grey: darken($grey, 10%);
 
+.list-container {
+    .title {
+        min-height: 40px;
+        display: block;
+
+        span {
+            padding: 0 10px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            line-height: 1.1rem;
+        }
+
+        .list-title-input {
+            font-size: 1.1rem;
+            padding: 0 5px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            width: 100%;
+            background-color: white;
+            outline: none;
+        }
+    }
 }
 
 :host {
-    background-color: $dark-blue;
+    background-color: $grey;
     min-height: 400px;
-    margin: auto 20px;
+    margin-left: 15px;
     border-radius: 5px;
     position: relative;
-    padding: 20px;
+    padding: 14px 20px;
 }

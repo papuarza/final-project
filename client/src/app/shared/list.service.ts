@@ -27,7 +27,6 @@ export class ListService {
         }
         //return this.lists;
         return res;
-        
       })
       .catch((err) => Observable.throw(err));
   }
@@ -43,6 +42,12 @@ export class ListService {
         console.info('Something went wrong', err);
         return Observable.throw(err.json());
       });
+  }
+
+  edit(list) {
+    return this.http.put(`${this.BASE}${this.LIST}/${list._id}`, list)
+      .map((res) => res.json())
+      .catch((err) => Observable.throw(err.json()));
   }
 
   remove(list) {

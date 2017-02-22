@@ -3,16 +3,38 @@ $dark-blue: darken(rgb(0, 121, 191), 7%);
 
 .board-container {
     width: 100%;
-    min-height: 100vh;
+    height: 100%;
     overflow: scroll;
+
+    .board-title-container {
+        height: 50px;
+        padding: 10px 5px;
+
+        .board-title {
+            color: white;
+            font-size: 1.3rem;
+            line-height: 1.3rem;
+            display: block;
+            font-weight: 600;
+        }
+    }
+
+    .lists-container {
+        overflow-x: scroll;
+        display: flex;
+    }
 }
 
 .list-placeholder {
-
     background-color: $dark-blue;
     min-height: 50px;
-    margin: auto 20px;
+    max-height: 60px;
+    margin-left: 20px;
     border-radius: 5px;
+
+    &.editing {
+        max-height: 110px;
+    }
 
     span {
         font-size: 1.1rem;
@@ -45,8 +67,4 @@ $dark-blue: darken(rgb(0, 121, 191), 7%);
             vertical-align: middle;
         }
     }
-}
-
-.alert {
-    border-radius: 0;
 }
