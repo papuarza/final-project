@@ -1,0 +1,22 @@
+body {
+    margin: 0px;
+}
+
+.trello-container {
+    background-color: rgb(0, 121, 191);
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #dfdfdf;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #dfdfdf;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #dfdfdf;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #dfdfdf;
+}

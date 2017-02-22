@@ -1,0 +1,47 @@
+<div class="board-container">
+  <div class="alert alert-danger" role="alert" *ngIf="error">
+    <strong> Something went wrong! </strong> ({{ error }})
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <h5> This is the main board </h5>
+
+      <div class="row">
+        <trello-list *ngFor="let list of lists" [list]="list" (onListRemove)="onListRemove($event)" class="col-md-2"></trello-list>
+
+        <div class="list-placeholder col-sm-2">
+          <form class="pt-3 pb-3">
+            <span class="placeholder" [hidden]="hideSpan" (click)="hideSpan =! hideSpan"> Add a list… </span>
+            <input class="list-name-input" type="text" name="name" placeholder="enter the name..." 
+                  autocomplete="off" autofocus maxlength="512" #newlist
+                  (focus)="hideSpan = true" [hidden]="!hideSpan">
+
+            <div class="list-add-controls u-clearfix mt-2 mb-2" [hidden]="!hideSpan">
+              <button class="btn btn btn-success" (click)="addList(newlist.value)"> save </button>
+              <a href="" (click)="hideSpan =! hideSpan"> X </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<template #confirmModal let-c="close" let-d="dismiss" ngbModalContainer>
+  <div class="modal-header">
+    <h4 class="modal-title"> Confirmation </h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p> Are you sure you want to delete the list? </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="d('Cancel click')"> Cancel </button>
+    <button type="button" class="btn btn-danger" (click)="c()"> Delete </button>
+  </div>
+</template>
