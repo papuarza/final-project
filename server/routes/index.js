@@ -4,7 +4,7 @@ module.exports = function(app) {
 
   app.use('/api/list', require('../api/list'));
   app.use('/api/card', require('../api/card'));
-  app.use('/api', require('../api/authentication'));
+  //app.use('/api', require('../api/authentication'));
 
 	// catch 404 and forward to error handler
   app.all('/*', function (req, res) { 

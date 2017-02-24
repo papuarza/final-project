@@ -4,8 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-const session = require("express-session");
-const passport = require("passport");
 var cors = require('cors');
 const DBService = require('./service/db-service');
 
@@ -28,19 +26,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Mongoose configuration
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/trello");
-
-require('./config/passport')(passport);
-
-// required for passport session
-app.use(session({
-  secret: "passport-local-strategy",
-  resave: true,
-  saveUninitialized: true,
-  cookie : { httpOnly: true, maxAge: 2419200000 }
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.set('view engine', 'jade');
 

@@ -30,8 +30,7 @@ exports.getCards = function(req, res, next) {
 			}
 
 			Q.all([
-				cardModel.populate(cards, 'list'),
-				cardModel.populate(cards, { path: 'members', select: 'username image' })
+				cardModel.populate(cards, 'list')
 			]).then(function(_cards) {
 				return res.json( cards );
 			});

@@ -15,11 +15,7 @@ const cardSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: 'List',
     require: true
-  },
-  members: [{
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  }]
+  }
 }, {
   timestamps: {
     createdAt: "created_at",
