@@ -10,7 +10,11 @@ exports.getLists = function(req, res, next) {
 	 		return res.json(err);
 	 	}
 
-	 	return res.json( lists );
+        Q.all([
+            listModel.populate(lists, 'cards')
+        ]).then(function(_lists) {
+            return res.json( lists );
+        });
   	});
 };
 

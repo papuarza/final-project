@@ -1,16 +1,40 @@
 <div class="list-container-placeholder"></div>
 
 <div class="list-container">
+  <div class="remove-button-container">
+    <span class="fa fa-remove" (click)="removeList()"> </span>
+  </div>
 
   <div class="title">
     <span [hidden]="hideSpan" (click)="hideSpan =! hideSpan"> {{ list.title }} </span>
     <input class="list-title-input" type="text" name="title" placeholder="enter the title..." 
             autocomplete="off" autofocus maxlength="512" [(ngModel)]="list.title"
             (focus)="hideSpan = true" (blur)="hideSpan = false" [hidden]="!hideSpan" (keyup.enter)="onListEdit.emit(list)" />
+    <small> {{ list.cards?.length }} cards </small>
   </div>
 
-  <p> {{ list | json }} </p>
+  <h6> {{ list._id }} </h6>
 
-  <button class="btn btn-danger" (click)="removeList()"> Delete </button>
+  <!-- Cards -->
+  <div *ngFor="let card of list?.cards" class="card" (click)="openCard(card)">
+    <p> {{ card.title }} </p>
+    <!-- <small> {{ card.description }} </small> -->
+  </div>
 
+  <!-- Add new card -->
+  <div class="card-placeholder-wrapper">
+    <div class="item-placeholder" [ngClass]="{ 'editing': addingCard }">
+      <form class="">
+        <span class="placeholder" [hidden]="addingCard" (click)="addingCard =! addingCard"> Add a card </span>
+        <input class="item-input" type="text" name="name" placeholder="enter the title..." 
+              autocomplete="off" autofocus maxlength="512" #newcard
+              (focus)="addingCard = true" [hidden]="!addingCard">
+
+        <div class="list-add-controls u-clearfix mt-2 mb-2" [hidden]="!addingCard">
+          <button class="btn btn-sm btn-success" (click)="addCard(newcard.value)"> save </button>
+          <a href="" (click)="addingCard =! addingCard"> X </a>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

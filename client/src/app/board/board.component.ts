@@ -2,17 +2,23 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DragulaService } from 'ng2-dragula';
 import { List } from './../list/list.model';
+import { Card } from './../card/card.model';
 import { ListService } from './../shared/list.service';
+import { CardService } from './../shared/card.service';
 
 @Component({
   selector: 'trello-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
-  providers: [ListService]
+  providers: [
+    ListService,
+    CardService
+  ]
 })
 export class BoardComponent implements OnInit {
 
   lists: Array<List> = [];
+  cards: Array<Card> = [];
   error: any;
   feedback: any;
 
@@ -20,23 +26,13 @@ export class BoardComponent implements OnInit {
 
   constructor(
     private listService: ListService,
+    private cardService: CardService,
     private modalService: NgbModal,
     private dragulaService: DragulaService
   ) { }
 
   ngOnInit() {
-    this.listService.get()
-      .subscribe(
-        (lists) => {
-          this.lists = lists;
-          this.error = false;
-          console.log('GET this.lists', this.lists);
-        },
-        (err) => {
-          console.log('GET error', err);
-          this.error = err;
-        }
-      );
+    this.fetchLists();
 
     this.dragulaService.drag.subscribe((value) => {
       console.log(`drag: ${value[0]}`);
@@ -59,21 +55,19 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  addList(name) {
-    console.log('Adding list:', name);
-    if (name) {
-      this.listService.add({
-        title: name,
-        position: this.lists.length * 100
-      }).subscribe(
-        (newList) => {
-          this.lists.push(newList);
+  fetchLists() {
+    this.listService.get()
+      .subscribe(
+        (lists) => {
+          this.lists = lists;
+          this.error = false;
+          console.log('GET this.lists', this.lists);
         },
         (err) => {
+          console.log('GET error', err);
           this.error = err;
         }
       );
-    }
   }
 
   onListEdit(list) {
@@ -81,7 +75,7 @@ export class BoardComponent implements OnInit {
       .subscribe(
         (res) => {
           this.feedback = res.message;
-          this.lists[this.lists.indexOf(list)] = res.list;
+          list.update(res.list);
         },
         (err) => this.error = err.message
       );

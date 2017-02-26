@@ -1,5 +1,7 @@
 $light-blue: lighten(rgb(0, 121, 191), 10%);
 $dark-blue: darken(rgb(0, 121, 191), 7%);
+$grey: rgb(226, 228, 230);
+$dark-grey: darken($grey, 10%);
 
 .board-container {
     width: 100%;
@@ -16,55 +18,20 @@ $dark-blue: darken(rgb(0, 121, 191), 7%);
             line-height: 1.3rem;
             display: block;
             font-weight: 600;
-        }   
+        }
     }
 
     .lists-container {
         overflow-x: scroll;
         display: flex;
     }
-}
 
-.list-placeholder {
-    background-color: $dark-blue;
-    min-height: 50px;
-    max-height: 60px;
-    margin-left: 20px;
-    border-radius: 5px;
-
-    &.editing {
-        max-height: 110px;
+    .item-container {
+        background-color: $dark-grey;
     }
 
-    span {
-        font-size: 1.1rem;
-        padding: 5px;
-        color: lightgray;
-    }
-
-    .list-name-input {
-        font-size: 1.1rem;
+    .item-placeholder {
         background-color: $dark-blue;
-        color: white;        
-        border: none;
-
-        &:focus {
-            text-shadow: none;
-            border-color: transparent;
-            box-shadow: 0;
-            outline: 0 none;
-        }
-    }
-    
-    .list-add-controls {
-        a {
-            color: darkgrey;
-            margin-left: 10px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            font-size: 2rem;
-            line-height: 2rem;
-            vertical-align: middle;
-        }
+        
     }
 }

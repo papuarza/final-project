@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const listSchema = new mongoose.Schema({ 
   title: {
@@ -10,7 +11,13 @@ const listSchema = new mongoose.Schema({
   position: {
     type: Number,
     default: 0
-  }
+  },
+  cards: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Card',
+    default: [],
+    require: true
+  }]
 }, {
   timestamps: {
     createdAt: "created_at",

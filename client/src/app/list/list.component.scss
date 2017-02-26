@@ -16,15 +16,51 @@ $dark-grey: darken($grey, 10%);
             line-height: 1.1rem;
         }
 
+        small {
+            padding: 0 10px;
+            display: block;
+        }
+
         .list-title-input {
             font-size: 1.1rem;
             padding: 0 5px;
             border: none;
             border-radius: 4px;
             font-weight: 500;
-            width: 100%;
+            width: 90%;
             background-color: white;
             outline: none;
+        }
+    }
+
+    .remove-button-container {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        color: red;
+    }
+
+    .card {
+        background-color: $dark-grey;
+        border-radius: 3px;
+        padding: 5px 10px;
+        margin-bottom: 10px;
+    }
+
+    .card-placeholder-wrapper {
+        cursor: pointer;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: $dark-grey;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        //min-height: 30px;
+        //padding: 0 10px;
+
+        &:hover {
+            background-color: darken($dark-grey, 5%);
         }
     }
 }  
@@ -35,7 +71,8 @@ $dark-grey: darken($grey, 10%);
     margin-left: 15px;
     border-radius: 5px;
     position: relative;
-    padding: 14px 20px;
+    padding: 14px 10px;
+    cursor: pointer;
 
     /*
     &.dnd-sortable-drag {

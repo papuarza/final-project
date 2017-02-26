@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { BoardComponent } from './board/board.component';
 import { ListComponent } from './list/list.component';
 import { CardComponent } from './card/card.component';
+import { ModalComponent } from './card/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CardComponent } from './card/card.component';
     HeaderComponent,
     BoardComponent,
     ListComponent,
-    CardComponent
+    CardComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,9 @@ import { CardComponent } from './card/card.component';
     HttpModule,
     NgbModule.forRoot(),
     DragulaModule
+  ],
+  entryComponents: [
+    ModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

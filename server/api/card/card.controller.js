@@ -2,6 +2,7 @@ var Q = require('q');
 const _ = require('lodash');
 mongoose = require('mongoose');
 cardModel = require('./card.model');
+listModel = require('../list/list.model');
 
 exports.createCard = function(req, res, next) {
 	const newCard = new cardModel({
@@ -18,7 +19,13 @@ exports.createCard = function(req, res, next) {
 			return res.send(500);
 		}
 
-		return res.send(card);
+		listModel.update(
+			{ _id: card.list }, 
+			{ $push: { cards: card._id } },
+			function() {
+				return res.send(card);
+			}
+		);
 	});
 };
 

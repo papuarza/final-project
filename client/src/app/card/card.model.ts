@@ -3,19 +3,17 @@ import { List } from './../list/list.model';
 import { User } from './../shared/user.model';
 
 export class Card implements SortableItem {
-    id: String;
+    _id: String;
     title: String;
     position: Number;
     list: List;
-    members: Array<User>;
 
     constructor ({
-        id, title, position, list, members
+        _id, title, position, list
     }) {
-        this.id = id;
+        this._id = _id;
         this.title = title;
         this.position = position;
         this.list = list;
-        this.members = members;
     }
 }

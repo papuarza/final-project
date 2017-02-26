@@ -1,5 +1,5 @@
 export interface SortableItem {
-    id: String;
+    _id: String;
     title: String;
     position: Number;
 }

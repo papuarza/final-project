@@ -1,4 +1,7 @@
-html{
+$light-blue: lighten(rgb(0, 121, 191), 10%);
+$dark-blue: darken(rgb(0, 121, 191), 7%);
+
+html {
     overflow: hidden;
     margin: 0;
     padding: 0;
@@ -55,4 +58,49 @@ html{
   opacity: .2;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
   filter: alpha(opacity=20)
+}
+
+.item-placeholder {
+    min-height: 50px;
+    max-height: 60px;
+    margin-left: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &.editing {
+        max-height: 110px;
+    }
+
+    span {
+        font-size: 1.1rem;
+        padding: 5px;
+        //color: lightgray;
+        color: white;
+    }
+
+    .item-input {
+        font-size: 1.1rem;
+        background-color: $dark-blue;
+        color: white;        
+        border: none;
+
+        &:focus {
+            text-shadow: none;
+            border-color: transparent;
+            box-shadow: 0;
+            outline: 0 none;
+        }
+    }
+    
+    .item-controls {
+        a {
+            color: darkgrey;
+            margin-left: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            font-size: 2rem;
+            line-height: 2rem;
+            vertical-align: middle;
+        }
+    }
 }

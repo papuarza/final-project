@@ -18,14 +18,14 @@
         <trello-list *ngFor="let list of lists; let i = index" [list]="list" class="col-md-2"
           (onListEdit)="onListEdit($event)" (onListRemove)="onListRemove($event)"></trello-list>
 
-        <div class="list-placeholder col-sm-2" [ngClass]="{'editing': hideSpan }">
+        <div class="item-placeholder col-sm-2" [ngClass]="{'editing': hideSpan }">
           <form class="pt-3 pb-3">
             <span class="placeholder" [hidden]="hideSpan" (click)="hideSpan =! hideSpan"> Add a list… </span>
-            <input class="list-name-input" type="text" name="name" placeholder="enter the name..." 
+            <input class="item-input" type="text" name="name" placeholder="enter the name..." 
                   autocomplete="off" autofocus maxlength="512" #newlist
                   (focus)="hideSpan = true" [hidden]="!hideSpan">
 
-            <div class="list-add-controls u-clearfix mt-2 mb-2" [hidden]="!hideSpan">
+            <div class="item-controls u-clearfix mt-2 mb-2" [hidden]="!hideSpan">
               <button class="btn btn btn-success" (click)="addList(newlist.value)"> save </button>
               <a href="" (click)="hideSpan =! hideSpan"> X </a>
             </div>
@@ -36,6 +36,7 @@
   </div>
 </div>
 
+<!-- Confirmation remove template -->
 <template #confirmModal let-c="close" let-d="dismiss" ngbModalContainer>
   <div class="modal-header">
     <h4 class="modal-title"> Confirmation </h4>

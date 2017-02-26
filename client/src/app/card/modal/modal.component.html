@@ -1,0 +1,13 @@
+<div class="modal-header">
+
+  <h4 class="modal-title"> {{ card.title }} </h4>
+
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p> {{ card.description }} </p>
+  <p> <small> Due date: </small> {{ card.dueDate | date:'mediumDate' }} </p>
+  <p> <small> last update: </small> {{ card.updated_at | date:'mediumDate' }} </p>
+</div>

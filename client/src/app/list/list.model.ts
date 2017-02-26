@@ -1,15 +1,23 @@
+import { Card } from './../card/card.model';
 import { SortableItem } from './../shared/sortable-item.interface';
 
 export class List implements SortableItem {
-    id: String;
+    _id: String;
     title: String;
     position: Number;
+    cards: Array<Card> = [];
 
     constructor ({
-        id, title, position
+        _id, title, position, cards
     }) {
-        this.id = id;
+        this._id = _id;
         this.title = title;
         this.position = position;
+        this.cards = cards.map((card) => new Card(card));
+    }
+
+    update(list) {
+        this.title = list.title;
+        this.position = list.position;
     }
 }
