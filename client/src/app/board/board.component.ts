@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DragulaService } from 'ng2-dragula';
 import { List } from './../list/list.model';
 import { ListService } from './../shared/list.service';
 
@@ -19,7 +20,8 @@ export class BoardComponent implements OnInit {
 
   constructor(
     private listService: ListService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private dragulaService: DragulaService
   ) { }
 
   ngOnInit() {
@@ -35,6 +37,26 @@ export class BoardComponent implements OnInit {
           this.error = err;
         }
       );
+
+    this.dragulaService.drag.subscribe((value) => {
+      console.log(`drag: ${value[0]}`);
+      //this.onDrag(value.slice(1));
+    });
+
+    this.dragulaService.drop.subscribe((value) => {
+      console.log(`drop: ${value[0]}`);
+      //this.onDrop(value.slice(1));
+    });
+
+    this.dragulaService.over.subscribe((value) => {
+      console.log(`over: ${value[0]}`);
+      //this.onOver(value.slice(1));
+    });
+
+    this.dragulaService.out.subscribe((value) => {
+      console.log(`out: ${value[0]}`);
+      //this.onOut(value.slice(1));
+    });
   }
 
   addList(name) {

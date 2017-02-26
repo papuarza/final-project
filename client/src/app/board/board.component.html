@@ -14,10 +14,9 @@
         <span class="board-title"> This is the main board </span>
       </div>
 
-      <div class="lists-container">
-        <trello-list *ngFor="let list of lists" [list]="list"
-          (onListEdit)="onListEdit($event)" (onListRemove)="onListRemove($event)"
-          class="col-md-2"></trello-list>
+      <div class="lists-container" [dragula]='"lists"' [dragulaModel]="lists">
+        <trello-list *ngFor="let list of lists; let i = index" [list]="list" class="col-md-2"
+          (onListEdit)="onListEdit($event)" (onListRemove)="onListRemove($event)"></trello-list>
 
         <div class="list-placeholder col-sm-2" [ngClass]="{'editing': hideSpan }">
           <form class="pt-3 pb-3">
