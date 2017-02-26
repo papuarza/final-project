@@ -53,6 +53,12 @@ export class BoardComponent implements OnInit {
       console.log(`out: ${value[0]}`);
       //this.onOut(value.slice(1));
     });
+
+    this.dragulaService.setOptions('lists', {
+      moves: function (el, container, handle) {
+        return handle.tagName === 'TRELLO-LIST';
+      }
+    });
   }
 
   fetchLists() {

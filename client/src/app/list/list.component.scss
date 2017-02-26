@@ -73,26 +73,4 @@ $dark-grey: darken($grey, 10%);
     position: relative;
     padding: 14px 10px;
     cursor: pointer;
-
-    /*
-    &.dnd-sortable-drag {
-        opacity: 0;
-    }
-
-    &.dragging {
-        -webkit-transform: rotate(7deg);
-        transform: rotate(7deg);
-    }
-
-    .list-container-placeholder {
-        background-color: $dark-blue;
-        border-radius: 5px;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: -1;
-    }
-    */
 }

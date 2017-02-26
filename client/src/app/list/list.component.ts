@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DragulaService } from 'ng2-dragula';
 import { List } from './list.model';
 import { Card } from '../card/card.model';
 import { CardService } from './../shared/card.service';
@@ -21,10 +22,13 @@ export class ListComponent implements OnInit {
 
   constructor(
     private cardService: CardService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private dragulaService: DragulaService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    
+  }
 
   removeList() {
     this.onListRemove.emit(this.list);

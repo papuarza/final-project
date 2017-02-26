@@ -21,7 +21,7 @@ $dark-grey: darken($grey, 10%);
         }
     }
 
-    .lists-container {
+    .lists-container, .list-list {
         overflow-x: scroll;
         display: flex;
     }
