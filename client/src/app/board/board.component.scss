@@ -21,17 +21,18 @@ $dark-grey: darken($grey, 10%);
         }
     }
 
-    .lists-container, .list-list {
+    .list-wrapper {
         overflow-x: scroll;
         display: flex;
+
+        .item-container {
+            background-color: $dark-grey;
+        }
+
+        .item-placeholder {
+            background-color: $dark-blue;
+            //display: flex;
+        }
     }
 
-    .item-container {
-        background-color: $dark-grey;
-    }
-
-    .item-placeholder {
-        background-color: $dark-blue;
-        
-    }
 }

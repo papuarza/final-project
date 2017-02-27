@@ -1,6 +1,6 @@
 <div class="list-container-placeholder"></div>
 
-<div class="list-container" [dragula]='"cards"' [dragulaModel]="list.cards">
+<div class="list-container">
   <div class="remove-button-container">
     <span class="fa fa-remove" (click)="removeList()"> </span>
   </div>
@@ -16,10 +16,12 @@
   <h6> {{ list._id }} </h6>
 
   <!-- Cards -->
-  <div *ngFor="let card of list?.cards" class="card"
-      (click)="openCard(card)">
-    <p> {{ card.title }} </p>
-    <!-- <small> {{ card.description }} </small> -->
+  <div [dragula]='"cards"' [dragulaModel]="list.cards">
+    <div *ngFor="let card of list?.cards" class="card"
+        (click)="openCard(card)">
+      <p> {{ card.title }} </p>
+      <!-- <small> {{ card.description }} </small> -->
+    </div>
   </div>
 
   <!-- Add new card -->

@@ -14,7 +14,8 @@
         <span class="board-title"> This is the main board </span>
       </div>
 
-      <div class="lists-container" [dragula]='"lists"' [dragulaModel]="lists">
+      <div class="list-wrapper" [dragula]='"lists"' [dragulaModel]="lists">
+
         <trello-list *ngFor="let list of lists; let i = index" [list]="list" class="col-md-2"
           (onListEdit)="onListEdit($event)" (onListRemove)="onListRemove($event)"></trello-list>
 
@@ -32,6 +33,7 @@
           </form>
         </div>
       </div>
+
     </div>
   </div>
 </div>

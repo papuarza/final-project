@@ -26,9 +26,7 @@ export class ListComponent implements OnInit {
     private dragulaService: DragulaService
   ) { }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() { }
 
   removeList() {
     this.onListRemove.emit(this.list);
