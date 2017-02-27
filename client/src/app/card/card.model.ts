@@ -8,7 +8,7 @@ export class Card implements SortableItem {
     description: string;
     position: number;
     dueDate: Date;
-    list: List;
+    list: String;
     created_at: Date;
     updated_at: Date;
 
@@ -23,5 +23,9 @@ export class Card implements SortableItem {
         this.description = description;
         this.created_at = created_at;
         this.updated_at = updated_at;
+    }
+
+    setList(id) {
+        this.list = id;
     }
 }

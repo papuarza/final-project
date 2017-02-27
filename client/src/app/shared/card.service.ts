@@ -52,6 +52,18 @@ export class CardService {
       .catch((err) => Observable.throw(err.json()));
   }
 
+  transfer(card: Card, from, to) {
+    const body = {
+      card,
+      from,
+      to
+    };
+
+    return this.http.put(`${this.BASE}${this.CARD}/${card._id}/transfer`, body)
+      .map((res) => res.json())
+      .catch((err) => Observable.throw(err.json()));
+  }
+
   remove(card: Card) {
     return this.http.delete(`${this.BASE}${this.CARD}/${card._id}`)
       .map((res) => res.json())

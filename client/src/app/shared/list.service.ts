@@ -1,3 +1,4 @@
+import { Card } from './../card/card.model';
 import { OrderByPipe } from './order-by.pipe';
 import { CardService } from './card.service';
 import { forEach } from '@angular/router/src/utils/collection';
@@ -64,30 +65,49 @@ export class ListService {
     console.log('List Service:', this.lists);
   }
 
-  shiftCard(listId, cardId) {
-    const list = _.find(this.lists, { _id: listId });
-    const _index = _.findIndex(list.cards, { _id: cardId });
+  shiftCard(sourceList, targetList, cardId) {
+    const sList = _.find(this.lists, { _id: sourceList });
+    const tList = _.find(this.lists, { _id: targetList });
+
+    console.log('sList', sList);
+    console.log('tList', tList);
+
+    const _index = _.findIndex(tList.cards, { _id: cardId });
+    const _el = <Card>_.find(tList.cards, { _id: cardId });
 
     console.log('Updating at index', _index);
 
     if (_index !== -1) {
       if (_index === 0) {
-        list.cards[0].position = list.cards[1].position - 1000;
-      } else {
-        if (list.cards[_index - 1] && list.cards[_index + 1]) {
-          list.cards[_index].position = (list.cards[_index - 1].position + list.cards[_index + 1].position) / 2;
+        if (tList.cards.length > 1) {
+          _el.position = tList.cards[1].position - 1000;
         } else {
-          list.cards[_index].position = list.cards[_index - 1].position + 1000;
+          _el.position = 0;
+        }
+      } else {
+        if (tList.cards[_index - 1] && tList.cards[_index + 1]) {
+          _el.position = (tList.cards[_index - 1].position + tList.cards[_index + 1].position) / 2;
+        } else {
+          _el.position = tList.cards[_index - 1].position + 1000;
         }
       }
 
-      const subscription = this.cardService.edit(list.cards[_index]).subscribe(
-        (res) => console.log('Update card position', res),
-        (err) => console.log('Update card error', err)
-      );
+      // Update with the latest list id
+      _el.setList(tList._id);
+
+      if (sourceList === targetList) {
+        const subscription = this.cardService.edit(_el).subscribe(
+          (res) => console.log('Update card position', res),
+          (err) => console.log('Update card error', err)
+        );
+      } else {
+        const subscription = this.cardService.transfer(_el, sourceList, targetList).subscribe(
+          (res) => console.log('Update card position', res),
+          (err) => console.log('Update card error', err)
+        );
+      }
     }
 
-    list.cards = this.orderByPipe.transform(list.cards);
+    tList.cards = this.orderByPipe.transform(tList.cards);
   }
-
 }
