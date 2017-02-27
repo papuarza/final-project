@@ -19,16 +19,15 @@
         <trello-list *ngFor="let list of lists; let i = index" [list]="list" class="col-md-2"
           (onListEdit)="onListEdit($event)" (onListRemove)="onListRemove($event)"></trello-list>
 
-        <div class="item-placeholder col-sm-2" [ngClass]="{'editing': hideSpan }">
+        <div class="item-placeholder col-sm-2" [ngClass]="{'editing': toggleCreateList }">
           <form class="pt-3 pb-3">
-            <span class="placeholder" [hidden]="hideSpan" (click)="hideSpan =! hideSpan"> Add a list… </span>
+            <span class="placeholder" [hidden]="toggleCreateList" (click)="toggleAddList()"> Add a list… </span>
             <input class="item-input" type="text" name="name" placeholder="enter the name..." 
-                  autocomplete="off" autofocus maxlength="512" #newlist
-                  (focus)="hideSpan = true" [hidden]="!hideSpan">
+                  autocomplete="off" autofocus maxlength="512" #newlist [hidden]="!toggleCreateList">
 
-            <div class="item-controls u-clearfix mt-2 mb-2" [hidden]="!hideSpan">
-              <button class="btn btn btn-success" (click)="addList(newlist.value)"> save </button>
-              <a href="" (click)="hideSpan =! hideSpan"> X </a>
+            <div class="item-controls u-clearfix mt-2 mb-2" [hidden]="!toggleCreateList">
+              <button class="btn btn btn-success" (click)="addList(newlist.value); toggleAddList(); newlist.value = ''"> save </button>
+              <span href (click)="toggleAddList()"> X </span>
             </div>
           </form>
         </div>

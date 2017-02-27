@@ -37,10 +37,13 @@ html {
   cursor: grabbing;
   position: fixed;
   margin: 0;
+  padding: 10px;
   z-index: 9999;
   opacity: .8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  filter: alpha(opacity=80)
+  filter: alpha(opacity=80);
+  -webkit-transform: rotate(7deg);
+  transform: rotate(7deg);
 }
 
 .gu-hide {
@@ -103,9 +106,4 @@ html {
             vertical-align: middle;
         }
     }
-}
-
-.gu-mirror {
-    -webkit-transform: rotate(7deg);
-    transform: rotate(7deg);
 }

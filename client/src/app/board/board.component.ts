@@ -22,7 +22,10 @@ export class BoardComponent implements OnInit {
   error: any;
   feedback: any;
 
+  toggleCreateList = false;
+
   @ViewChild('confirmModal') confirmModal;
+  @ViewChild('newlist') newlist;
 
   constructor(
     private listService: ListService,
@@ -59,6 +62,10 @@ export class BoardComponent implements OnInit {
         return handle.tagName === 'TRELLO-LIST';
       }
     });
+  }
+
+  toggleAddList() {
+    this.toggleCreateList = !this.toggleCreateList;
   }
 
   fetchLists() {
@@ -104,6 +111,14 @@ export class BoardComponent implements OnInit {
           this.feedback = res.message;
           this.lists.splice(this.lists.indexOf(list), 1);
         },
+        (err) => this.error = err.message
+      );
+  }
+
+  addList(title) {
+    this.listService.add({ title })
+      .subscribe(
+        (newLists) => this.lists = newLists,
         (err) => this.error = err.message
       );
   }

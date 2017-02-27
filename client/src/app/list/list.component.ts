@@ -26,7 +26,35 @@ export class ListComponent implements OnInit {
     private dragulaService: DragulaService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+    this.dragulaService.drag.subscribe((value) => {
+      console.log(`drag:`, value);
+      //this.onDrag(value.slice(1));
+    });
+
+    this.dragulaService.drop.subscribe((value) => {
+      console.log(`drop:`, value);
+      //this.onDrop(value.slice(1));
+    });
+
+    this.dragulaService.over.subscribe((value) => {
+      console.log(`over:`, value);
+      //this.onOver(value.slice(1));
+    });
+
+    this.dragulaService.out.subscribe((value) => {
+      console.log(`out:`, value);
+      //this.onOut(value.slice(1));
+    });
+
+    this.dragulaService.dropModel.subscribe((value) => {
+      console.log('dropModel', value);
+      //this.onDropModel(value.slice(1));
+      console.log('this.list', this.list);
+    });
+
+  }
 
   removeList() {
     this.onListRemove.emit(this.list);

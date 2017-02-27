@@ -20,12 +20,10 @@ export class ListService {
   get() {
     return this.http.get(`${this.BASE}${this.LIST}/`)
       .map((res) => res.json())
-      .do((res) => {
-        console.log('res', res);
+      .map((res) => {
         for (const list of res) {
           this.lists.push(new List(list));
         }
-        //return this.lists;
         return this.lists;
       })
       .catch((err) => Observable.throw(err));
@@ -35,11 +33,10 @@ export class ListService {
     return this.http.post(`${this.BASE}${this.LIST}/`, list)
       .map((res) => res.json())
       .map((res) => {
-        this.lists.push(res);
-        return res;
+        this.lists.push(new List(res));
+        return this.lists;
       })
       .catch((err) => {
-        console.info('Something went wrong', err);
         return Observable.throw(err.json());
       });
   }

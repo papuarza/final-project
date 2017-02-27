@@ -3,22 +3,24 @@ $dark-blue: darken(rgb(0, 121, 191), 7%);
 
 $grey: rgb(226, 228, 230);
 $dark-grey: darken($grey, 10%);
+$darker-grey: darken($grey, 50%);
 
 .list-container {
-    .title {
+    .title-section {
         min-height: 40px;
         display: block;
 
-        span {
+        span.title {
             padding: 0 10px;
-            font-weight: 500;
+            font-weight: 700;
             font-size: 1.1rem;
             line-height: 1.1rem;
         }
 
-        small {
+        span.subtitle {
             padding: 0 10px;
             display: block;
+            color: $darker-grey;
         }
 
         .list-title-input {
@@ -38,6 +40,10 @@ $dark-grey: darken($grey, 10%);
         right: 10px;
         top: 5px;
         color: red;
+    }
+
+    .card-list-container {
+        min-height: 50px;
     }
 
     .card {

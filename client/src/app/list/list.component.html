@@ -5,20 +5,19 @@
     <span class="fa fa-remove" (click)="removeList()"> </span>
   </div>
 
-  <div class="title">
-    <span [hidden]="hideSpan" (click)="hideSpan =! hideSpan"> {{ list.title }} </span>
+  <div class="title-section">
+    <span class="title" [hidden]="hideSpan" (click)="hideSpan =! hideSpan"> {{ list.title }} </span>
     <input class="list-title-input" type="text" name="title" placeholder="enter the title..." 
             autocomplete="off" autofocus maxlength="512" [(ngModel)]="list.title"
             (focus)="hideSpan = true" (blur)="hideSpan = false" [hidden]="!hideSpan" (keyup.enter)="onListEdit.emit(list)" />
-    <small> {{ list.cards?.length }} cards </small>
+    <span class="subtitle"> {{ list.cards?.length }} cards </span>
   </div>
 
   <h6> {{ list._id }} </h6>
 
   <!-- Cards -->
-  <div [dragula]='"cards"' [dragulaModel]="list.cards">
-    <div *ngFor="let card of list?.cards" class="card"
-        (click)="openCard(card)">
+  <div class="card-list-container" [dragula]='"cards"' [dragulaModel]="list.cards">
+    <div *ngFor="let card of list?.cards" class="card" (click)="openCard(card)">
       <p> {{ card.title }} </p>
       <!-- <small> {{ card.description }} </small> -->
     </div>
