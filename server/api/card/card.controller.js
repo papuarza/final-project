@@ -58,6 +58,39 @@ exports.editCard = function(req, res ,next) {
 		});
 };
 
+exports.transferCard = function(req, res ,next) {
+	const cardId = req.params.id;
+	const card = req.body.card;
+	const sourceList = req.body.from;
+	const targetList = req.body.to;
+
+	console.log(`cardId ${cardId}`);
+	console.log(`sourceList ${sourceList}`);
+	console.log(`targetList ${targetList}`);
+
+	cardModel
+		.findByIdAndUpdate({ _id: cardId }, { $set: card }, function(err, card) {
+			if(err) {
+				return res.status(400).json({ message: 'Unable to update card', error: err });
+			}
+
+			return Promise.all([
+				listModel.findByIdAndUpdate({ _id: sourceList }, { $pull: { cards: cardId }}).exec(),
+				listModel.findByIdAndUpdate({ _id: targetList }, { $push: { cards: cardId }}).exec()
+			]).then(
+				(list) => {
+					return res.json({ message: 'Card successfully updated', list: list })
+				},
+				(err) => {
+					console.log('err',err);
+					return res.status(400).json({ message: 'Unable to update refs', error: err })
+				}
+			);
+
+		});
+};
+
+
 exports.moveCard = function(req, res ,next) {
 	const cardId = req.params.id;
 
