@@ -10,10 +10,7 @@ import { CardService } from './../shared/card.service';
   selector: 'trello-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
-  providers: [
-    ListService,
-    CardService
-  ]
+  providers: []
 })
 export class BoardComponent implements OnInit {
 

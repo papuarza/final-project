@@ -58,6 +58,19 @@ exports.editCard = function(req, res ,next) {
 		});
 };
 
+exports.moveCard = function(req, res ,next) {
+	const cardId = req.params.id;
+
+	cardModel
+		.findByIdAndUpdate(cardId, { $set: req.body }, function(err, card) {
+			if(err) {
+				return res.status(400).json({ message: 'Unable to update card', error: err });
+			}
+
+			res.json({ message: 'Card successfully updated', card: card });
+		});
+};
+
 exports.removeCard = function (req, res) {
     cardModel
         .findByIdAndRemove(req.params.id, function(err) {

@@ -19,7 +19,8 @@
   <div [id]="list._id" class="card-list-container" [dragula]='"cards"' [dragulaModel]="list.cards">
     <div [id]="card._id" *ngFor="let card of list?.cards" class="card" (click)="openCard(card)">
       <p> {{ card.title }} </p>
-      <!-- <small> {{ card.description }} </small> -->
+      <small> {{ card._id }} </small>
+      <small> position: {{ card.position }} </small>
     </div>
   </div>
 

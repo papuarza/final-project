@@ -46,9 +46,9 @@ export class ListComponent implements OnInit {
 
   getNewPosition(): Number {
     if (this.list.cards.length) {
-      return this.list.cards[this.list.cards.length - 1].position;
+      return this.list.cards[this.list.cards.length - 1].position + 1000;
     } else {
-      return 1;
+      return 0;
     }
   }
 
@@ -62,7 +62,6 @@ export class ListComponent implements OnInit {
       }, (reason) => {
         console.log(`Dismissed ${reason}`);
       });
-
   }
 
 }

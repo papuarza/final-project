@@ -45,6 +45,7 @@
     </fieldset>
 
     <p> <small> list: </small> {{ card.list.title }} </p>
+    <p> <small> position: </small> {{ card.position }} </p>
     <p> <small> last update: </small> {{ card.updated_at | date:'mediumDate' }} </p>
 
     <div class="alert alert-success" [hidden]="!feedback"> {{ feedback }} </div>

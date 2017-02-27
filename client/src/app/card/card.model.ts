@@ -3,10 +3,10 @@ import { List } from './../list/list.model';
 import { User } from './../shared/user.model';
 
 export class Card implements SortableItem {
-    _id: String;
-    title: String;
-    description: String;
-    position: Number;
+    _id: string;
+    title: string;
+    description: string;
+    position: number;
     dueDate: Date;
     list: List;
     created_at: Date;

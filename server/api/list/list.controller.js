@@ -13,6 +13,9 @@ exports.getLists = function(req, res, next) {
         Q.all([
             listModel.populate(lists, 'cards')
         ]).then(function(_lists) {
+            _.forEach(lists, (list) => {
+                list.cards = _.orderBy(list.cards, ['position','title','_id']);
+            });
             return res.json( lists );
         });
   	});

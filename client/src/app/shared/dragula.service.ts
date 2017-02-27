@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/components/dragula.provider';
+import { ListService } from './list.service';
+import { CardService } from './card.service';
 
 @Injectable()
 export class DragulaHandler {
 
-  constructor(private dragulaService: DragulaService) {
+  constructor(
+    private dragulaService: DragulaService,
+    private listService: ListService,
+    private cardService: CardService
+  ) {
     dragulaService.setOptions('lists', {
       moves: function (el, container, handle) {
         return handle.tagName === 'TRELLO-LIST';
@@ -18,10 +24,31 @@ export class DragulaHandler {
       console.log('Element', value[1].id);
       console.log('From', value[3].id);
       console.log('To', value[2].id);
+
+      const element = value[1].id;
+      const to = value[2].id;
+      const from = value[3].id;
+
+      if (from === to) {
+        this.sortCard();
+        this.listService.print();
+        this.listService.shiftCard(from, element);
+      } else {
+        this.moveCard();
+      }
+
     });
 
     this.dragulaService.removeModel.subscribe((value) => {
       console.log(`removeModel`, value);
     });
+  }
+
+  moveCard() {
+
+  }
+
+  sortCard() {
+
   }
 }
