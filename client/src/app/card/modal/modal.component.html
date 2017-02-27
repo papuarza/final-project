@@ -1,13 +1,53 @@
 <div class="modal-header">
 
-  <h4 class="modal-title"> {{ card.title }} </h4>
+  <h2 class="modal-title"> {{ card.title }} </h2>
 
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <p> {{ card.description }} </p>
-  <p> <small> Due date: </small> {{ card.dueDate | date:'mediumDate' }} </p>
-  <p> <small> last update: </small> {{ card.updated_at | date:'mediumDate' }} </p>
+  <form>
+
+    <fieldset>
+      <!-- Description -->
+      <legend>
+        <h4> Description <small (click)="toggleDescription()" [hidden]="editingDescription"> (edit) </small> </h4>
+      </legend>  
+      <div [hidden]="editingDescription">
+        <p class="description" (click)="toggleDescription()"> {{ card.description }} </p>
+      </div>
+
+      <div [hidden]="!editingDescription">
+        <textarea class="form-control" name="description" [(ngModel)]="card.description"></textarea>
+        <button class="btn btn-sm btn-success mt-1 mb-2" (click)="editCard()"> save </button>
+        <span class="cancel" (click)="toggleDescription()" aria-hidden="true"> &times; </span>
+      </div>
+
+      <!-- Date -->
+      <legend>
+        <h4> Due Date <small (click)="toggleDate()" [hidden]="editingDate"> (edit) </small> </h4>
+      </legend>
+      <div [hidden]="editingDate">
+        <p class="due-date" (click)="toggleDate()"> {{ card.dueDate | date:'mediumDate' }} </p>
+      </div>
+      <div [hidden]="!editingDate">
+        <div class="input-group">
+          <input class="form-control" placeholder="dd-mm-yyyy" name="dp2" [(ngModel)]="dueDateDT"
+                (ngModelChange)="onSelectDate($event)" ngbDatepicker #d2="ngbDatepicker" required>
+          <div class="input-group-addon" (click)="d2.toggle()">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+          </div>
+        </div>
+        <button class="btn btn-sm btn-success mt-1 mb-2" (click)="editCard()"> save </button>
+        <span class="cancel" (click)="toggleDate()" aria-hidden="true"> &times; </span>
+      </div>
+    </fieldset>
+
+    <p> <small> list: </small> {{ card.list.title }} </p>
+    <p> <small> last update: </small> {{ card.updated_at | date:'mediumDate' }} </p>
+
+    <div class="alert alert-success" [hidden]="!feedback"> {{ feedback }} </div>
+    <button class="btn btn-danger btn-sm float-md-right mb-2" (click)="deleteCard()"> Delete </button>
+  </form>
 </div>

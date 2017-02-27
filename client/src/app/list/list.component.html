@@ -16,8 +16,8 @@
   <h6> {{ list._id }} </h6>
 
   <!-- Cards -->
-  <div class="card-list-container" [dragula]='"cards"' [dragulaModel]="list.cards">
-    <div *ngFor="let card of list?.cards" class="card" (click)="openCard(card)">
+  <div [id]="list._id" class="card-list-container" [dragula]='"cards"' [dragulaModel]="list.cards">
+    <div [id]="card._id" *ngFor="let card of list?.cards" class="card" (click)="openCard(card)">
       <p> {{ card.title }} </p>
       <!-- <small> {{ card.description }} </small> -->
     </div>
@@ -40,3 +40,4 @@
     </div>
   </div>
 </div>
+

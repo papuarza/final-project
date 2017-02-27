@@ -11,6 +11,8 @@ import { BoardComponent } from './board/board.component';
 import { ListComponent } from './list/list.component';
 import { CardComponent } from './card/card.component';
 import { ModalComponent } from './card/modal/modal.component';
+import { DragulaHandler } from './shared/dragula.service';
+import { CardService } from './shared/card.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,10 @@ import { ModalComponent } from './card/modal/modal.component';
   entryComponents: [
     ModalComponent
   ],
-  providers: [],
+  providers: [
+    DragulaHandler,
+    CardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

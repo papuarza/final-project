@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DragulaService } from 'ng2-dragula';
+import { DragulaHandler } from './../shared/dragula.service';
 import { List } from './../list/list.model';
 import { Card } from './../card/card.model';
 import { ListService } from './../shared/list.service';
@@ -31,37 +31,12 @@ export class BoardComponent implements OnInit {
     private listService: ListService,
     private cardService: CardService,
     private modalService: NgbModal,
-    private dragulaService: DragulaService
+    private dragulaHandler: DragulaHandler
   ) { }
 
   ngOnInit() {
     this.fetchLists();
-
-    this.dragulaService.drag.subscribe((value) => {
-      console.log(`drag: ${value[0]}`);
-      //this.onDrag(value.slice(1));
-    });
-
-    this.dragulaService.drop.subscribe((value) => {
-      console.log(`drop: ${value[0]}`);
-      //this.onDrop(value.slice(1));
-    });
-
-    this.dragulaService.over.subscribe((value) => {
-      console.log(`over: ${value[0]}`);
-      //this.onOver(value.slice(1));
-    });
-
-    this.dragulaService.out.subscribe((value) => {
-      console.log(`out: ${value[0]}`);
-      //this.onOut(value.slice(1));
-    });
-
-    this.dragulaService.setOptions('lists', {
-      moves: function (el, container, handle) {
-        return handle.tagName === 'TRELLO-LIST';
-      }
-    });
+    this.dragulaHandler.listenTo();
   }
 
   toggleAddList() {
