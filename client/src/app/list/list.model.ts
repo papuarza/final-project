@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 
-import { SortableItem } from './../shared/sortable-item.interface';
+import { SortableItem } from './../shared/interfaces/sortable-item.interface';
 import { Card } from './../card/card.model';
 
 export class List implements SortableItem {

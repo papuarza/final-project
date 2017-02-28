@@ -1,4 +1,4 @@
-import { SortableItem } from './../shared/sortable-item.interface';
+import { SortableItem } from './../shared/interfaces/sortable-item.interface';
 import { List } from './../list/list.model';
 import { User } from './../shared/user.model';
 
