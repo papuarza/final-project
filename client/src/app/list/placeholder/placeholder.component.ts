@@ -8,10 +8,9 @@ import { Component, OnInit, Input, Output, ViewChild } from '@angular/core';
 })
 export class PlaceholderComponent {
 
-  isEditing = false;
-
   @Input() placeholder: string;
   @Output() onSave = new EventEmitter<string>();
+  isEditing = false;
   title: string;
 
   constructor() { }
@@ -23,6 +22,6 @@ export class PlaceholderComponent {
   save() {
     this.onSave.emit(this.title);
     this.title = '';
-    this.toggleEdit();
+    setTimeout(this.toggleEdit, 0);
   }
 }

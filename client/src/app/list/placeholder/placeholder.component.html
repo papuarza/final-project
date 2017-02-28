@@ -3,7 +3,8 @@
     <form (ngSubmit)="save()">
       <span class="placeholder" [hidden]="isEditing" (click)="toggleEdit()"> {{ placeholder }} </span>
       <input class="form-control" type="text" name="name" placeholder="enter the title..." 
-            autocomplete="off" autofocus maxlength="512" [(ngModel)]="title" [hidden]="!isEditing">
+            autocomplete="off" autofocus maxlength="512" [(ngModel)]="title"
+            [hidden]="!isEditing" (blur)="toggleEdit()">
 
       <div class="list-add-controls u-clearfix mt-2 mb-2" [hidden]="!isEditing">
         <button class="btn btn-sm btn-success" type="submit"> save </button>

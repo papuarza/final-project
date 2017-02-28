@@ -2,15 +2,16 @@ const Q = require('q');
 const _ = require('lodash');
 const listModel = require('./list.model');
 const cardModel = require('../card/card.model');
+const DBService = require('../../service/db-service');
 
 exports.getLists = function(req, res, next) {
+    //DBService.wipeDB();
   	listModel.find({}, function(err, lists) {
-	 	if(err) {
-	 		console.log(err);
+	 	if (err) {
 	 		return res.json(err);
 	 	}
 
-        Q.all([
+        Promise.all([
             listModel.populate(lists, 'cards')
         ]).then(function(_lists) {
             _.forEach(lists, (list) => {
@@ -38,41 +39,24 @@ exports.createList = function(req, res, next) {
         });
 };
 
-exports.getCards = function(req, res, next) {
-	var listId = req.params.id;
-
-    cardModel
-        .find({ list: listId }, function(list) {
-            if(err) {
-                console.log(err);
-                return res.status(404).json({ message: 'List not found' });
-            }
-
-            list.getCards().then(function(cards) {
-                return res.json(cards);
-            });
-        });
-};
-
 exports.editList = function(req, res, next) {
 	listModel
         .findById(req.params.id, function(err, list) {
-            console.log(`Edititng list: ${req.params.list}`); 
             if (err) {
-                res.status(400).json({message: 'error during find list', error: err });
-            };
+                res.status(400).json({ message: 'impossible to update the list', error: err });
+            }
+
             if (list) {
                 _.merge(list, req.body);
                 list.save(function(err) {
                     if (err) {
-                        res.json({message: 'error during list update', error: err });
+                        res.json({ message: 'impossible to update the list', error: err });
                     };
-                    res.json({message: 'list updated successfully', list: list});
+                    res.json({ message: 'list successfully updated', list });
                 });
             } else {
-                res.status(404).json({message: 'list not found'});
+                res.status(404).json({ message: 'list not found' });
             }
-
         });
 };
 
@@ -81,13 +65,12 @@ exports.removeList = function (req, res) {
         .findByIdAndRemove(req.params.id, function(err) {
 
             if (err) {
-                res.json({ message: 'Error during remove list', error: err });
-            };
+                res.json({ message: 'error during remove list', error: err });
+            }
 
-            // Delete all card in the list
+            // Delete all cards in the list
             cardModel.remove({ list: req.params.id }, function() {
-                res.json({message: 'List successfully deleted'});
+                res.json({ message: 'list successfully deleted' });
             });
-
         });
 };

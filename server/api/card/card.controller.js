@@ -19,6 +19,7 @@ exports.createCard = function(req, res, next) {
 			return res.send(500);
 		}
 
+		// Update the corresponding list
 		listModel.update(
 			{ _id: card.list }, 
 			{ $push: { cards: card._id } },
@@ -27,22 +28,6 @@ exports.createCard = function(req, res, next) {
 			}
 		);
 	});
-};
-
-exports.getCards = function(req, res, next) {
-  	cardModel
-	  	.find({}, function(err, cards) {
-			if(err) {
-				return res.json(err);
-			}
-
-			Q.all([
-				cardModel.populate(cards, 'list')
-			]).then(function(_cards) {
-				return res.json( cards );
-			});
-			
-		});
 };
 
 exports.editCard = function(req, res ,next) {
@@ -54,7 +39,7 @@ exports.editCard = function(req, res ,next) {
 				return res.status(400).json({ message: 'Unable to update card', error: err });
 			}
 
-			res.json({ message: 'Card successfully updated', card: card });
+			res.json({ message: 'card successfully updated', card: card });
 		});
 };
 
@@ -64,14 +49,10 @@ exports.transferCard = function(req, res ,next) {
 	const sourceList = req.body.from;
 	const targetList = req.body.to;
 
-	console.log(`cardId ${cardId}`);
-	console.log(`sourceList ${sourceList}`);
-	console.log(`targetList ${targetList}`);
-
 	cardModel
 		.findByIdAndUpdate({ _id: cardId }, { $set: card }, function(err, card) {
 			if(err) {
-				return res.status(400).json({ message: 'Unable to update card', error: err });
+				return res.status(400).json({ message: 'unable to update card', error: err });
 			}
 
 			return Promise.all([
@@ -79,28 +60,13 @@ exports.transferCard = function(req, res ,next) {
 				listModel.findByIdAndUpdate({ _id: targetList }, { $push: { cards: cardId }}).exec()
 			]).then(
 				(list) => {
-					return res.json({ message: 'Card successfully updated', list: list })
+					return res.json({ message: 'card successfully updated', list: list })
 				},
 				(err) => {
-					console.log('err',err);
-					return res.status(400).json({ message: 'Unable to update refs', error: err })
+					return res.status(400).json({ message: 'unable to update refs', error: err })
 				}
 			);
 
-		});
-};
-
-
-exports.moveCard = function(req, res ,next) {
-	const cardId = req.params.id;
-
-	cardModel
-		.findByIdAndUpdate(cardId, { $set: req.body }, function(err, card) {
-			if(err) {
-				return res.status(400).json({ message: 'Unable to update card', error: err });
-			}
-
-			res.json({ message: 'Card successfully updated', card: card });
 		});
 };
 
@@ -108,9 +74,9 @@ exports.removeCard = function (req, res) {
     cardModel
         .findByIdAndRemove(req.params.id, function(err) {
             if (err) {
-                res.json({info: 'error during remove card', error: err});
+                res.json({info: 'impossible to remove the card', error: err});
             };
 
-            res.json({info: 'Card removed successfully'});
+            res.json({info: 'card removed successfully'});
         });
 };
