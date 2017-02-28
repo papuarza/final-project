@@ -26,8 +26,8 @@
   <div class="card-placeholder-wrapper">
     <div class="item-placeholder" [ngClass]="{ 'editing': addingCard }">
       <form class="">
-        <span class="placeholder" [hidden]="addingCard" (click)="addingCard =! addingCard"> Add a card </span>
-        <input class="item-input" type="text" name="name" placeholder="enter the title..." 
+        <span class="placeholder" [hidden]="addingCard" (click)="addingCard =! addingCard"> Add a card... </span>
+        <input class="form-control" type="text" name="name" placeholder="enter the title..." 
               autocomplete="off" autofocus maxlength="512" #newcard
               (focus)="addingCard = true" [hidden]="!addingCard">
 
