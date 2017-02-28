@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DragulaHandler } from './../shared/dragula.service';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import * as _ from 'lodash';
+
 import { List } from './../list/list.model';
 import { Card } from './../card/card.model';
 import { ListService } from './../shared/list.service';
 import { CardService } from './../shared/card.service';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'trello-board',
@@ -16,8 +18,6 @@ export class BoardComponent implements OnInit {
 
   lists: Array<List> = [];
   cards: Array<Card> = [];
-  error: any;
-  feedback: any;
 
   toggleCreateList = false;
 
@@ -25,15 +25,19 @@ export class BoardComponent implements OnInit {
   @ViewChild('newlist') newlist;
 
   constructor(
+    private vcr: ViewContainerRef,
     private listService: ListService,
     private cardService: CardService,
     private modalService: NgbModal,
-    private dragulaHandler: DragulaHandler
-  ) { }
+    private dragulaService: DragulaHandler,
+    public toastr: ToastsManager
+  ) {
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
     this.fetchLists();
-    this.dragulaHandler.listenTo();
+    this.dragulaService.listenTo();
   }
 
   toggleAddList() {
@@ -43,15 +47,8 @@ export class BoardComponent implements OnInit {
   fetchLists() {
     this.listService.get()
       .subscribe(
-        (lists: Array<List>) => {
-          this.lists = lists;
-          this.error = false;
-          console.log('GET this.lists', this.lists);
-        },
-        (err) => {
-          console.log('GET error', err);
-          this.error = err;
-        }
+        (lists: Array<List>) => this.lists = lists,
+        (err) => this.onError(err.message)
       );
   }
 
@@ -59,10 +56,10 @@ export class BoardComponent implements OnInit {
     this.listService.edit(list)
       .subscribe(
         (response) => {
-          this.feedback = response.message;
+          this.onSuccess(response.message);
           list.update(response.list);
         },
-        (err) => this.error = err.message
+        (err) => this.onError(err.message)
       );
   }
 
@@ -79,11 +76,11 @@ export class BoardComponent implements OnInit {
   removeList(list) {
     this.listService.remove(list)
       .subscribe(
-        (res) => {
-          this.feedback = res.message;
+        (response) => {
+          this.onSuccess(response.message);
           this.lists.splice(this.lists.indexOf(list), 1);
         },
-        (err) => this.error = err.message
+        (err) => this.onError(err.message)
       );
   }
 
@@ -91,7 +88,15 @@ export class BoardComponent implements OnInit {
     this.listService.create({ title })
       .subscribe(
         (newLists: Array<List>) => this.lists = newLists,
-        (err) => this.error = err.message
+        (err) => this.onError(err.message)
       );
+  }
+
+  onSuccess(message: string) {
+    this.toastr.success('Yayy!', message);
+  }
+
+  onError(error: string) {
+    this.toastr.error('Oops :(', error);
   }
 }

@@ -54,7 +54,11 @@
         min-height: 1px;
         max-height: 70vh;
         overflow-y: scroll;
-        margin-bottom: 20px; 
+
+        & > div:last-child > trello-card {
+            display: block;
+            margin-bottom: 20px;
+        }
     }
 
     .card-placeholder-wrapper {

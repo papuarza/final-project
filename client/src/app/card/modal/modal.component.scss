@@ -1,42 +1,5 @@
-$gray: rgb(226, 228, 230);
-$dark-gray: darken($gray, 10%);
+@import '../../../palette';
 
 :host {
-    background-color: $gray;
-}
-
-.modal-header {
-    border-bottom: none;
-    text-align: center;
-
-    h2.modal-title {
-        margin-left: auto;
-        margin-right: auto;
-        font-weight: 700;
-    }
-}
-
-.modal-body {
-    padding: 10px 30px;
-
-    .description, .due-date {
-        font-size: 1.1rem;
-        cursor: pointer;
-    }
-
-    small {
-        cursor: pointer;
-    }
-
-    span.cancel {
-        font-size: 1.75rem;
-        color: red;
-        line-height: 1.75rem;
-    }
-
-    fieldset {
-        legend {
-            border-bottom: 1px solid gray;
-        }
-    }
+    background-color: $trello-secondary-color;
 }
