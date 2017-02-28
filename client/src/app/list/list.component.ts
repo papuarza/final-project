@@ -1,3 +1,4 @@
+import { ListService } from './../shared/list.service';
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { List } from './list.model';
@@ -20,6 +21,7 @@ export class ListComponent implements OnInit {
 
   constructor(
     private cardService: CardService,
+    private listService: ListService,
     private modalService: NgbModal
   ) { }
 
@@ -34,17 +36,17 @@ export class ListComponent implements OnInit {
   }
 
   addCard(title) {
-    this.cardService.add({
+    this.listService.createCard({
         title: title,
         position: this.getNewPosition(),
         list: this.list._id
-    }).subscribe(
-      (res) => this.list.cards.push(res),
+    }, this.list._id).subscribe(
+      (cards: Array<Card>) => this.list.cards = cards,
       (err) => console.log('Card add error')
     );
   }
 
-  getNewPosition(): Number {
+  getNewPosition(): number {
     if (this.list.cards.length) {
       return this.list.cards[this.list.cards.length - 1].position + 1000;
     } else {

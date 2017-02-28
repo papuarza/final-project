@@ -8,7 +8,7 @@ export class Card implements SortableItem {
     description: string;
     position: number;
     dueDate: Date;
-    list: String;
+    list: string;
     created_at: Date;
     updated_at: Date;
 

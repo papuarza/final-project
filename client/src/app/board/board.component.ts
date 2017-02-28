@@ -5,12 +5,12 @@ import { List } from './../list/list.model';
 import { Card } from './../card/card.model';
 import { ListService } from './../shared/list.service';
 import { CardService } from './../shared/card.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'trello-board',
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.scss'],
-  providers: []
+  styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
 
@@ -43,7 +43,7 @@ export class BoardComponent implements OnInit {
   fetchLists() {
     this.listService.get()
       .subscribe(
-        (lists) => {
+        (lists: Array<List>) => {
           this.lists = lists;
           this.error = false;
           console.log('GET this.lists', this.lists);
@@ -58,9 +58,9 @@ export class BoardComponent implements OnInit {
   onListEdit(list) {
     this.listService.edit(list)
       .subscribe(
-        (res) => {
-          this.feedback = res.message;
-          list.update(res.list);
+        (response) => {
+          this.feedback = response.message;
+          list.update(response.list);
         },
         (err) => this.error = err.message
       );
@@ -88,9 +88,9 @@ export class BoardComponent implements OnInit {
   }
 
   addList(title) {
-    this.listService.add({ title })
+    this.listService.create({ title })
       .subscribe(
-        (newLists) => this.lists = newLists,
+        (newLists: Array<List>) => this.lists = newLists,
         (err) => this.error = err.message
       );
   }

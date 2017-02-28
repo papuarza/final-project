@@ -30,7 +30,7 @@ export class DragulaHandler {
       const from = value[3].id;
 
       if (from === to) {
-        if (from === 'list-wrapper') {
+        if (from === 'list-wrapper-container') {
           this.listService.shiftList(element);
         } else {
           this.listService.shiftCard(from, to, element);

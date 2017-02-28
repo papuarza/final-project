@@ -1,5 +1,6 @@
+import { IronTrelloGenericResponse } from './interfaces/generic-response.interface';
+import { SortableItem } from './interfaces/sortable-item.interface';
 import { Card } from './../card/card.model';
-import { OrderByPipe } from './order-by.pipe';
 import { CardService } from './card.service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Injectable } from '@angular/core';
@@ -11,39 +12,53 @@ import * as _ from 'lodash';
 
 import { List } from './../list/list.model';
 
-
 @Injectable()
 export class ListService {
 
   BASE = 'http://localhost.com:3000/api';
   LIST = '/list';
-  lists: Array<List> = [];
+  lists: Array<SortableItem> = [];
 
   constructor(
     private http: Http,
-    private cardService: CardService,
-    private orderByPipe: OrderByPipe
+    private cardService: CardService
   ) { }
 
-  get() {
+  get(): Observable<SortableItem[]> {
     return this.http.get(`${this.BASE}${this.LIST}/`)
       .map((res) => res.json())
       .map((res) => {
         for (const list of res) {
           this.lists.push(new List(list));
         }
-        this.lists = this.orderByPipe.transform(this.lists);
+
+        this.lists = this.sortItems(this.lists);
         return this.lists;
       })
       .catch((err) => Observable.throw(err));
   }
 
-  add(list) {
+  private getNextPosition(): number {
+    if (this.lists.length !== 0) {
+      const pos = _.last(this.lists).position;
+      return pos + 1000;
+    } else {
+      return 0;
+    }
+  }
+
+  private sortItems(items: Array<SortableItem>): Array<SortableItem> {
+    return _.orderBy(items, ['position', 'title']);
+  }
+
+  create(list): Observable<Array<SortableItem>> {
+    list.position = this.getNextPosition();
+
     return this.http.post(`${this.BASE}${this.LIST}/`, list)
       .map((res) => res.json())
-      .map((res) => {
-        this.lists.push(new List(res));
-        this.lists = this.orderByPipe.transform(this.lists);
+      .map((newList) => {
+        this.lists.push(new List(newList));
+        this.lists = this.sortItems(this.lists);
         return this.lists;
       })
       .catch((err) => {
@@ -51,27 +66,35 @@ export class ListService {
       });
   }
 
-  edit(list) {
+  createCard(card, listId): Observable<Array<SortableItem>> {
+    return this.cardService.create(card)
+      .map((newCard: Card) => {
+        const list = (_.find(this.lists, { _id: listId })) as List;
+        return list.addCard(newCard);
+      });
+  }
+
+  edit(list: SortableItem): Observable<IronTrelloGenericResponse> {
     return this.http.put(`${this.BASE}${this.LIST}/${list._id}`, list)
       .map((res) => res.json())
       .catch((err) => Observable.throw(err.json()));
   }
 
-  remove(list) {
+  remove(list: SortableItem): Observable<IronTrelloGenericResponse> {
     return this.http.delete(`${this.BASE}${this.LIST}/${list._id}`)
       .map((res) => res.json())
       .catch((err) => Observable.throw(err.json()));
   }
 
   shiftCard(sourceList, targetList, cardId) {
-    const sList = _.find(this.lists, { _id: sourceList });
-    const tList = _.find(this.lists, { _id: targetList });
+    const sList = _.find(this.lists, { _id: sourceList }) as List;
+    const tList = _.find(this.lists, { _id: targetList }) as List;
 
     console.log('sList', sList);
     console.log('tList', tList);
 
     const _index = _.findIndex(tList.cards, { _id: cardId });
-    const _el = <Card>_.find(tList.cards, { _id: cardId });
+    const _el = _.find(tList.cards, { _id: cardId }) as Card;
 
     console.log('Updating at index', _index);
 
@@ -106,12 +129,12 @@ export class ListService {
       }
     }
 
-    tList.cards = this.orderByPipe.transform(tList.cards);
+    tList.cards = this.sortItems(tList.cards) as Card[];
   }
 
   shiftList(listId) {
     const _index = _.findIndex(this.lists, { _id: listId });
-    const _el = _.find(this.lists, { _id: listId });
+    const _el = _.find(this.lists, { _id: listId }) as List;
 
     if (_index !== -1) {
       if (_index === 0) {

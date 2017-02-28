@@ -14,7 +14,6 @@ import { ModalComponent } from './card/modal/modal.component';
 import { DragulaHandler } from './shared/dragula.service';
 import { ListService } from './shared/list.service';
 import { CardService } from './shared/card.service';
-import { OrderByPipe } from './shared/order-by.pipe';
 
 @NgModule({
   declarations: [
@@ -23,8 +22,7 @@ import { OrderByPipe } from './shared/order-by.pipe';
     BoardComponent,
     ListComponent,
     CardComponent,
-    ModalComponent,
-    OrderByPipe
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -39,8 +37,7 @@ import { OrderByPipe } from './shared/order-by.pipe';
   providers: [
     DragulaHandler,
     ListService,
-    CardService,
-    OrderByPipe
+    CardService
   ],
   bootstrap: [AppComponent]
 })

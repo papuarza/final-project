@@ -1,5 +1,7 @@
-import { Card } from './../card/card.model';
+import * as _ from 'lodash';
+
 import { SortableItem } from './../shared/sortable-item.interface';
+import { Card } from './../card/card.model';
 
 export class List implements SortableItem {
     _id: string;
@@ -19,5 +21,15 @@ export class List implements SortableItem {
     update(list) {
         this.title = list.title;
         this.position = list.position;
+    }
+
+    private sortCards() {
+        this.cards = _.orderBy(this.cards, ['position', 'title']);
+    }
+
+    addCard(card: Card) {
+        this.cards.push(card);
+        this.sortCards();
+        return this.cards;
     }
 }
