@@ -1,0 +1,9 @@
+$grey: rgb(226, 228, 230);
+$dark-grey: darken($grey, 10%);
+
+.card {
+    background-color: $dark-grey;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}

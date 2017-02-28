@@ -1,10 +1,8 @@
 import { ListService } from './../shared/list.service';
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { List } from './list.model';
 import { Card } from '../card/card.model';
 import { CardService } from './../shared/card.service';
-import { ModalComponent } from './../card/modal/modal.component';
 
 @Component({
   selector: 'trello-list',
@@ -17,12 +15,9 @@ export class ListComponent implements OnInit {
   @Output() onListRemove = new EventEmitter<List>();
   @Output() onListEdit = new EventEmitter<List>();
 
-  @ViewChild('cardModal') cardModal;
-
   constructor(
     private cardService: CardService,
-    private listService: ListService,
-    private modalService: NgbModal
+    private listService: ListService
   ) { }
 
   ngOnInit() { }
@@ -53,17 +48,4 @@ export class ListComponent implements OnInit {
       return 0;
     }
   }
-
-  openCard(card) {
-    const modalInstance = this.modalService.open(ModalComponent);
-    modalInstance.componentInstance.card = card;
-
-    modalInstance
-      .result.then((result) => {
-        console.log(`Dismissed ${result}`);
-      }, (reason) => {
-        console.log(`Dismissed ${reason}`);
-      });
-  }
-
 }

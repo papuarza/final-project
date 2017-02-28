@@ -49,13 +49,6 @@ $darker-grey: darken($grey, 50%);
         overflow-y: scroll;
     }
 
-    .card {
-        background-color: $dark-grey;
-        border-radius: 3px;
-        padding: 5px 10px;
-        margin-bottom: 10px;
-    }
-
     .card-placeholder-wrapper {
         cursor: pointer;
         position: absolute;

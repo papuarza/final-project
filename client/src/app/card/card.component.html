@@ -1,3 +1,5 @@
-<p>
-  card works!
-</p>
+<div class="card" (click)="openCardModal(card)">
+  <p> {{ card.title }} </p>
+  <small> {{ card._id }} </small>
+  <small> position: {{ card.position }} </small>  
+</div>
