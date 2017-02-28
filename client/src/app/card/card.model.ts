@@ -12,17 +12,8 @@ export class Card implements SortableItem {
     created_at: Date;
     updated_at: Date;
 
-    constructor ({
-        _id, title, position, list, dueDate, description, created_at, updated_at
-    }) {
-        this._id = _id;
-        this.title = title;
-        this.position = position;
-        this.list = list;
-        this.dueDate = dueDate;
-        this.description = description;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+    constructor(rawObj) {
+        Object.assign(this, rawObj);
     }
 
     setList(id) {

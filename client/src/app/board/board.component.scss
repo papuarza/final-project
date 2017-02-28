@@ -3,23 +3,20 @@
 .board-container {
     height: 100%;
     overflow: scroll;
+    padding: 0 20px;
 
     .board-title-container {
         height: 50px;
         padding: 10px 5px;
-
-        .board-title {
+        
+        h4.board-title {
             color: $white;
-            font-size: 1.3rem;
-            line-height: 1.3rem;
-            display: block;
             font-weight: 600;
         }
     }
 
     #list-wrapper {
         display: flex;
-        padding: 0 20px;
 
         #list-wrapper-container {
             display: flex;

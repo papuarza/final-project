@@ -25,9 +25,10 @@ export class List implements SortableItem {
 
     private sortCards() {
         this.cards = _.orderBy(this.cards, ['position', 'title']);
+        return this.cards;
     }
 
-    addCard(card: Card) {
+    addCard(card: Card): Array<Card> {
         this.cards.push(card);
         this.sortCards();
         return this.cards;
