@@ -1,9 +1,13 @@
-$grey: rgb(226, 228, 230);
-$dark-grey: darken($grey, 10%);
+@import '../../palette';
 
 .card {
-    background-color: $dark-grey;
-    border-radius: 3px;
+    background-color: $trello-secondary-color-light;
+    border-radius: 4px;
     padding: 5px 10px;
     margin-bottom: 10px;
+    border: none;
+
+    &:hover {
+        background-color: darken($trello-secondary-color-light, 5%);
+    }
 }

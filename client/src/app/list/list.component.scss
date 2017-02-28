@@ -1,12 +1,7 @@
-$light-blue: lighten(rgb(0, 121, 191), 10%);
-$dark-blue: darken(rgb(0, 121, 191), 7%);
-
-$grey: rgb(226, 228, 230);
-$dark-grey: darken($grey, 10%);
-$darker-grey: darken($grey, 50%);
+@import '../../palette';
 
 :host {
-    background-color: $grey;
+    background-color: $trello-secondary-color;
     margin-right: 15px;
     border-radius: 5px;
     position: relative;
@@ -33,7 +28,7 @@ $darker-grey: darken($grey, 50%);
         span.subtitle {
             padding: 0 10px;
             display: block;
-            color: $darker-grey;
+            color: $trello-secondary-color-extra-dark;
         }
 
         .list-title-input {
@@ -43,7 +38,7 @@ $darker-grey: darken($grey, 50%);
             border-radius: 4px;
             font-weight: 500;
             width: 90%;
-            background-color: white;
+            background-color: $white;
             outline: none;
         }
     }
@@ -52,7 +47,7 @@ $darker-grey: darken($grey, 50%);
         position: absolute;
         right: 10px;
         top: 5px;
-        color: red;
+        color: $trello-danger;
     }
 
     .card-list-container {
@@ -71,7 +66,7 @@ $darker-grey: darken($grey, 50%);
         border-bottom-right-radius: 3px;
 
         &:hover {
-            background-color: darken($dark-grey, 5%);
+            background-color: $trello-secondary-color-extra-dark;
         }
 
         .item-placeholder {
@@ -80,13 +75,17 @@ $darker-grey: darken($grey, 50%);
             }
 
             span.placeholder, span:focus {
-                color: darken($dark-grey, 25%);
+                color: $trello-secondary-color-dark;
                 font-weight: 500;
+
+                &:hover {
+                    color: $trello-secondary-color-extra-dark;
+                }
             }
 
             input {
-                background-color: white;
-                color: black;
+                background-color: $white;
+                color: $black;
                 width: 100%;
                 border-radius: 3px;
             }
