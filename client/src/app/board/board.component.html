@@ -14,7 +14,7 @@
         <span class="board-title"> This is the main board </span>
       </div>
 
-      <div class="list-wrapper" [dragula]='"lists"' [dragulaModel]="lists">
+      <div id="list-wrapper" [dragula]='"lists"' [dragulaModel]="lists">
 
         <trello-list [id]="list._id" *ngFor="let list of lists; let i = index" [list]="list" class="col-md-2"
           (onListEdit)="onListEdit($event)" (onListRemove)="onListRemove($event)"></trello-list>

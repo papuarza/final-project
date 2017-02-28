@@ -30,9 +30,11 @@ export class DragulaHandler {
       const from = value[3].id;
 
       if (from === to) {
-        this.sortCard();
-        this.listService.print();
-        this.listService.shiftCard(from, to, element);
+        if (from === 'list-wrapper') {
+          this.listService.shiftList(element);
+        } else {
+          this.listService.shiftCard(from, to, element);
+        }
       } else {
         this.listService.shiftCard(from, to, element);
       }
@@ -42,9 +44,5 @@ export class DragulaHandler {
     this.dragulaService.removeModel.subscribe((value) => {
       console.log(`removeModel`, value);
     });
-  }
-
-  sortCard() {
-
   }
 }

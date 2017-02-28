@@ -32,6 +32,7 @@ export class ListService {
         for (const list of res) {
           this.lists.push(new List(list));
         }
+        this.lists = this.orderByPipe.transform(this.lists);
         return this.lists;
       })
       .catch((err) => Observable.throw(err));
@@ -42,6 +43,7 @@ export class ListService {
       .map((res) => res.json())
       .map((res) => {
         this.lists.push(new List(res));
+        this.lists = this.orderByPipe.transform(this.lists);
         return this.lists;
       })
       .catch((err) => {
@@ -59,10 +61,6 @@ export class ListService {
     return this.http.delete(`${this.BASE}${this.LIST}/${list._id}`)
       .map((res) => res.json())
       .catch((err) => Observable.throw(err.json()));
-  }
-
-  print() {
-    console.log('List Service:', this.lists);
   }
 
   shiftCard(sourceList, targetList, cardId) {
@@ -109,5 +107,31 @@ export class ListService {
     }
 
     tList.cards = this.orderByPipe.transform(tList.cards);
+  }
+
+  shiftList(listId) {
+    const _index = _.findIndex(this.lists, { _id: listId });
+    const _el = _.find(this.lists, { _id: listId });
+
+    if (_index !== -1) {
+      if (_index === 0) {
+        if (this.lists.length > 1) {
+          _el.position = this.lists[1].position - 1000;
+        } else {
+          _el.position = 0;
+        }
+      } else {
+        if (this.lists[_index - 1] && this.lists[_index + 1]) {
+          _el.position = (this.lists[_index - 1].position + this.lists[_index + 1].position) / 2;
+        } else {
+          _el.position = this.lists[_index - 1].position + 1000;
+        }
+      }
+
+      const subscription = this.edit(_el).subscribe(
+        (res) => console.log('Update list position', res),
+        (err) => console.log('Update list error', err)
+      );
+    }
   }
 }

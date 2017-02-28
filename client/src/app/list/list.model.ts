@@ -2,9 +2,9 @@ import { Card } from './../card/card.model';
 import { SortableItem } from './../shared/sortable-item.interface';
 
 export class List implements SortableItem {
-    _id: String;
-    title: String;
-    position: Number;
+    _id: string;
+    title: string;
+    position: number;
     cards: Array<Card> = [];
 
     constructor ({
