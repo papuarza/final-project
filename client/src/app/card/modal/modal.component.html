@@ -8,14 +8,13 @@
 </div>
 <div class="modal-body">
   <form>
-
     <fieldset>
       <!-- Description -->
       <legend>
         <h4> Description <small (click)="toggleDescription()" [hidden]="editingDescription"> (edit) </small> </h4>
       </legend>  
-      <div [hidden]="editingDescription">
-        <p class="description" (click)="toggleDescription()"> {{ card.description }} </p>
+      <div [hidden]="editingDescription" class="description">
+        <em (click)="toggleDescription()"> {{ card.description || 'no description' }} </em>
       </div>
 
       <div [hidden]="!editingDescription">
@@ -28,8 +27,8 @@
       <legend>
         <h4> Due Date <small (click)="toggleDate()" [hidden]="editingDate"> (edit) </small> </h4>
       </legend>
-      <div [hidden]="editingDate">
-        <p class="due-date" (click)="toggleDate()"> {{ card.dueDate | date:'mediumDate' }} </p>
+      <div [hidden]="editingDate" class="due-date">
+        <em (click)="toggleDate()"> {{ (card.dueDate | date:'mediumDate') || 'no date' }} </em>
       </div>
       <div [hidden]="!editingDate">
         <div class="input-group">
@@ -42,13 +41,15 @@
         <button class="btn btn-sm btn-success mt-1 mb-2" (click)="editCard()"> save </button>
         <span class="cancel" (click)="toggleDate()" aria-hidden="true"> &times; </span>
       </div>
+
+      <!-- Extra -->
+      <legend> <h4> Extra </h4> </legend>
+      <p> <small> list: </small> {{ card.list }} </p>
+      <p> <small> created at: </small> {{ card.created_at | date:'fullDate' }} </p>
+      <p> <small> last update: </small> {{ card.updated_at | date:'mediumDate' }} </p>
+
     </fieldset>
 
-    <p> <small> list: </small> {{ card.list.title }} </p>
-    <p> <small> position: </small> {{ card.position }} </p>
-    <p> <small> last update: </small> {{ card.updated_at | date:'mediumDate' }} </p>
-
-    <div class="alert alert-success" [hidden]="!feedback"> {{ feedback }} </div>
     <button class="btn btn-danger btn-sm float-md-right mb-2" (click)="deleteCard()"> Delete </button>
   </form>
 </div>

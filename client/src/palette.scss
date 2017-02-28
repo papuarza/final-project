@@ -1,10 +1,3 @@
-
-// Base color
-$white: white;
-$black: black;
-$trello-danger: #d9534f;
-
-
 $blue: rgb(0, 121, 191);
 $light-blue: lighten($blue, 10%);
 $dark-blue: darken($blue, 7%);
@@ -13,6 +6,11 @@ $gray: rgb(226, 228, 230);
 $light-gray: lighten($gray, 10%);
 $dark-gray: darken($gray, 35%);
 $darker-gray: darken($gray, 50%);
+
+// Base color
+$white: white;
+$black: black;
+$trello-danger: #d9534f;
 
 // Palette
 $trello-primary-color: $blue;

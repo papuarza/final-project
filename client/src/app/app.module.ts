@@ -14,6 +14,7 @@ import { DragulaHandler } from './shared/dragula.service';
 import { ListService } from './shared/list.service';
 import { CardService } from './shared/card.service';
 import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
+import { PlaceholderComponent } from './list/placeholder/placeholder.component';
 
 const CustomToastrOption = {
   animate: 'fade',
@@ -28,7 +29,8 @@ const CustomToastrOption = {
     BoardComponent,
     ListComponent,
     CardComponent,
-    ModalComponent
+    ModalComponent,
+    PlaceholderComponent
   ],
   imports: [
     BrowserModule,

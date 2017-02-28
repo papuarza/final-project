@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 import { Card } from './../card.model';
 import { CardService } from './../../shared/card.service';
-import { NgbDateStruct, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'trello-modal',
@@ -11,16 +13,16 @@ import { NgbDateStruct, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstra
 })
 export class ModalComponent implements OnInit {
   @Input() card: Card;
-  dueDateDT: NgbDateStruct;
 
+  dueDateDT: NgbDateStruct;
   editingDescription = false;
   editingDate = false;
-  feedback: String;
 
   constructor(
     public activeModal: NgbActiveModal,
     private cardService: CardService,
-    private ngbDateParserFormatter: NgbDateParserFormatter
+    private ngbDateParserFormatter: NgbDateParserFormatter,
+    public toastr: ToastsManager
   ) { }
 
   ngOnInit() {
@@ -38,18 +40,23 @@ export class ModalComponent implements OnInit {
   deleteCard() {
     this.cardService.remove(this.card)
       .subscribe(
-        (res) => this.activeModal.close()
+        (response) => {
+          this.activeModal.close();
+          this.onSuccess(response.message);
+        },
+        (err) => this.onError(err.message)
       );
   }
 
   editCard(field) {
     this.cardService.edit(this.card)
       .subscribe(
-        (res) => {
-          this.feedback = res.message;
+        (response) => {
           this.editingDescription = false;
           this.editingDate = false;
-        }
+          this.onSuccess(response.message)
+        },
+        (err) => this.onError(err.message)
       );
   }
 
@@ -61,4 +68,11 @@ export class ModalComponent implements OnInit {
     this.editingDate = !this.editingDate;
   }
 
+  onSuccess(message: string) {
+    this.toastr.success('Yayy!', message);
+  }
+
+  onError(error: string) {
+    this.toastr.error('Oops :(', error);
+  }
 }

@@ -54,6 +54,13 @@
                 color: $white;
             }
 
+            span.cancel-edit {
+                font-size: 1.5rem;
+                padding: 5px;
+                vertical-align: middle;
+                color: $white;
+            }
+
             .item-input {
                 font-size: 1.1rem;
                 background-color: $trello-primary-color-dark;
@@ -81,5 +88,4 @@
             }
         }
     }
-
 }

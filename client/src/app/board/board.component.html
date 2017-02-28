@@ -6,11 +6,13 @@
 
   <div id="list-wrapper">
 
+    <!-- List of lists -->
     <div id="list-wrapper-container" [dragula]='"lists"' [dragulaModel]="lists">
       <trello-list [id]="list._id" *ngFor="let list of lists; let i = index" [list]="list"
         (onListEdit)="onListEdit($event)" (onListRemove)="onListRemove($event)"></trello-list>
     </div>
 
+    <!-- Add new list placeholder -->
     <div class="item-placeholder" [ngClass]="{'editing': toggleCreateList }">
       <form class="pt-3 pb-3">
         <span class="placeholder" [hidden]="toggleCreateList" (click)="toggleAddList()"> Add a list… </span>
@@ -19,7 +21,7 @@
 
         <div class="item-controls u-clearfix mt-2 mb-2" [hidden]="!toggleCreateList">
           <button class="btn btn btn-success" (click)="addList(newlist.value); toggleAddList(); newlist.value = ''"> save </button>
-          <span href (click)="toggleAddList()"> X </span>
+          <span class="cancel-edit" (click)="toggleAddList()"> X </span>
         </div>
       </form>
     </div>
