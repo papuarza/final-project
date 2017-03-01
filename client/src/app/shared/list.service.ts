@@ -2,8 +2,7 @@ import { IronTrelloGenericResponse } from './interfaces/generic-response.interfa
 import { SortableItem } from './interfaces/sortable-item.interface';
 import { Card } from './../card/card.model';
 import { CardService } from './card.service';
-import { forEach } from '@angular/router/src/utils/collection';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -14,18 +13,21 @@ import { List } from './../list/list.model';
 
 @Injectable()
 export class ListService {
-
-  BASE = 'http://localhost.com:3000/api';
-  LIST = '/list';
+  LIST_ROUTE = '/list';
+  ENPOINT: string;
   lists: Array<SortableItem> = [];
 
   constructor(
-    private http: Http,
-    private cardService: CardService
-  ) { }
+    @Inject('BASE_ENDPOINT') private BASE,
+    @Inject('API_ENDPOINT') private API,
+    private cardService: CardService,
+    private http: Http
+  ) {
+    this.ENPOINT = this.BASE + this.API;
+  }
 
   get(): Observable<SortableItem[]> {
-    return this.http.get(`${this.BASE}${this.LIST}/`)
+    return this.http.get(`${this.ENPOINT}${this.LIST_ROUTE}/`)
       .map((res) => res.json())
       .map((res) => {
         for (const list of res) {
@@ -54,7 +56,7 @@ export class ListService {
   create(list): Observable<Array<SortableItem>> {
     list.position = this.getNextPosition();
 
-    return this.http.post(`${this.BASE}${this.LIST}/`, list)
+    return this.http.post(`${this.ENPOINT}${this.LIST_ROUTE}/`, list)
       .map((res) => res.json())
       .map((newList) => {
         this.lists.push(new List(newList));
@@ -75,13 +77,13 @@ export class ListService {
   }
 
   edit(list: SortableItem): Observable<IronTrelloGenericResponse> {
-    return this.http.put(`${this.BASE}${this.LIST}/${list._id}`, list)
+    return this.http.put(`${this.ENPOINT}${this.LIST_ROUTE}/${list._id}`, list)
       .map((res) => res.json())
       .catch((err) => Observable.throw(err.json()));
   }
 
   remove(list: SortableItem): Observable<IronTrelloGenericResponse> {
-    return this.http.delete(`${this.BASE}${this.LIST}/${list._id}`)
+    return this.http.delete(`${this.ENPOINT}${this.LIST_ROUTE}/${list._id}`)
       .map((res) => res.json())
       .catch((err) => Observable.throw(err.json()));
   }

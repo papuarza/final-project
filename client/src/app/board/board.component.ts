@@ -68,8 +68,6 @@ export class BoardComponent implements OnInit {
       .open(this.confirmModal)
       .result.then((result) => {
         this.removeList(list);
-      }, (reason) => {
-        console.log(`Dismissed ${reason}`);
       });
   }
 
@@ -93,10 +91,10 @@ export class BoardComponent implements OnInit {
   }
 
   onSuccess(message: string) {
-    this.toastr.success('Yayy!', message);
+    this.toastr.success(message, 'Yayy!');
   }
 
   onError(error: string) {
-    this.toastr.error('Oops :(', error);
+    this.toastr.error(error, 'Oops :(');
   }
 }

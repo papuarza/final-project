@@ -3,6 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angu
 import { List } from './list.model';
 import { Card } from '../card/card.model';
 import { CardService } from './../shared/card.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'trello-list',
@@ -26,6 +27,12 @@ export class ListComponent implements OnInit {
     this.onListRemove.emit(this.list);
   }
 
+  removeCard(cardId) {
+    const card = _.find(this.list.cards, { _id: cardId });
+    console.log(cardId, card);
+    this.list.cards.splice(this.list.cards.indexOf(card), 1);
+  }
+
   editList(title) {
     this.onListEdit.emit(this.list);
   }
@@ -36,12 +43,14 @@ export class ListComponent implements OnInit {
         position: this.getNewPosition(),
         list: this.list._id
     }, this.list._id).subscribe(
-      (cards: Array<Card>) => this.list.cards = cards,
+      (cards: Array<Card>) => {
+        console.log('cards', cards);
+      },
       (err) => console.log('Card add error')
     );
   }
 
-  getNewPosition(): number {
+  private getNewPosition(): number {
     if (this.list.cards.length) {
       return this.list.cards[this.list.cards.length - 1].position + 1000;
     } else {

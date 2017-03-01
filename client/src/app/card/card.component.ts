@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { SortableItem } from './../shared/interfaces/sortable-item.interface';
@@ -12,6 +12,7 @@ import { ModalComponent } from './modal/modal.component';
 export class CardComponent implements OnInit {
 
   @Input() card: SortableItem;
+  @Output() onDelete = new EventEmitter<any>();
 
   constructor(
     private modalService: NgbModal
@@ -24,11 +25,10 @@ export class CardComponent implements OnInit {
     modalInstance.componentInstance.card = card;
 
     modalInstance
-      .result.then((result) => {
-        console.log(`Dismissed ${result}`);
-      }, (reason) => {
-        console.log(`Dismissed ${reason}`);
-      });
+      .result.then(
+        () => {},
+        (reason) => {
+          this.onDelete.emit(this.card._id);
+        });
   }
-
 }

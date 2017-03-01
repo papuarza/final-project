@@ -20,11 +20,6 @@ export class DragulaHandler {
 
   listenTo() {
     this.dragulaService.dropModel.subscribe((value) => {
-      console.log('Value', value);
-      console.log('Element', value[1].id);
-      console.log('From', value[3].id);
-      console.log('To', value[2].id);
-
       const element = value[1].id;
       const to = value[2].id;
       const from = value[3].id;
@@ -39,10 +34,6 @@ export class DragulaHandler {
         this.listService.shiftCard(from, to, element);
       }
 
-    });
-
-    this.dragulaService.removeModel.subscribe((value) => {
-      console.log(`removeModel`, value);
     });
   }
 }

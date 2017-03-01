@@ -1,4 +1,3 @@
-var Q = require('q');
 const _ = require('lodash');
 mongoose = require('mongoose');
 cardModel = require('./card.model');
@@ -74,9 +73,9 @@ exports.removeCard = function (req, res) {
     cardModel
         .findByIdAndRemove(req.params.id, function(err) {
             if (err) {
-                res.json({info: 'impossible to remove the card', error: err});
+                res.json({ message: 'impossible to remove the card', error: err });
             };
 
-            res.json({info: 'card removed successfully'});
+            res.json({ message: 'card removed successfully' });
         });
 };

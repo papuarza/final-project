@@ -41,8 +41,8 @@ export class ModalComponent implements OnInit {
     this.cardService.remove(this.card)
       .subscribe(
         (response) => {
-          this.activeModal.close();
           this.onSuccess(response.message);
+          this.activeModal.dismiss();
         },
         (err) => this.onError(err.message)
       );
@@ -69,10 +69,10 @@ export class ModalComponent implements OnInit {
   }
 
   onSuccess(message: string) {
-    this.toastr.success('Yayy!', message);
+    this.toastr.success(message, 'Yayy!');
   }
 
   onError(error: string) {
-    this.toastr.error('Oops :(', error);
+    this.toastr.error(error, 'Oops :(');
   }
 }

@@ -15,7 +15,7 @@
   <!-- Card list -->
   <div [id]="list._id" class="card-list-container" [dragula]='"cards"' [dragulaModel]="list.cards">
     <div [id]="card._id" *ngFor="let card of list?.cards; let last = last">
-      <trello-card [card]="card"></trello-card>
+      <trello-card [card]="card" (onDelete)="removeCard($event)"></trello-card>
     </div>
   </div>
 

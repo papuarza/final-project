@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -15,12 +16,7 @@ import { ListService } from './shared/list.service';
 import { CardService } from './shared/card.service';
 import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { PlaceholderComponent } from './list/placeholder/placeholder.component';
-
-const CustomToastrOption = {
-  animate: 'fade',
-  newestOnTop: false,
-  showCloseButton: true
-};
+import { CustomToastrOption } from './shared/toastr-options';
 
 @NgModule({
   declarations: [
@@ -36,8 +32,8 @@ const CustomToastrOption = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    NgbModule.forRoot(),
     DragulaModule,
+    NgbModule.forRoot(),
     ToastModule.forRoot()
   ],
   entryComponents: [
@@ -47,7 +43,9 @@ const CustomToastrOption = {
     DragulaHandler,
     ListService,
     CardService,
-    { provide: ToastOptions, useValue: CustomToastrOption }
+    { provide: ToastOptions, useValue: CustomToastrOption },
+    { provide: 'BASE_ENDPOINT', useValue: environment.baseEndpoint },
+    { provide: 'API_ENDPOINT', useValue: environment.apiEndpoint }
   ],
   bootstrap: [AppComponent]
 })

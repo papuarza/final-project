@@ -10,6 +10,7 @@ export class PlaceholderComponent {
 
   @Input() placeholder: string;
   @Output() onSave = new EventEmitter<string>();
+
   isEditing = false;
   title: string;
 
@@ -22,6 +23,6 @@ export class PlaceholderComponent {
   save() {
     this.onSave.emit(this.title);
     this.title = '';
-    setTimeout(this.toggleEdit, 0);
+    this.isEditing = false;
   }
 }

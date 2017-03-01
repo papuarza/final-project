@@ -9,13 +9,15 @@ exports.getLists = function(req, res, next) {
 	 		return res.json(err);
 	 	}
 
-        Promise.all([
+        return new Promise((resolve, reject) => {
             listModel.populate(lists, 'cards')
-        ]).then(function(_lists) {
-            _.forEach(lists, (list) => {
-                list.cards = _.orderBy(list.cards, ['position','title','_id']);
-            });
-            return res.json( lists );
+                .then((_lists) => {
+                    _.forEach(lists, (list) => {
+                        list.cards = _.orderBy(list.cards, ['position','title','_id']);
+                    });
+                    return res.json( lists );
+                })
+                .catch((error) => res.status(400).json({ message: 'impossible to retrieve cards' }));
         });
   	});
 };
