@@ -2,10 +2,8 @@ const Q = require('q');
 const _ = require('lodash');
 const listModel = require('./list.model');
 const cardModel = require('../card/card.model');
-const DBService = require('../../service/db-service');
 
 exports.getLists = function(req, res, next) {
-    //DBService.wipeDB();
   	listModel.find({}, function(err, lists) {
 	 	if (err) {
 	 		return res.json(err);
