@@ -1,5 +1,5 @@
-import { IronTrelloGenericResponse } from './interfaces/generic-response.interface';
-import { SortableItem } from './interfaces/sortable-item.interface';
+import { IronTrelloGenericResponse } from './interfaces';
+import { SortableItem } from './interfaces';
 import { Card } from './../card/card.model';
 import { CardService } from './card.service';
 import { Injectable, Inject } from '@angular/core';
@@ -26,6 +26,10 @@ export class ListService {
     this.ENPOINT = this.BASE + this.API;
   }
 
+  /**
+   * Get all the board lists
+   * @returns Observable<SortableItem>
+   */
   get(): Observable<SortableItem[]> {
     return this.http.get(`${this.ENPOINT}${this.LIST_ROUTE}/`)
       .map((res) => res.json())
@@ -40,6 +44,10 @@ export class ListService {
       .catch((err) => Observable.throw(err));
   }
 
+  /**
+   * Calculate the next list position, based on the instance lists
+   * @returns number
+   */
   private getNextPosition(): number {
     if (this.lists.length !== 0) {
       const pos = _.last(this.lists).position;
@@ -49,10 +57,20 @@ export class ListService {
     }
   }
 
+  /**
+   * Re-arrange a sortable array by position and title
+   * @params items: Array<SortableItem> - The array to sort
+   * @returns items: Array<SortableItem> - The sorted array
+   */
   private sortItems(items: Array<SortableItem>): Array<SortableItem> {
     return _.orderBy(items, ['position', 'title']);
   }
 
+  /**
+   * Create a new list
+   * @params list
+   * @returns Observable<Array<SortableItem>>
+   */
   create(list): Observable<Array<SortableItem>> {
     list.position = this.getNextPosition();
 
@@ -68,7 +86,13 @@ export class ListService {
       });
   }
 
-  createCard(card, listId): Observable<Array<SortableItem>> {
+  /**
+   * Create a new card and assign it to the current list
+   * @params card
+   * @params listId: string
+   * @returns Observable<Array<SortableItem>>
+   */
+  createCard(card, listId: string): Observable<Array<SortableItem>> {
     return this.cardService.create(card)
       .map((newCard: Card) => {
         const list = (_.find(this.lists, { _id: listId })) as List;
@@ -76,29 +100,33 @@ export class ListService {
       });
   }
 
+  /**
+   * Edit a list
+   * @params list: SortableItem
+   * @returns Observable<IronTrelloGenericResponse>
+   */
   edit(list: SortableItem): Observable<IronTrelloGenericResponse> {
     return this.http.put(`${this.ENPOINT}${this.LIST_ROUTE}/${list._id}`, list)
       .map((res) => res.json())
       .catch((err) => Observable.throw(err.json()));
   }
 
+  /**
+   * Delete a list (and all its cards)
+   * @params list: SortableItem
+   * @returns Observable<IronTrelloGenericResponse>
+   */
   remove(list: SortableItem): Observable<IronTrelloGenericResponse> {
     return this.http.delete(`${this.ENPOINT}${this.LIST_ROUTE}/${list._id}`)
       .map((res) => res.json())
       .catch((err) => Observable.throw(err.json()));
   }
 
-  shiftCard(sourceList, targetList, cardId) {
+  shiftCard(sourceList, targetList, cardId): void {
     const sList = _.find(this.lists, { _id: sourceList }) as List;
     const tList = _.find(this.lists, { _id: targetList }) as List;
-
-    console.log('sList', sList);
-    console.log('tList', tList);
-
     const _index = _.findIndex(tList.cards, { _id: cardId });
     const _el = _.find(tList.cards, { _id: cardId }) as Card;
-
-    console.log('Updating at index', _index);
 
     if (_index !== -1) {
       if (_index === 0) {
@@ -120,12 +148,12 @@ export class ListService {
 
       if (sourceList === targetList) {
         const subscription = this.cardService.edit(_el).subscribe(
-          (res) => console.log('Update card position', res),
+          (res) => console.log('Card position updated', res),
           (err) => console.log('Update card error', err)
         );
       } else {
         const subscription = this.cardService.transfer(_el, sourceList, targetList).subscribe(
-          (res) => console.log('Update card position', res),
+          (res) => console.log('Card position updated', res),
           (err) => console.log('Update card error', err)
         );
       }
@@ -134,7 +162,7 @@ export class ListService {
     tList.cards = this.sortItems(tList.cards) as Card[];
   }
 
-  shiftList(listId) {
+  shiftList(listId): void {
     const _index = _.findIndex(this.lists, { _id: listId });
     const _el = _.find(this.lists, { _id: listId }) as List;
 
