@@ -22,12 +22,10 @@ export class CardComponent implements OnInit {
 
   openCardModal(card) {
     const modalInstance = this.modalService.open(ModalComponent);
-    modalInstance.componentInstance.card = card;
+    modalInstance.componentInstance.originalCard = card;
 
     modalInstance
-      .result.then(
-        () => {},
-        (reason) => {
+      .result.then((reason) => {
           this.onDelete.emit(this.card._id);
         });
   }

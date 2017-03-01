@@ -1,14 +1,13 @@
-import { IronTrelloGenericResponse } from './interfaces';
-import { SortableItem } from './interfaces';
-import { Card } from './../card/card.model';
-import { CardService } from './card.service';
 import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import * as _ from 'lodash';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import * as _ from 'lodash';
 
+import { IronTrelloGenericResponse, SortableItem } from './interfaces';
+import { Card } from './../card/card.model';
+import { CardService } from './card.service';
 import { List } from './../list/list.model';
 
 @Injectable()
@@ -125,7 +124,7 @@ export class ListService {
   shiftCard(sourceList, targetList, cardId): void {
     const sList = _.find(this.lists, { _id: sourceList }) as List;
     const tList = _.find(this.lists, { _id: targetList }) as List;
-    const _index = _.findIndex(tList.cards, { _id: cardId });
+    const _index = _.findIndex(tList.cards, { _id: cardId }) as number;
     const _el = _.find(tList.cards, { _id: cardId }) as Card;
 
     if (_index !== -1) {

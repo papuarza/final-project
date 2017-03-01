@@ -10,4 +10,13 @@
     &:hover {
         background-color: darken($trello-secondary-color-light, 5%);
     }
+
+    p.title, p.description {
+        margin-bottom: 0.1rem;
+    }
+
+    p.title {
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
 }

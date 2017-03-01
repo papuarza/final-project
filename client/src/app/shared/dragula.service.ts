@@ -13,7 +13,7 @@ export class DragulaHandler {
   ) {
     dragulaService.setOptions('lists', {
       moves: function (el, container, handle) {
-        return handle.tagName === 'TRELLO-LIST';
+        return handle.tagName === 'TRELLO-LIST' || handle.classList.value.includes('placeholder');
       }
     });
   }

@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 
-import { SortableItem } from './../shared/interfaces/sortable-item.interface';
+import { SortableItem } from './../shared/interfaces';
 import { Card } from './../card/card.model';
 
 export class List implements SortableItem {
@@ -23,14 +23,14 @@ export class List implements SortableItem {
         this.position = list.position;
     }
 
-    private sortCards() {
-        this.cards = _.orderBy(this.cards, ['position', 'title']);
-        return this.cards;
-    }
-
     addCard(card: Card): Array<Card> {
         this.cards.push(card);
         this.sortCards();
+        return this.cards;
+    }
+
+    private sortCards() {
+        this.cards = _.orderBy(this.cards, ['position', 'title']);
         return this.cards;
     }
 }

@@ -1,6 +1,5 @@
-import { SortableItem } from './../shared/interfaces/sortable-item.interface';
+import { SortableItem } from './../shared/interfaces';
 import { List } from './../list/list.model';
-import { User } from './../shared/user.model';
 
 export class Card implements SortableItem {
     _id: string;

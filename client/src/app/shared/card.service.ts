@@ -41,7 +41,11 @@ export class CardService {
    */
   edit(card: Card) {
     return this.http.put(`${this.ENPOINT}${this.CARD_ROUTE}/${card._id}`, card)
-      .map((res) => res.json())
+      .map((res) => res.json().card)
+      .map((_card) => {
+        card = new Card(_card);
+        return card;
+      })
       .catch((err) => Observable.throw(err.json()));
   }
 

@@ -8,7 +8,7 @@ exports.getLists = function(req, res, next) {
 	 	if (err) {
 	 		return res.json(err);
 	 	}
-
+         
         return new Promise((resolve, reject) => {
             listModel.populate(lists, 'cards')
                 .then((_lists) => {

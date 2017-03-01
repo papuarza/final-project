@@ -1,7 +1,8 @@
 <div class="item-placeholder-wrapper">
   <div class="item-placeholder" [ngClass]="{ 'editing': isEditing }">
-    <form>
+    <form class="item-form-placeholder">
       <span class="placeholder" [hidden]="isEditing" (click)="toggleEdit()"> {{ placeholder }} </span>
+      
       <input class="form-control" type="text" name="name" placeholder="enter the title..." 
             autocomplete="off" autofocus maxlength="512" [(ngModel)]="title"
             *ngIf="isEditing" />

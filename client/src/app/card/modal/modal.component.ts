@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateStruct, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import * as _ from 'lodash';
 
 import { Card } from './../card.model';
 import { CardService } from './../../shared/card.service';
@@ -12,7 +13,8 @@ import { CardService } from './../../shared/card.service';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
-  @Input() card: Card;
+  @Input() originalCard: Card;
+  card: Card;
 
   dueDateDT: NgbDateStruct;
   editingDescription = false;
@@ -26,6 +28,9 @@ export class ModalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // Edit a clone of the original card
+    this.card = _.clone(this.originalCard);
+
     if (this.card.dueDate) {
       this.dueDateDT = this.ngbDateParserFormatter.parse(this.card.dueDate.toString());
     }
@@ -42,14 +47,14 @@ export class ModalComponent implements OnInit {
       .subscribe(
         (response) => {
           this.onSuccess(response.message);
-          this.activeModal.dismiss();
+          this.activeModal.close();
         },
         (err) => this.onError(err.message)
       );
   }
 
   editCard(field) {
-    this.cardService.edit(this.card)
+    this.cardService.edit(_.merge(this.originalCard, this.card))
       .subscribe(
         (response) => {
           this.editingDescription = false;
