@@ -10,7 +10,9 @@ const RelationUserGymSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Gym'
     },
-    Voucher: String
+    Voucher: String,
+    used: Boolean,
+    rated: Boolean,
 });
 
 const RelationUserGym = mongoose.model('RelationUserGym', RelationUserGymSchema);

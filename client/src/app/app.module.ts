@@ -16,6 +16,7 @@ import { LoginGymComponent } from './login-gym/login-gym.component';
 import { EditGymComponent } from './edit-gym/edit-gym.component';
 import { GymsListComponent } from './gyms-list/gyms-list.component';
 import { GymsSingleComponent } from './gyms-single/gyms-single.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -26,7 +27,7 @@ const routes: Routes = [
       { path: 'login', component:LoginUserComponent },
       { path: 'signup', component: SignupUserComponent },
       { path: 'edit/:id', component: EditUserComponent },
-      { path: 'view/:id)', component: UserComponent }
+      { path: ':id)', component: UserProfileComponent }
     ]
   },
   { path: 'gym', component: GymComponent,
@@ -51,7 +52,8 @@ const routes: Routes = [
     LoginGymComponent,
     EditGymComponent,
     GymsListComponent,
-    GymsSingleComponent
+    GymsSingleComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

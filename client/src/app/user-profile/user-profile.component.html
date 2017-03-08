@@ -1,0 +1,19 @@
+{{user.username}}
+<div *ngIf="gymsSaved">
+  Gyms Saved
+  <ul *ngFor="let gym of gymsSaved">
+    <li>{{gym.name}}</li>
+  </ul>
+</div>
+<div *ngIf="gymsRated">
+  Gyms Rated
+  <ul *ngFor="let gym of gymsRated">
+    <li>{{gym.name}}</li>
+  </ul>
+</div>
+<div *ngIf="gymsUsed">
+  Gyms Used
+  <ul *ngFor="let gym of gymsUsed">
+    <li>{{gym.name}}</li>
+  </ul>
+</div>

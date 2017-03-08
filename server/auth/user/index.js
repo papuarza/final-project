@@ -9,7 +9,7 @@ router.post('/login', controller.logInUser);
 router.post('/signup', controller.createUser);
 router.post('/logout', controller.logoutUser);
 router.get('/loggedin', controller.loggedInUser);
-router.post('/private', controller.privateUser);
+router.post('/:id/listed-gym', controller.listedGym);
 //router.put('/:id', controller.editUser);
 //router.delete('/:id', controller.removeUser);
 

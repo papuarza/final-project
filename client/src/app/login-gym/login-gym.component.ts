@@ -41,6 +41,6 @@ export class LoginGymComponent implements OnInit {
     this.gym = gym;
     this.error = null;
     this.loggedin.checkLogged(gym);
-    this.router.navigate(['gym'])
+    this.router.navigate(['gym'+this.gym._id])
   }
 }

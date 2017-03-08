@@ -8,6 +8,7 @@ const passport = require("passport");
 
 // Our user model
 const User           = require("./user.model");
+const RelationUserGym = require("../../relation/relation.model");
 
 // Bcrypt let us encrypt passwords
 const bcrypt         = require("bcrypt");
@@ -93,10 +94,40 @@ exports.logoutUser = function(req, res, next) {
 	res.status(200).json({ message: 'Success' });
 };
 
-exports.privateUser = function(req, res, next) {
-	if(req.isAuthenticated()) {
-    return res.json({ message: 'This is a private message' });
-  }
+exports.listedGym = function(req, res, next) {
+	let ratedGyms = [];
+	let usedGyms = [];
+	let savedGyms = [];
+    RelationUserGym.find({
+        user: req.params.id
+    }, (err, relation) => {
+        if (err) {
+            return next(err);
+        }
+				relation.forEach(function(elem, indexOf, arr) {
+        	elem.populate('gym', (err, gyms) => {
+        	if (err) {return next(err);}
+					if(indexOf < arr.length - 1){
+						if(gyms.rated){
+							ratedGyms.push(gyms.gym);
+						} else if (gyms.used){
+							usedGyms.push(gyms.gym);
+						} else {
+							savedGyms.push(gyms.gym);
+						}
+					} else {
+						if(gyms.rated){
+							ratedGyms.push(gyms.gym);
+						} else if (gyms.used){
+							usedGyms.push(gyms.gym);
+						} else {
+							savedGyms.push(gyms.gym);
+						}
+						res.json({ratedGyms, usedGyms, savedGyms});
+					}
+				});
+			});
 
-  return res.status(403).json({ message: 'Unauthorized' });
-};
+
+		});
+	};

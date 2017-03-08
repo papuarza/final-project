@@ -23,4 +23,7 @@
 </form>
 
 <a [routerLink]="['gyms-list']"> Gym´s List </a>
-<a [routerLink]="['gyms-list']"> User Profile </a>
+
+<div *ngIf="user">
+<a [routerLink]="['/user/', user._id]"> User Profile</a>
+</div>

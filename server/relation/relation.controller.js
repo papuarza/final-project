@@ -15,11 +15,14 @@ const bcryptSalt     = 10;
 exports.saveNewRelationUserGym = function(req, res, next) {
 	let user = req.body.data.userId;
 	let gym = req.body.data.gymId;
-	let Voucher = "1 time";
+	console.log(req.body)
+	let used =false;
+	let rated = false;
 	var newRelation = RelationUserGym({
 		user,
 		gym,
-		Voucher
+		used,
+		rated
 	});
 
 	newRelation.save((err) => {

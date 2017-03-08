@@ -93,4 +93,9 @@ export class SessionService {
     return this.http.post(baseURL+`relation/user-gym`, {data: {userId : userId, gymId: gymId}})
       .map((res) => res.json());
   }
+
+  getGymRelated(userId){
+    return this.http.post(baseURL+`auth/user/`+userId+`/listed-gym`, userId)
+      .map((res) => res.json());
+  }
 }
