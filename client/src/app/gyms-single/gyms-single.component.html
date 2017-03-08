@@ -1,0 +1,11 @@
+<div *ngIf="singleGym">
+  <h2> You are now watching {{ singleGym.name }}!! </h2>
+  <p> Here's the user object </p>
+  <pre> {{ singleGym | json }} </pre>
+  <div *ngIf="user">
+    <pre> {{ user | json }} </pre>
+  </div>
+<div *ngIf="user">
+  <button (click)="buyPass()"> Buy a Pass </button>
+</div>
+</div>

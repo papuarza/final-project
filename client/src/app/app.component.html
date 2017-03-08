@@ -1,0 +1,26 @@
+<h1>
+  {{title}}
+</h1>
+<router-outlet></router-outlet>
+<form *ngIf="!user">
+  <nav>
+    USER
+        <ul>
+          <li> <a [routerLink]="['user/login']"> LogIn </a> </li>
+          <li> <a [routerLink]="['user/signup']"> SignUp </a> </li>
+        </ul>
+  </nav>
+</form>
+
+<form *ngIf="!user">
+  <nav>
+    GYMS
+        <ul>
+          <li> <a [routerLink]="['gym/login']"> LogIn </a> </li>
+          <li> <a [routerLink]="['gym/signup']"> SignUp </a> </li>
+        </ul>
+  </nav>
+</form>
+
+<a [routerLink]="['gyms-list']"> Gym´s List </a>
+<a [routerLink]="['gyms-list']"> User Profile </a>

@@ -1,0 +1,9 @@
+<p>
+  entry-list works!
+</p>
+<div *ngFor="let gym of gyms">
+  <a [routerLink]="['/gyms-list/', gym._id]">
+  <p>{{gym.name}}</p></a>
+  <span>| {{gym.email }}</span>
+
+</div>
