@@ -17,6 +17,8 @@ import { EditGymComponent } from './edit-gym/edit-gym.component';
 import { GymsListComponent } from './gyms-list/gyms-list.component';
 import { GymsSingleComponent } from './gyms-single/gyms-single.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import {ModalModule} from "ngx-modal";
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -53,13 +55,15 @@ const routes: Routes = [
     EditGymComponent,
     GymsListComponent,
     GymsSingleComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    ModalModule
   ],
   providers: [ SessionService, LoggedinService ],
   bootstrap: [AppComponent]

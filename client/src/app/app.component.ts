@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SessionService } from "./session.service";
 import { LoggedinService } from './loggedin.service';
+import {ModalModule} from "ngx-modal";
 
 
 @Component({

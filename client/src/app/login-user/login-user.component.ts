@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { SessionService } from '../session.service';
 import { LoggedinService } from '../loggedin.service';
 import { Router } from '@angular/router';
+import {ModalModule} from "ngx-modal";
 
 @Component({
   selector: 'login-user-root',
