@@ -1,3 +1,108 @@
-<p>
-  home works!
-</p>
+<body class="container-fluid main-body">
+  <section class="first-row-landing">
+    <div>
+      <h1 class="home-title">
+        <span class="home-title-principle">
+          Un lugar en el que entrenar.
+        </span>
+        Descubre los<br /> mejores gimnasios de cada ciudad y disfruta <br />entrenando en cada uno de tus destinos.
+      </h1>
+      <input value="" class="search-input" placeholder="Where´s your next training?" id="pac-input" (keydown)="autocomplete($event)"/>
+      <a [routerLink]="['gyms-list']" class="search-home-button">Search</a>
+    </div>
+  </section>
+  <section class="row category-row">
+    <h3 class="sub-row-title">Choose your training</h3>
+    <div class="col-md-3 category-item">
+      <div class="category-img"></div>
+      <span class="item-title">Gym</span>
+      <span class="item-subtitle"> | Get your best with some strong pull ups</span>
+    </div>
+    <div class="col-md-3 category-item">
+      <div class="category-img category-img2"></div>
+      <span class="item-title">Crossfit</span>
+      <span class="item-subtitle"> | Make your best WOD anytime and anywhere</span>
+    </div>
+    <div class="col-md-3 category-item">
+      <div class="category-img category-img3"></div>
+      <span class="item-title">Sppining</span>
+      <span class="item-subtitle"> | Get on the bike and crush that workout</span>
+    </div>
+    <div class="col-md-3 category-item">
+      <div class="category-img category-img4"></div>
+      <span class="item-title">Swim</span>
+      <span class="item-subtitle"> | Relax and enjoy a fresh pool wherever you are</span>
+    </div>
+  </section>
+  <section class="row courts-row">
+    <h3 class="sub-row-title">Choose your sport</h3>
+    <div class="col-md-4 court-item">
+      <div class="court-img2 category-img"></div>
+      <span class="item-title">Football</span>
+      <span class="item-subtitle"> | Get your best with some strong pull ups</span>
+    </div>
+    <div class="col-md-4 court-item">
+      <div class="category-img court-img2"></div>
+      <span class="item-title">Basketball</span>
+      <span class="item-subtitle"> | Make your best WOD anytime and anywhere</span>
+    </div>
+    <div class="col-md-4 court-item">
+      <div class="category-img court-img3"></div>
+      <span class="item-title">Paddle</span>
+      <span class="item-subtitle"> | Get on the bike and crush that workout</span>
+    </div>
+  </section>
+  <section class="row city-row">
+    <h3 class="sub-row-title">Choose your city</h3>
+    <div class="col-md-2 city-item">
+      <div class="city-img2 category-img"></div>
+      <span class="item-title">Madrid</span>
+      <span class="item-subtitle"> | España</span>
+    </div>
+    <div class="col-md-2 city-item">
+      <div class="category-img city-img2"></div>
+      <span class="item-title">Rome</span>
+      <span class="item-subtitle"> | Italia</span>
+    </div>
+    <div class="col-md-2 city-item">
+      <div class="category-img city-img3"></div>
+      <span class="item-title">New York</span>
+      <span class="item-subtitle"> | Estados Unidos</span>
+    </div>
+    <div class="col-md-2 city-item">
+      <div class="category-img city-img3"></div>
+      <span class="item-title">Asuncion</span>
+      <span class="item-subtitle"> | Paraguay</span>
+    </div>
+    <div class="col-md-2 city-item">
+      <div class="category-img city-img3"></div>
+      <span class="item-title">Sydney</span>
+      <span class="item-subtitle"> | Australia</span>
+    </div>
+    <div class="col-md-2 city-item">
+      <div class="category-img city-img3"></div>
+      <span class="item-title">Ciudad del Cabo</span>
+      <span class="item-subtitle"> | Sudafrica</span>
+    </div>
+  </section>
+  <section>
+    <div class="info-row">
+      <div class="paralelogramo">
+        <ul>
+          <li><i class="fa fa-globe" aria-hidden="true"></i>Find gym all over the world</li>
+          <li><i class="fa fa-mobile" aria-hidden="true"></i>Get your pass on your mobile phone.</li>
+          <li><i class="fa fa-info" aria-hidden="true"></i>Complete info about every gym, with all the includes features.</li>
+          <li><i class="fa fa-money" aria-hidden="true"></i>Best price. Every gym manage their own price</li>
+          <li><i class="fa fa-arrows-alt" aria-hidden="true"></i>Etiam pharetra erat vitae nunc vestibulum lorem absd.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="row gyms-row">
+    <h2 class="gym-row-title-big">Own a gym?<span class="gym-row-title"> Sign up, fill  all <br />the data and start getting new <br />costumers from all around the world!</span></h2>
+    <div class="gym-button-wrapper">
+      <a href="" class="gym-button">Signup</a>
+      <a href="" class="gym-button">Login</a>
+    </div>
+  </section>
+</body>

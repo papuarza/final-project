@@ -9,8 +9,8 @@ router.post('/login', controller.logInUser);
 router.post('/signup', controller.createUser);
 router.post('/logout', controller.logoutUser);
 router.get('/loggedin', controller.loggedInUser);
+router.post('/edit/:id', controller.editUser);
 router.post('/:id/listed-gym', controller.listedGym);
-//router.put('/:id', controller.editUser);
 //router.delete('/:id', controller.removeUser);
 
 module.exports = router;

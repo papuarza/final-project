@@ -1,0 +1,100 @@
+*:hover {
+  text-decoration: none;
+}
+
+.gym-card-img {
+  width: 100%;
+  border-radius: 3px;
+}
+
+.gym-card-img-container {
+  width: 300px;
+  height: auto;
+  float: left;
+  border-radius: 5px;
+  display: inline;
+}
+.filter-item {
+  padding: 10px 0px 10px 0px;
+  border-right: 1px solid #D3D3D3;
+}
+
+.filter-item:hover {
+  padding: 10px 0px 10px 0px;
+  border-right: 1px solid #D3D3D3;
+  color:#fff;
+  background-color: rgb(255, 84, 77);
+  cursor: pointer;
+}
+
+.filter-row {
+  margin: 65px 0px 0px 0px;
+  color: black;
+  font-size: 2rem;
+  font-weight: 100;
+  text-align: center;
+  border-bottom: 1px solid #D3D3D3;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  background-color: #fff;
+}
+
+.gym-card-info-text {
+  font-size: 1.5rem;
+  display: block;
+  font-weight: 100;
+}
+
+.gym-cards-column{
+  margin: 140px 0px 0px 0px;
+}
+
+.map-column {
+  padding: 0px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin: 100px 0px 0px 0px;
+}
+
+.gym-cards-row{
+  padding: 0px 0px 0px 40px;
+}
+
+.sebm-google-map-container {
+  height: 100vh;
+}
+
+.price-info-card{
+  float: right;
+  font-size: 2.5rem;
+  margin: -45px 10px 0px 0px;
+}
+
+.gym-card {
+  margin: 0px 0px 30px 0px;
+  padding: 0px 0px 30px 0px;
+  display: inline;
+}
+
+.gym-card-name {
+  font-size: 2.5rem;
+  color:rgb(255, 84, 77);
+  margin: 0px;
+}
+
+p {
+  margin: 0px;
+}
+
+.gym-card-text {
+  padding: 0px 0px 0px 0px;
+  display: inline-block;
+  width: 100%;
+}
+
+#map {
+  height: 100vh;
+}

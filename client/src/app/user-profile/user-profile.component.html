@@ -1,19 +1,51 @@
-{{user.username}}
-<div *ngIf="gymsSaved">
-  Gyms Saved
-  <ul *ngFor="let gym of gymsSaved">
-    <li>{{gym.name}}</li>
-  </ul>
-</div>
+<div class="container-fluid">
+  <div class="row-pic-profile row">
+    <div class="col-xs-3">
+      <div class="profile-pic-container">
+        <img src="{{user.imgUrl}}" alt="" class="profile-pic">
+      </div>
+      <p class="user-data-personal">{{user.city}}, {{user.country}}<br />{{user.email}}</p>
+    </div>
+    <div class="col-xs-9 welcome-column">
+      <p class="user-data-welcome" >Welcome back <span class="user-data-name">{{user.name}}!!</span></p>
+      <p class="user-data-username">Are you ready for your next train? <br />Where are you going?</p>
+
+      <div class="button-wrapper">
+        <a [routerLink]="['']" class="button-profile">SEARCH GYMS</a>
+        <a [routerLink]="['edit/']" class="button-profile">EDIT PROFILE</a>
+      </div>
+
+  </div>
+  </div>
+  <div class="row-gyms-info row">
+    <div *ngIf="gymsSaved">
+      <p class="user-gyms-title">Gyms Saved</p>
+      <div *ngFor="let gym of gymsSaved" class="col-xs-5 gym-card">
+        <img src="{{gym.imgUrl}}" alt="" class="gym-img">
+        <p class="gym-name">{{gym.name}}</p>
+        <p class="gym-name">{{gym.city}}, {{gym.country}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-gyms-info row">
+    <div *ngIf="gymsUsed">
+      <p class="user-gyms-title">Gyms Used</p>
+      <div *ngFor="let gym of gymsUsed" class="col-xs-5 gym-card">
+        <img src="{{gym.imgUrl}}" alt="" class="gym-img">
+        <p class="gym-name">{{gym.name}}</p><br />
+        <p class="gym-city"><i class="fa fa-map-marker pin-profile" aria-hidden="true"></i> {{gym.city}}, {{gym.country}}</p>
+        <button (click)="modalOpen()" class="btn btn-primary">Modal Demo</button>
+        <modal (modalOutput)="getData($event)"></modal>
+      </div>
+    </div>
+  </div>
+
+<div class="row-gyms-info row">
 <div *ngIf="gymsRated">
-  Gyms Rated
+  <p class="user-gyms-title">Gyms Rated</p>
   <ul *ngFor="let gym of gymsRated">
     <li>{{gym.name}}</li>
   </ul>
 </div>
-<div *ngIf="gymsUsed">
-  Gyms Used
-  <ul *ngFor="let gym of gymsUsed">
-    <li>{{gym.name}}</li>
-  </ul>
 </div>

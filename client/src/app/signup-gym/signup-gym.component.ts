@@ -45,6 +45,7 @@ export class SignupGymComponent implements OnInit {
     this.gym = gym;
     this.error = null;
     this.loggedin.checkLogged(gym);
+    console.log("yeee")
     this.router.navigate(['gym/'+this.gym._id])
   }
 }

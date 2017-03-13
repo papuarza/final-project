@@ -1,13 +1,19 @@
-<h1> Authentication Sample </h1>
-<form>
-  <h2>Login</h2>
-  <label> Username </label>
-  <input type="text" [(ngModel)]="formInfo.username" name="username"/>
-  <br>
-  <label> Password </label>
-  <input type="password" [(ngModel)]="formInfo.password" name="password"/>
+<div class="col-xs-6 sign-home">
+  <a [routerLink]="['']" class="logo-header">KUNTZA</a>
+  <h3 class="sign-form-title">Get into the largest gyms networks in the world and start getting customers from all around the world</h3>
+</div>
+<div class="form-log-sign col-xs-6">
+  <form>
+    <h2>Login</h2>
+    <label> Username </label>
+    <input type="text" [(ngModel)]="formInfo.username" name="username"/>
+    <br>
+    <label> Password </label>
+    <input type="password" [(ngModel)]="formInfo.password" name="password"/>
 
-  <button (click)="loginGym()"> Login </button>
-</form>
+    <button (click)="loginGym()"> Login </button>
+  </form>
+</div>
+
 
 <p class="error"> {{ error }} </p>

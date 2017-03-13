@@ -17,7 +17,7 @@ const gymSchema = new Schema({
   email: String,
   description: String,
   schedule: Object,
-  prices: Object,
+  price: Number,
   isWifi: Boolean,
   isParking: Boolean,
   isSpa: Boolean,

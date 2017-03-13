@@ -14,6 +14,40 @@ const RelationUserGym = require("../../relation/relation.model");
 const bcrypt         = require("bcrypt");
 const bcryptSalt     = 10;
 
+exports.editUser = function(req, res, next) {
+	var _id = req.params.id;
+	var username = req.body.username;
+	var name = req.body.name;
+	var lastName = req.body.lastName;
+	var city = req.body.city;
+	var country = req.body.country;
+	var email = req.body.email;
+
+const user = {username, name, lastName, city, country, email};
+
+const criteria = {
+   _id: _id
+ };
+ const update = {
+   $set: {
+     username,
+		 name,
+		 lastName,
+		 city,
+		 country,
+     email
+   }
+ };
+
+ console.log(user, criteria)
+
+ User.updateOne(criteria, update, function(err, user) {
+   if (err) return next(err);
+	 res.status(200).json(req.user);
+ });
+
+};
+
 exports.createUser = function(req, res, next) {
 	var username = req.body.username;
   var password = req.body.password;
@@ -90,7 +124,7 @@ return res.status(403).json({ message: 'Unauthorized' });
 };
 
 exports.logoutUser = function(req, res, next) {
-	req.logout();
+	req.logOut();
 	res.status(200).json({ message: 'Success' });
 };
 
@@ -123,6 +157,7 @@ exports.listedGym = function(req, res, next) {
 						} else {
 							savedGyms.push(gyms.gym);
 						}
+						console.log(savedGyms)
 						res.json({ratedGyms, usedGyms, savedGyms});
 					}
 				});

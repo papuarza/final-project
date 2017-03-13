@@ -1,11 +1,65 @@
 <div *ngIf="singleGym">
-  <h2> You are now watching {{ singleGym.name }}!! </h2>
-  <p> Here's the user object </p>
-  <pre> {{ singleGym | json }} </pre>
-  <div *ngIf="user">
-    <pre> {{ user | json }} </pre>
+  <div class="header-img">
+    <img src="{{ singleGym.imgUrl }}" alt="">
   </div>
-<div *ngIf="user">
-  <button (click)="buyPass()"> Buy a Pass </button>
-</div>
+  <div class="price-card col-xs-4">
+    <h3 class="price-card-title">Pass Information</h3>
+    <div class="card-text-info">
+      <p class="card-price-title">1-Day Pass <br /><span class="card-price-info">{{singleGym.price}}€</span></p>
+      <p class="card-extra-info">Expiration Date: <span class="card-extra-info-bold">1 year from buy day</span></p>
+      <div *ngIf="user">
+        <button (click)="buyPass()"> Buy a Pass </button>
+      </div>
+      <div *ngIf="!user">
+        <p class="card-sign-notice">Sign in to buy a pass!</p>
+      </div>
+      <p class="card-extra-info">Including all gyms facilities and classes. For personal training ask on each gym</p>
+    </div>
+  </div>
+  <div class="col-xs-7 info-column">
+    <p class="single-gym-title">{{singleGym.name}}</p>
+    <p class="single-gym-adress">
+      {{singleGym.adress}},
+    </p>
+    <p class="single-gym-city">
+      {{singleGym.city}}, {{singleGym.country}}
+    </p>
+    <p class="single-gym-description">
+      {{singleGym.description}}
+    </p>
+    <p class="single-gym-subtitle">Classes</p>
+    <ul>
+      <li class="classes-gym"><span class="classes-gym-tittle">TRX: </span>{{singleGym.isTRX}}</li>
+      <li class="classes-gym"><span class="classes-gym-tittle">Crossfit: </span>{{singleGym.isCrossfit}}</li>
+      <li class="classes-gym"><span class="classes-gym-tittle">Spinning: </span>{{singleGym.isSpinning}}</li>
+      <li class="classes-gym"><span class="classes-gym-tittle">Personal Training: </span>{{singleGym.isPersonalTraining}}</li>
+      <li class="classes-gym"><span class="classes-gym-tittle">Other Classes: </span>{{singleGym.otherClasses}}</li>
+    </ul>
+    <p class="single-gym-subtitle">Facilities</p>
+      <ul>
+        <li class="classes-gym"><span class="classes-gym-tittle">Wifi: </span>{{singleGym.isWifi}}</li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Parking: </span>{{singleGym.isParking}}</li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Spa: </span>{{singleGym.isSpa}}</li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Pool: </span>{{singleGym.isPool}}</li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Basketball Court: </span>{{singleGym.isBasketballCourt}}</li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Soccer Court: </span>{{singleGym.isSoccerCourt}}</li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Tennis Court: </span>{{singleGym.isTennisCourt}}</li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Paddle Court: </span>{{singleGym.isPaddleCourt}}</li>
+      </ul>
+      <p class="single-gym-subtitle">Schedule</p>
+      <ul>
+        <li class="classes-gym"><span class="classes-gym-tittle">Monday: </span>{{singleGym.schedule.Monday}}</li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Tuesday: </span>{{singleGym.schedule.Tuesday}}</li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Wednesday: </span>{{singleGym.schedule.Wenesday}}</li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Thursday: </span>{{singleGym.schedule.Thursday}}</li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Friday: </span>{{singleGym.schedule.Friday}}</li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Saturday: </span>{{singleGym.schedule.Saturday}}</li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Sunday: </span>{{singleGym.schedule.Sunday}}</li>
+      </ul>
+      <p class="single-gym-subtitle">Directions</p>
+    <sebm-google-map [latitude]="lat" [longitude]="lng">
+  <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+</sebm-google-map>
+  </div>
+
 </div>

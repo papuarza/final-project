@@ -1,3 +1,22 @@
-<p>
-  edit-user works!
-</p>
+<div class="row edit-row">
+  <div class="col-md-6">
+    <label class="label-edit-profile">Username</label>
+    <input class="input-edit-profile" value={{user.username}} [(ngModel)]="formInfo.name"/><br />
+    <label class="label-edit-profile">Name</label>
+    <input class="input-edit-profile" value={{user.name}} type="text" [(ngModel)]="formInfo.name" /><br />
+    <label class="label-edit-profile">Last Name</label>
+    <input class="input-edit-profile" value={{user.lastName}} type="text" [(ngModel)]="formInfo.lastName" />
+  </div>
+  <div class="col-md-6">
+    <label class="label-edit-profile">City</label>
+    <input class="input-edit-profile" value = {{user.city}} type="text" [(ngModel)]="formInfo.city" /><br />
+    <label class="label-edit-profile">Country</label>
+    <input class="input-edit-profile" value={{user.country}} type="text" [(ngModel)]="formInfo.country" /><br />
+    <label class="label-edit-profile">Email</label>
+    <input class="input-edit-profile" value={{user.email}} type="text" [(ngModel)]="formInfo.email" />
+  </div>
+  <div class="button-row">
+      <button (click)="editUser()" [routerLink]="['']" class="edit-button"> Edit </button>
+  </div>
+
+</div>

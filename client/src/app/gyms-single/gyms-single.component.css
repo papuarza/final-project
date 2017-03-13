@@ -1,0 +1,128 @@
+.header-img{
+    width: 100%;
+}
+
+.header-img img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  filter: blur(0px);
+  margin: 60px 0px 0px 0px;
+}
+
+.price-card {
+  width: 350px;
+  border: 1px solid #DCE0E0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 250px 150px 0px 0px;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 0px;
+}
+
+.sebm-google-map-container {
+  height: 60vh;
+}
+
+.single-gym-adress {
+  display: inline;
+  font-weight: 100;
+  font-size: 2rem;
+  margin:0px;
+}
+
+.single-gym-city {
+  display: inline;
+  font-weight: 100;
+  font-size: 2rem;
+  margin: 0px 0px 30px 0px;
+}
+
+.price-card-title {
+  padding: 10px 30px;
+  background-color: #fff;
+  color: rgb(255, 84, 77);
+  font-weight: 100;
+  margin: 0px 0px 15px 0px;
+  font-size: 3rem;
+  padding: 20px 0px;
+  border-radius: 10px;
+}
+
+.card-price-title {
+  font-weight: 100;
+  font-size: 2.5rem;
+  border-bottom: 1px solid #DCE0E0;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.card-sign-notice {
+  background-color: rgb(255, 84, 77);
+  color: #fff;
+  font-size: 2.5rem;
+  border-radius: 10px;
+  padding: 5px 0px;
+  margin: 20px 0px 30px 0px;
+}
+
+.card-extra-info {
+  font-weight: 100;
+  font-size: 1.5rem;
+}
+
+.card-extra-info-bold {
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.card-price-info {
+  font-weight: 400;
+  font-size: 2.5rem;
+}
+
+.card-text-info {
+  padding: 0px 20px;
+}
+
+.info-column {
+  padding: 50px 60px;
+}
+
+.single-gym-title {
+  color: #484848;
+  font-size: 5rem;
+  font-weight: 800;
+  margin: 0px;
+  line-height: 5.5rem;
+}
+
+.classes-gym {
+  font-weight: 100;
+  list-style-type: none;
+  margin: 0px 0px 15px 0px;
+  font-size: 2rem;
+}
+
+.classes-gym-tittle {
+  font-weight: 400;
+}
+
+.single-gym-subtitle {
+  color: rgb(255, 84, 77);
+  font-size: 3rem;
+  font-weight: 400;
+  margin: 0px 0px 20px 0px;
+  line-height: 3.5rem;
+  padding: 0px 0px 10px 0px;
+  border-bottom: 1px solid rgb(255, 84, 77);
+}
+
+.single-gym-description {
+  font-size: 1.5rem;
+  margin: 30px 0px 30px 0px;
+  font-weight: 100;
+}

@@ -4,6 +4,30 @@ body {
   padding: 0px;
 }
 
+.gym-links-header {
+  margin: 0px 0px 0px 10px;
+  color: rgb(255, 84, 77);
+}
+
+.gym-sign-header {
+  color: #fff;
+  font-size: 1rem;
+  padding: 0px 0px 0px 20px;
+  margin: 15px 0px 0px 20px;
+  font-weight: 100;
+}
+
+.logo-header:hover {
+  text-decoration: none;
+}
+
+.user-pic-header{
+  width: 30px;
+  height: 30px;
+  border-radius: 360px;
+  float: right;
+}
+
 header {
   position: fixed;
   top: 0;
@@ -12,10 +36,14 @@ header {
   text-decoration: none;
   margin: 0px;
   padding: 10px 0px;
+  background-image: linear-gradient(to bottom right,#111411,#121414);
+  opacity: 1;
+  z-index: 1000;
+  overflow: hidden;
 }
 
 .user-log {
-  float: right;
+
 }
 
 .home-title-principle {
@@ -59,9 +87,15 @@ header {
 }
 
 .user-header {
-  float: right;
-  display: inline-flex;
-  text-align: right;
+  position: absolute;
+  right: 0;
+}
+
+.logo-header {
+  font-family: 'Poiret One', cursive;
+  font-size: 3.5rem;
+  text-align: center;
+  color: rgb(255, 84, 77);
 }
 
 .search-input{
@@ -240,8 +274,10 @@ footer {
   margin: 10px 10px;
   padding: 3px 20px;
   border-radius: 10px;
-  border: 0.5px solid #fff;
   float: right;
+  font-weight: 100;
+  background-color: #111411;
+  border:0px;
 }
 
 .header-user-link:hover {

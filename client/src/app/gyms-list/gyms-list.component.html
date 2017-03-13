@@ -1,9 +1,31 @@
-<p>
-  entry-list works!
-</p>
-<div *ngFor="let gym of gyms">
-  <a [routerLink]="['/gyms-list/', gym._id]">
-  <p>{{gym.name}}</p></a>
-  <span>| {{gym.email }}</span>
+<div class="row filter-row">
+  <div class="col-xs-2 filter-item">Personal Trainer</div>
+  <div class="col-xs-2 filter-item">TRX</div>
+  <div class="col-xs-2 filter-item">Swimming Pool</div>
+  <div class="col-xs-2 filter-item">Crossfit</div>
+  <div class="col-xs-2 filter-item">Spa</div>
+  <div class="col-xs-2 filter-item">Sports Courts</div>
+</div>
+<div class="gym-cards-row">
+  <div class="col-md-7 gym-cards-column">
+    <div *ngFor="let gym of gyms" class="col-md-6 gym-card">
+        <div class="gym-card-img-container">
+            <img src="{{gym.imgUrl}}" alt="" class="gym-card-img">
+            <div class="gym-card-text">
+              <a [routerLink]="['/gyms-list/', gym._id]" class="gym-card-name">
+              <p>{{gym.name}}</p></a>
+              <p class="gym-card-info-text">{{gym.adress}}, {{gym.city}}</p>
+              <p class="price-info-card">10€</p>
+            </div>
+        </div>
 
+
+    </div>
+  </div>
+
+  <div class="col-md-5 map-column">
+    <sebm-google-map [latitude]="lat" [longitude]="lng">
+  <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+</sebm-google-map>
+  </div>
 </div>

@@ -1,0 +1,132 @@
+.row-pic-profile {
+  margin: 100px 0px 0px 0px;
+  text-align: left;
+}
+
+.profile-pic-container{
+  height: auto;
+  width: 200px;
+  padding: 1px;
+  /*border: 1px solid rgb(255, 84, 77);*/
+  border-radius: 360px;
+  margin: 0px 0px 20px 18%;
+}
+
+.button-wrapper {
+  margin: 50px 0px 0px 0px;
+}
+
+.button-profile{
+  background-color: rgb(255, 84, 77);
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 3px;
+  margin: 20px 20px 0px 0px;
+}
+
+.button-profile:hover{
+  text-decoration: none;
+  background-color: #fff;
+  color: rgb(255, 84, 77);
+  cursor:pointer;
+}
+
+.container-fluid{
+  background-image: linear-gradient(to bottom right,#111411,#121414);
+}
+
+.profile-pic {
+  width: 100%;
+  height: auto;
+  border-radius: 360px;
+}
+
+.welcome-column {
+  margin: 50px 0px 0px 0px;
+  padding: 0px 0px 0px 100px;
+}
+
+.user-data-name {
+  font-size: 5rem;
+  color: rgb(255, 84, 77);
+  margin: 0px 0px 3px 0px;
+  line-height: 5rem;
+}
+
+.user-data-welcome {
+  font-size: 5rem;
+  color: #fff;
+  margin: 0px 0px 10px 0px;
+  line-height: 5rem;
+}
+
+.user-gyms-title {
+  color: #fff;
+}
+
+.gym-img {
+  width: 200px;
+  border-radius: 3px;
+  display: inline-flex;
+  float: left;
+}
+
+.pin-profile {
+  color: #fff;
+  font-weight: 100;
+}
+
+.row-gyms-info {
+  padding: 0px 50px 0px 50px;
+  margin: 50px 0px 0px 0px;
+}
+
+.gym-card {
+  border: 1px solid rgb(255, 84, 77);
+  border-radius: 3px;
+  margin: 0px 50px 30px 0px;
+  padding: 0px;
+}
+
+.gym-name {
+  color: #fff;
+  margin: 20px 0px 0px 20px;
+  display: inline-block;
+  font-size: 1.4rem;
+  line-height: 1.5rem;
+}
+
+.gym-city {
+  color: #fff;
+  font-weight: 100;
+  display: inline-block;
+  margin: 0px 0px 0px 20px;
+  font-size: 1.4rem;
+  line-height: 1.5rem;
+}
+
+.user-gyms-title{
+  font-weight: 100;
+  font-size: 3rem;
+  padding: 0px 0px 10px 0px;
+  /*border-bottom: 1px solid #fff;*/
+  margin: 0px 0px 10px 0px;
+}
+
+.user-data-username {
+  font-size: 3rem;
+  line-height: 3rem;
+  color: #fff;
+  font-weight: 100;
+  margin: 0px 0px 5px 0px;
+}
+
+.user-data-personal {
+  font-size: 1.7rem;
+  text-align: center;
+  line-height: 2rem;
+  color: #fff;
+  font-weight: 100;
+  box-sizing: border-box;
+  margin: 0px 0px 5px 0px;
+}

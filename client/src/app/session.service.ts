@@ -8,7 +8,7 @@ const baseURL = "http://localhost:3000/"
 
 @Injectable()
 export class SessionService {
-
+  options: Object = {withCredentials:true};
   constructor(private http: Http) { }
 
   handleError(e) {
@@ -16,31 +16,37 @@ export class SessionService {
   }
 
   signup(user) {
-    return this.http.post(baseURL+`auth/user/signup`, user)
+    return this.http.post(baseURL+`auth/user/signup`, user,{})
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   login(user) {
-    return this.http.post(baseURL+`auth/user/login`, user)
+    return this.http.post(baseURL+`auth/user/login`, user,this.options)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  editUser(user, userId) {
+    return this.http.post(baseURL+`auth/user/edit/`+userId, user,this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   logout() {
-    return this.http.post(baseURL+`auth/user/logout`, {})
+    return this.http.post(`${baseURL}auth/user/logout`,{},this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   isLoggedIn() {
-    return this.http.get(baseURL+`auth/user/loggedin`)
+    return this.http.get(baseURL+`auth/user/loggedin`, {withCredentials:true})
       .map(res => res.json())
       .catch((err) => this.handleError(err));
   }
 
   getPrivateData() {
-    return this.http.get(baseURL+`auth/user/private`)
+    return this.http.get(baseURL+`auth/user/private`,{withCredentials:true})
       .map(res => res.json())
       .catch(this.handleError);
   }
@@ -48,31 +54,31 @@ export class SessionService {
 //////////////////GYM//////////////////////////
 
   signupGym(gym) {
-    return this.http.post(baseURL+`auth/gym/signup`, gym)
+    return this.http.post(baseURL+`auth/gym/signup`, gym,{withCredentials:true})
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   loginGym(gym) {
-    return this.http.post(baseURL+`auth/gym/login`, gym)
+    return this.http.post(baseURL+`auth/gym/login`, gym,{withCredentials:true})
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   logoutGym() {
-    return this.http.post(baseURL+`auth/gym/logout`, {})
+    return this.http.post(baseURL+`auth/gym/logout`, {withCredentials:true})
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   isLoggedInGym() {
-    return this.http.get(baseURL+`auth/gym/loggedin`)
+    return this.http.get(baseURL+`auth/gym/loggedin`,{withCredentials:true})
       .map(res => res.json())
       .catch((err) => this.handleError(err));
   }
 
   getPrivateDataGym() {
-    return this.http.get(baseURL+`auth/gym/private`)
+    return this.http.get(baseURL+`auth/gym/private`,{withCredentials:true})
       .map(res => res.json())
       .catch(this.handleError);
   }

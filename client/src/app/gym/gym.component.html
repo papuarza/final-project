@@ -1,9 +1,1 @@
 <router-outlet></router-outlet>
-<div *ngIf="gym">
-  <h2> You are now logged in as {{ gym.username }}!! </h2>
-  <p> Here's the user object </p>
-  <pre> {{ gym | json }} </pre>
-  <button (click)="logout()"> logout </button>
-</div>
-
-<p class="error"> {{ error }} </p>

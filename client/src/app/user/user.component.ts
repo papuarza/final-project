@@ -23,37 +23,43 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.session.isLoggedIn()
-    //   .subscribe(
-    //     (user) => this.successCb(user)
-    //   );
-  }
-
-  logout() {
-    this.session.logout()
-      .subscribe(
-        () => this.successCb(null),
-        (err) => this.errorCb(err)
-      );
-  }
-
-  getPrivateData() {
-    this.session.getPrivateData()
-      .subscribe(
-        (data) => this.privateData = data,
-        (err) => this.error = err
-      );
-  }
-
-  errorCb(err) {
-    this.error = err;
-    this.user = null;
+    this.session.isLoggedIn()
+     .subscribe(
+       (user) => this.successCb(user)
+     );
   }
 
   successCb(user) {
     this.user = user;
-    this.router.navigate([''])
-    this.loggedin.checkLogged(null);
+    this.loggedin.checkLogged(user);
     this.error = null;
   }
+  //
+  // logout() {
+  //   this.session.logout()
+  //     .subscribe(
+  //       () => this.successCb(null),
+  //       (err) => this.errorCb(err)
+  //     );
+  // }
+  //
+  // getPrivateData() {
+  //   this.session.getPrivateData()
+  //     .subscribe(
+  //       (data) => this.privateData = data,
+  //       (err) => this.error = err
+  //     );
+  // }
+  //
+  // errorCb(err) {
+  //   this.error = err;
+  //   this.user = null;
+  // }
+  //
+  // successCb(user) {
+  //   this.user = user;
+  //   this.router.navigate([''])
+  //   this.loggedin.checkLogged(null);
+  //   this.error = null;
+  // }
 }
