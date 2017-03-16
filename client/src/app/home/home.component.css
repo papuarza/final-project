@@ -172,15 +172,23 @@ header {
 }
 
 .soccer-court {
-  background-image: url("https://static.pexels.com/photos/114296/pexels-photo-114296.jpeg")
+  background-image: url("https://static.pexels.com/photos/114296/pexels-photo-114296.jpeg");
+  filter: sepia(50%);
+}
+
+.asuncion-img {
+    background-image: url("http://media.ldscdn.org/images/media-library/temples/asuncion-paraguay/asuncion-paraguay-temple-lds-249029-wallpaper.jpg");
+
 }
 
 .basketball-court {
-  background-image: url("http://blog.estately.com/assets/22_11881447_14_1360102007_636x435.jpg")
+  background-image: url("http://blog.estately.com/assets/22_11881447_14_1360102007_636x435.jpg");
+    filter: sepia(50%);
 }
 
 .paddle-court {
-  background-image: url("https://www.midtown.com/sites/default/files/styles/full-width-carousel-lg/public/Images/PaddleCourts_1170x640.jpg?itok=vfqFULf-")
+  background-image: url("https://www.midtown.com/sites/default/files/styles/full-width-carousel-lg/public/Images/PaddleCourts_1170x640.jpg?itok=vfqFULf-");
+    filter: sepia(50%);
 }
 
 .category-img2{

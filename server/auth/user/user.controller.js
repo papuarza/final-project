@@ -190,3 +190,31 @@ exports.listedGym = function(req, res, next) {
 				});
 			});
 	};
+
+
+	exports.changeUserStatus = function(req, res, next) {
+		// console.log(req.body)
+		var userId = req.body.data.userId;
+		var gymId = req.body.data.gymId;
+		// console.log(userId, gymId)
+
+	// const user = {username, name, lastName, city, country, email};
+
+	const criteria = {
+		 user: userId,
+		 gym: gymId
+	 };
+	 const update = {
+		 $set: {
+			 user: userId,
+			 gym: gymId,
+			 used : true,
+			 rated: true
+		 }
+	 };
+	 RelationUserGym.updateOne(criteria, update, function(err, user) {
+		 if (err) return next(err);
+		 res.status(200).json(req.user);
+	 });
+
+	};

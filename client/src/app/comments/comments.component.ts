@@ -42,6 +42,10 @@ ngOnInit() {
         (gym) => this.successCb(gym),
         (err) => this.errorCb(err)
       );
+        this.session.changeUserStatusRate(this.user._id, this.singleGym)
+        .subscribe((users) => {
+          console.log(users)
+        });
   }
 
 errorCb(err) {
