@@ -23,11 +23,17 @@ import { HomeComponent } from './home/home.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import {GooglePlaceModule} from 'ng2-google-place-autocomplete';
 import { SebmGoogleMap } from 'angular2-google-maps/core';
+import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
+import { CommentsComponent } from './comments/comments.component';
+import { GymProfileComponent } from './gym-profile/gym-profile.component';
+import { UploadPhotosGymComponent } from './upload-photos-gym/upload-photos-gym.component';
+import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'gyms-list', component: GymsListComponent },
   { path: 'gyms-list/:id', component : GymsSingleComponent},
+  { path: 'gyms-comments/:id', component : CommentsComponent},
   { path: 'user', component: UserComponent,
     children: [
       { path: 'login', component:LoginUserComponent },
@@ -40,8 +46,9 @@ const routes: Routes = [
   children: [
     { path: 'login', component:LoginGymComponent },
     { path: 'signup', component: SignupGymComponent },
-    { path: 'edit/:id', component: EditGymComponent },
-    { path: ':id)', component: GymComponent }
+    { path: ':id/edit', component: EditGymComponent },
+    { path: ':id/upload-photo', component: UploadPhotosGymComponent },
+    { path: ':id)', component: GymProfileComponent }
   ]
 }
 ];
@@ -60,18 +67,23 @@ const routes: Routes = [
     GymsListComponent,
     GymsSingleComponent,
     UserProfileComponent,
-    HomeComponent
+    HomeComponent,
+    CommentsComponent,
+    GymProfileComponent,
+    UploadPhotosGymComponent,
   ],
   imports: [
     BrowserModule,
     GooglePlaceModule,
+    Ng2Bs3ModalModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
     ModalModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyB9YL8ag7TpXztWGm7Y_s5O_3DnmX6Sfh4'
-    })
+      apiKey: 'AIzaSyB9YL8ag7TpXztWGm7Y_s5O_3DnmX6Sfh4',
+      libraries: ["places"]
+    }),
   ],
   providers: [ SessionService, LoggedinService, AutocompleteService ],
   bootstrap: [AppComponent],

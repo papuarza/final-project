@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SessionService } from '../session.service';
 import { LoggedinService } from '../loggedin.service';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'user-root',
@@ -19,10 +20,11 @@ export class GymComponent implements OnInit {
   privateData: any = '';
 
   constructor(private session: SessionService, private router: Router, private loggedin: LoggedinService) {
-    loggedin.getEmitter().subscribe((gym) => {console.log(gym); this.gym = gym});
+
   }
 
   ngOnInit() {
+    this.loggedin.getEmitter().subscribe((gym) => {console.log(gym); this.gym = gym});
   }
 
   logoutGym() {

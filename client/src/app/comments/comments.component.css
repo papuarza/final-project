@@ -1,0 +1,165 @@
+.form-log-sign {
+    background-color: rgb(255, 84, 77);
+    height: 100vh;
+    z-index: 2000;
+    color: #fff;
+    padding: 4% 10%;
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+.form-log-sign h2 {
+  font-size: 4.5rem;
+  color: #000;
+  font-weight: 100;
+  padding: 0px 0px 10px 0px;
+  margin: 0px 0px 30px 0px;
+  width: 100%;
+}
+
+.form-log-sign label {
+  font-size: 2.5rem;
+  color: #fff;
+  font-weight: 100;
+  padding: 0px 0px 0px 0px;
+  margin: 30px 20px 0px 0px;
+  display: block;
+}
+
+.form-log-sign input {
+  font-size: 2.5rem;
+  background-color: rgb(255, 84, 77);
+  border:0px;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  font-weight: 100;
+  padding: 0px 0px 10px 0px;
+  margin: 0px 20px 0px 0px;
+}
+
+.form-log-sign button {
+  font-size: 2.5rem;
+  background-color: #fff;
+  border: 0px;
+  height: auto;
+  border-radius: 30px;
+  display: block;
+  color: rgb(255, 84, 77);
+  font-weight: 100;
+  padding: 5px 40px;
+  margin: 50px 0px 0px 0px;
+  box-sizing: border-box;
+  -webkit-box-shadow: 6px 6px 24px -11px rgba(255,255,255,1);
+  -moz-box-shadow: 6px 6px 24px -11px rgba(255,255,255,1);
+  box-shadow: 6px 6px 24px -11px rgba(255,255,255,1);
+}
+
+
+.sign-form-title {
+  padding: 0px 30px;
+  margin: 250px 0px 0px 0px;
+  color: #fff;
+  font-size: 5rem;
+  font-weight: 100;
+  box-sizing: border-box;
+}
+
+#comments-input {
+  height: 150px;
+  border-radius: 10px;
+  margin: 20px 0px 0px 0px;
+  width: 100%;
+  border: 1px solid #fff;
+  padding: 10px 10px;
+  background-color: rgb(255, 84, 77);
+  font-weight: 100;
+  font-size: 1.8rem;
+}
+
+.rate-title {
+  font-weight: 300;
+}
+
+.rate-subtitle {
+  font-weight: 100;
+  font-size: 3.5rem;
+}
+
+.rate-text {
+  color: #fff;
+  font-size: 5rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  margin: 240px 0px 0px 0px;
+  text-align: center;
+}
+
+.img-column {
+  height: 100vh;
+  z-index: 4000;
+  margin: 0px;
+  padding: 0px;
+}
+
+.header-img{
+    width: 100%;
+    z-index: 5000;
+    background-color: #000000;
+}
+
+.header-img img {
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
+  filter: blur(0px);
+  opacity: 0.4;
+}
+
+
+div.stars {
+  width: 100%;
+  display: inline-block;
+  text-align: left;
+}
+
+input.star { display: none; height: 100px;}
+
+label.star {
+  float: right;
+  padding: 10px;
+  font-size: 5rem;
+  color: #444;
+  transition: all .2s;
+}
+
+input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #FFF;
+  transition: all .25s;
+}
+
+input.star-5:checked ~ label.star:before {
+  color: #FFF;
+  text-shadow: 0 0 20px #952;
+}
+
+input.star-1:checked ~ label.star:before { color: #FFF; }
+
+label.star:hover { transform: rotate(-15deg) scale(1.5); }
+
+label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;
+  font-size: 5rem;
+}
+
+@media screen and (max-width: 500px) {
+  .form-log-sign label {
+    margin: 30px 10px 0px 0px;
+  }
+
+  div.stars {
+    margin: 0px 0px 0px -20px;
+  }
+}

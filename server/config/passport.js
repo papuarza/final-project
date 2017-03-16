@@ -1,10 +1,11 @@
 var LocalStrategy  = require('passport-local').Strategy;
 var User           = require('../auth/user/user.model');
+var Gym           = require('../auth/gyms/gym.model');
 const bcrypt       = require("bcrypt");
 
 module.exports = function (passport) {
 
-  passport.serializeUser((user, cb) => {
+passport.serializeUser((user, cb) => {
     cb(null, user.id);
   });
 
@@ -32,6 +33,4 @@ module.exports = function (passport) {
       return next(null, user);
     });
   }));
-
-
 }

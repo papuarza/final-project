@@ -1,0 +1,227 @@
+.first-row {
+  margin: 90px 0px 0px 0px;
+}
+
+.container-fluid {
+  background-image: linear-gradient(to bottom right,#111411,#121414);
+}
+
+.welcome-column {
+  padding: 0px 70px;
+  font-size: 2.5rem;
+  /*color: rgb(255, 84, 77);*/
+  font-weight: 100;
+  color: #fff;
+}
+
+.welcome-title {
+  color: rgb(255, 84, 77);
+  font-size: 4rem;
+  font-weight: 400;
+}
+
+.contact-column{
+  padding: 0px 50px;
+}
+
+.social-link {
+  margin: 0px 20px 0px 0px;
+}
+
+.info-title {
+  color: rgb(255, 84, 77);
+  font-size: 3rem;
+  font-weight: 100;
+  padding: 10px 0px 15px 0px;
+  margin: 0px 0px 15px 0px;
+  border-bottom: 1px solid #fff;
+}
+
+.contact-info-text{
+  color: #fff;
+  margin:0px;
+  font-size: 2rem;
+  font-weight: 100;
+}
+
+.contact-info-text-facilities{
+  color: #fff;
+  margin:0px;
+  font-size: 2rem;
+  font-weight: 100;
+  margin:0px;
+  line-height: 3.6rem;
+}
+
+.contact-info-list{
+  color: #fff;
+  display: inline-flex;
+  margin:0px;
+  font-size: 1.8rem;
+  font-weight: 100;
+}
+
+.result-info {
+  font-size: 3rem;
+  font-weight: 200;
+}
+
+.result-info-facilities {
+  font-size: 2rem;
+  font-weight: 200;
+}
+
+.second-row {
+  /*padding: 0px 15px;*/
+  margin: 40px 0px 0px 0px;
+}
+
+li {
+  list-style-type: none;
+  color: #fff;
+  font-weight: 200;
+  display: inline-flex;
+  font-size: 2rem;
+}
+
+.info-columns{
+  padding: 0px 35px;
+}
+
+.third-row{
+  padding: 0px 50px;
+  margin: 40px 0px;
+}
+
+.fourth-row{
+  padding: 0px 50px;
+  margin: 30px 0px;
+}
+
+.fifth-row{
+  padding: 0px 50px;
+  margin: 30px 0px;
+}
+
+.welcome-text {
+  margin: 0px 0px 40px 0px;
+}
+
+.sixth-row{
+  padding: 0px 50px;
+  margin: 30px 0px;
+}
+
+.user-card {
+  text-align: center;
+}
+
+.text-wrapper {
+  padding: 0px 20px;
+}
+
+.user-name {
+  color: rgb(255, 84, 77);
+  font-weight: 100;
+  font-size: 2rem;
+  margin:0px;
+}
+
+.user-info-city {
+  color: #fff;
+  font-weight: 300;
+  margin:0px;
+}
+
+.user-name-comment {
+  color: rgb(255, 84, 77);
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin:0px;
+  display: inline-flex;
+  margin: 0px 0px 0px 20px;
+}
+
+.user-info-city-comment {
+  color: rgb(255, 84, 77);
+  font-weight: 100;
+  font-size: 1.2rem;
+  margin:0px;
+  display: inline-flex;
+  margin: 0px 0px 0px 0px;
+}
+
+.came-button {
+  background-color: rgb(255, 84, 77);
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 100;
+  border: 0px;
+  border-radius: 4px;
+  margin: 10px 0px 0px 0px;
+}
+
+.user-info-email {
+  color: #fff;
+  font-weight: 100;
+  margin:0px;
+}
+
+.map-row {
+  margin: 50px 0px 0px 0px;
+}
+
+.user-info-comment {
+  color: #fff;
+  font-weight: 100;
+  margin:0px;
+  font-size: 2.5rem;
+  margin: 0px 0px 0px 20px;
+  display: inline-flex;
+}
+
+.user-img {
+  border-radius: 360px;
+  width: 80px;
+  height: 80px;
+  display: inline-flex;
+}
+
+.comment-card{
+  margin: 20px 0px 0px 0px;
+}
+
+.user-img-comment {
+  border-radius: 360px;
+  width: 80px;
+  height: 80px;
+  float: left;
+}
+
+.sebm-google-map-container {
+  width: 100%;
+  height: 50vh;
+}
+
+.stars-rate {
+  display: inline-flex;
+}
+
+.stars-container {
+  margin: 0px 0px 0px 19px;
+    display: inline-flex;
+}
+
+i {
+  color: #fff;
+  display: inline-flex;
+  padding: 0px 0px 0px 5px;
+}
+
+.button-profile{
+  background-color: rgb(255, 84, 77);
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 3px;
+  margin: 40px 20px 0px 0px;
+}

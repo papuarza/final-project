@@ -1,51 +1,92 @@
-<div class="container-fluid">
-  <div class="row-pic-profile row">
-    <div class="col-xs-3">
-      <div class="profile-pic-container">
-        <img src="{{user.imgUrl}}" alt="" class="profile-pic">
+<div *ngIf="user">
+  <div class="container-fluid">
+    <div class="row-pic-profile row">
+      <div class="col-md-3 col-xs-12">
+        <div class="profile-pic-container">
+          <img src="{{user.imgUrl}}" alt="" class="profile-pic">
+        </div>
+        <p class="user-data-personal">{{user.city}}, {{user.country}}<br />{{user.email}}</p>
       </div>
-      <p class="user-data-personal">{{user.city}}, {{user.country}}<br />{{user.email}}</p>
+      <div class="col-xs-12 col-md-9 welcome-column">
+        <p class="user-data-welcome" >Welcome back <span class="user-data-name">{{user.name}}!!</span></p>
+        <p class="user-data-username">Are you ready for your next train? <br />Where are you going?</p>
+
+        <div class="button-wrapper">
+          <a [routerLink]="['']" class="button-profile">SEARCH GYMS</a>
+          <a [routerLink]="['edit/']" class="button-profile">EDIT PROFILE</a>
+        </div>
+
     </div>
-    <div class="col-xs-9 welcome-column">
-      <p class="user-data-welcome" >Welcome back <span class="user-data-name">{{user.name}}!!</span></p>
-      <p class="user-data-username">Are you ready for your next train? <br />Where are you going?</p>
+    </div>
+    <div class="row-gyms-info row">
+      <div *ngIf="gymsSaved">
+        <p class="user-gyms-title">Gyms Saved</p>
+        <div *ngFor="let gym of gymsSaved" class="col-xs-12 col-md-5 gym-card">
+          <div class="row">
+            <div class="col-xs-12 col-md-5">
+              <div class="img-gym-container">
+                  <img src="{{gym.imgUrl}}" alt="" class="gym-img">
+              </div>
 
-      <div class="button-wrapper">
-        <a [routerLink]="['']" class="button-profile">SEARCH GYMS</a>
-        <a [routerLink]="['edit/']" class="button-profile">EDIT PROFILE</a>
+            </div>
+            <div class="col-xs-12 col-md-4 info-col">
+              <p class="gym-name">{{gym.name}}</p><br />
+              <p class="gym-city"><i class="fa fa-map-marker pin-profile" aria-hidden="true"></i> {{gym.city}}, {{gym.country}}</p><br /><br />
+              <p class="gym-email">{{gym.email}}</p><br />
+              <img  class="social-logo" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTcuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4Ij4KPGc+Cgk8cGF0aCBkPSJNNDM3LjAyMiw3NC45ODRDMzg4LjY3LDI2LjYzLDMyNC4zODEsMCwyNTYsMEMxODcuNjI0LDAsMTIzLjMzOCwyNi42Myw3NC45ODQsNzQuOTg0UzAsMTg3LjYyNCwwLDI1NiAgIGMwLDY4LjM4OCwyNi42MywxMzIuNjc4LDc0Ljk4NCwxODEuMDI4QzEyMy4zMzUsNDg1LjM3NSwxODcuNjIxLDUxMiwyNTYsNTEyYzY4LjM4NSwwLDEzMi42NzMtMjYuNjI1LDE4MS4wMjEtNzQuOTcyICAgQzQ4NS4zNzIsMzg4LjY3OSw1MTIsMzI0LjM4OSw1MTIsMjU2QzUxMiwxODcuNjIzLDQ4NS4zNzIsMTIzLjMzNiw0MzcuMDIyLDc0Ljk4NHogTTQyNS43MDgsNDI1LjcxNCAgIEMzODAuMzgxLDQ3MS4wMzksMzIwLjExMSw0OTYsMjU2LDQ5NmMtNjQuMTA2LDAtMTI0LjM3NC0yNC45NjEtMTY5LjcwMy03MC4yODZDNDAuOTY1LDM4MC4zODYsMTYsMzIwLjExMywxNiwyNTYgICBjMC02NC4xMDIsMjQuOTY1LTEyNC4zNyw3MC4yOTctMTY5LjcwM0MxMzEuNjMsNDAuOTY1LDE5MS44OTgsMTYsMjU2LDE2YzY0LjEwOCwwLDEyNC4zNzgsMjQuOTY1LDE2OS43MDgsNzAuMjk3ICAgQzQ3MS4wMzcsMTMxLjYyOCw0OTYsMTkxLjg5Niw0OTYsMjU2QzQ5NiwzMjAuMTE1LDQ3MS4wMzcsMzgwLjM4Nyw0MjUuNzA4LDQyNS43MTR6IiBmaWxsPSIjRkZGRkZGIi8+Cgk8cGF0aCBkPSJNNDMwLjAzOCwxMTQuOTY5Yy0yLjc4My0zLjQzMi03LjgyMS0zLjk1Ni0xMS4yNTMtMS4xNzJjLTMuNDMxLDIuNzg0LTMuOTU2LDcuODIyLTEuMTcyLDExLjI1MiAgIEM0NDcuNTI2LDE2MS45MTksNDY0LDIwOC40MjYsNDY0LDI1NmMwLDU1LjU2Ny0yMS42MzUsMTA3LjgwMy02MC45MTksMTQ3LjA4NUMzNjMuNzk3LDQ0Mi4zNjcsMzExLjU2Myw0NjQsMjU2LDQ2NCAgIGMtNTEuMjYsMC0xMDAuNTA1LTE4LjgwNy0xMzguNjYzLTUyLjk1NmMtMy4yOTItMi45NDYtOC4zNS0yLjY2Ni0xMS4yOTYsMC42MjZzLTIuNjY2LDguMzUsMC42MjYsMTEuMjk2ICAgQzE0Ny43NjMsNDU5Ljc0NSwyMDAuNzk3LDQ4MCwyNTYsNDgwYzU5LjgzNywwLDExNi4wODktMjMuMjk3LDE1OC4zOTQtNjUuNjAxQzQ1Ni43MDEsMzcyLjA5NSw0ODAsMzE1Ljg0LDQ4MCwyNTYgICBDNDgwLDIwNC43NjcsNDYyLjI1NiwxNTQuNjgxLDQzMC4wMzgsMTE0Ljk2OXoiIGZpbGw9IiNGRkZGRkYiLz4KCTxwYXRoIGQ9Ik00OCwyNTZjMC0xMTQuNjkxLDkzLjMwOS0yMDgsMjA4LTIwOGM1MS4yNiwwLDEwMC41MDQsMTguODA4LDEzOC42NjIsNTIuOTU5YzMuMjkzLDIuOTQ4LDguMzUsMi42NjYsMTEuMjk2LTAuNjI1ICAgYzIuOTQ3LTMuMjkyLDIuNjY3LTguMzUtMC42MjUtMTEuMjk2QzM2NC4yMzcsNTIuMjU2LDMxMS4yMDMsMzIsMjU2LDMyYy01OS44MjksMC0xMTYuMDgsMjMuMzAxLTE1OC4zODksNjUuNjExICAgQzU1LjMwMSwxMzkuOTIxLDMyLDE5Ni4xNzEsMzIsMjU2YzAsNTEuMjM5LDE3Ljc0NCwxMDEuMzI4LDQ5Ljk2MywxNDEuMDM4YzEuNTgxLDEuOTQ5LDMuODg5LDIuOTYsNi4yMTcsMi45NiAgIGMxLjc3MSwwLDMuNTUzLTAuNTg1LDUuMDM2LTEuNzg4YzMuNDMxLTIuNzg0LDMuOTU2LTcuODIyLDEuMTcyLTExLjI1M0M2NC40NzQsMzUwLjA4OCw0OCwzMDMuNTgsNDgsMjU2eiIgZmlsbD0iI0ZGRkZGRiIvPgoJPHBhdGggZD0iTTM5OC42NTUsMTk0Ljc2NGMxLjk3NS0yLjk1OSwxLjc1Ny02Ljg2Ny0wLjUzMy05LjU5Yy0yLjI5LTIuNzIyLTYuMTAyLTMuNjA0LTkuMzU3LTIuMTY3ICAgYy0wLjIwNCwwLjA5LTAuNDA4LDAuMTgtMC42MTIsMC4yNjhjMS44ODEtMy4zNzUsMy40MzctNi45NDksNC42My0xMC42NzZjMS4wMTQtMy4xNjYtMC4wMzUtNi42MjgtMi42MzUtOC42OTggICBjLTIuNi0yLjA3MS02LjIwOS0yLjMxNy05LjA2Ny0wLjYyMmMtOC4wNzIsNC43OTItMTYuNzA4LDguMzE0LTI1LjcyNiwxMC40OThjLTEwLjc5OC05Ljc3OC0yNS4wMDItMTUuMzA3LTM5LjY0Ni0xNS4zMDcgICBjLTMyLjQ3LDAtNTguODg3LDI2LjQwMi01OC44ODcsNTguODU1YzAsMC45MjgsMC4wMjEsMS44NTQsMC4wNjMsMi43NzZjLTM0Ljg1OS00LjI0OS02Ny4wMzUtMjEuOTEzLTg5LjQxNy00OS4zODQgICBjLTEuNjU4LTIuMDM1LTQuMjA2LTMuMTI4LTYuODI2LTIuOTIyYy0yLjYxNywwLjIwNS00Ljk2NywxLjY4LTYuMjg4LDMuOTQ4Yy01LjIxNCw4Ljk0OS03Ljk3LDE5LjE4NS03Ljk3LDI5LjYwMiAgIGMwLDkuOTUyLDIuNDg2LDE5LjU0Miw3LjA1MiwyOC4wMDhjLTEuMjI1LDAuMDgxLTIuNDM1LDAuNDQ0LTMuNTI4LDEuMDg4Yy0yLjQ0MywxLjQzOC0zLjk0Miw0LjA2LTMuOTQyLDYuODk1djAuNjM2ICAgYzAsMTcuNjI0LDcuOTA4LDMzLjc5NiwyMC42MTYsNDQuNzE5Yy0wLjI3NSwwLjIzNy0wLjUzNiwwLjQ5NS0wLjc4LDAuNzcyYy0xLjg1OSwyLjExMi0yLjQ3Myw1LjA0NS0xLjYxNSw3LjcyNSAgIGM1LjQ2NywxNy4wODIsMTguMjUsMzAuMzMzLDM0LjI2NCwzNi43MTRjLTEzLjAwMSw2LjUzNy0yNy4zNTUsOS45MzMtNDIuMzE1LDkuOTMzYy0zLjc3MiwwLTcuNTQ0LTAuMjE2LTExLjIxMS0wLjY0MyAgIGMtMy42OTgtMC40MzEtNy4yMDYsMS43NDgtOC40NTgsNS4yNTVjLTEuMjUzLDMuNTA3LDAuMDgsNy40MTQsMy4yMTQsOS40MjVDMTY0LjI5MSwzNjcuNjU3LDE5Mi43NTUsMzc2LDIyMS45OTYsMzc2ICAgYzU3LjQ1NCwwLDkzLjQyNC0yNy4xMjUsMTEzLjQ4Mi00OS44OGMyNC45NjgtMjguMzI2LDM5LjI4OC02NS44MjcsMzkuMjg4LTEwMi44OWMwLTAuOTE0LTAuMDA3LTEuODA0LTAuMDIyLTIuNjc2ICAgQzM4NC4wNDYsMjEzLjI4MiwzOTIuMDc3LDIwNC42MjMsMzk4LjY1NSwxOTQuNzY0eiBNMzYxLjkzMSwyMTAuMTdjLTIuMTk4LDEuNTg1LTMuNDQ0LDQuMTc2LTMuMzExLDYuODgzICAgYzAuMDk3LDEuOTcsMC4xNDUsMy45OSwwLjE0NSw2LjE3N2MwLDMzLjIyMS0xMi44NjMsNjYuODY2LTM1LjI5LDkyLjMxQzMwNS41OTcsMzM1LjgyMiwyNzMuNDc5LDM2MCwyMjEuOTk2LDM2MCAgIGMtMTUuNzUsMC0zMS4yNS0yLjcwNS00NS44OTYtNy45MzhjMTcuNTEtMy4xNjEsMzMuODkxLTEwLjUwNiw0OC4xNTMtMjEuNjk1YzIuNjYyLTIuMDg4LDMuNzIzLTUuNjI2LDIuNjQ4LTguODM1ICAgYy0xLjA3NS0zLjIwOC00LjA1Mi01LjM5NC03LjQzNi01LjQ1OGMtMTQuMDgzLTAuMjY1LTI2LjgzMS03LjM2NC0zNC41MjctMTguNTM1YzQuMDE1LTAuMjQ0LDguMDA2LTAuODk2LDExLjkxLTEuOTUxICAgYzMuNTgzLTAuOTY3LDYuMDI5LTQuMjcyLDUuOTEtNy45ODFjLTAuMTE5LTMuNzA5LTIuNzc0LTYuODQ5LTYuNDExLTcuNTg0Yy0xNS45MzctMy4yMTktMjguMzc3LTE1LjE4My0zMi43MTYtMzAuMjU0ICAgYzQuMjc5LDEuMTMsOC42ODgsMS43ODQsMTMuMTE5LDEuOTMyYzMuNTc3LDAuMTIyLDYuNzktMi4xNDYsNy44ODMtNS41NDhjMS4wOTQtMy40MDItMC4yMDMtNy4xMTgtMy4xNzUtOS4xMDIgICBjLTExLjk0Mi03Ljk3LTE5LjA3MS0yMS4zMTgtMTkuMDcxLTM1LjcwN2MwLTMuNjQ2LDAuNDYyLTcuMjU5LDEuMzYzLTEwLjc1MWMyNi44MDgsMjcuNjgyLDYzLjMwOCw0NC4zODcsMTAxLjk5NCw0Ni4zMTUgICBjMi41MjYsMC4xMjUsNC45My0wLjkzNiw2LjU0LTIuODYzYzEuNjA5LTEuOTI4LDIuMjItNC41LDEuNjQ5LTYuOTQ2Yy0wLjczNS0zLjE0OS0xLjEwOC02LjQzOC0xLjEwOC05Ljc3NSAgIGMwLTIzLjYzLDE5LjIzOS00Mi44NTUsNDIuODg3LTQyLjg1NWMxMS44MDQsMCwyMy4yMTcsNC45MzEsMzEuMzE0LDEzLjUyN2MxLjg4NCwyLDQuNjY0LDIuODk0LDcuMzU4LDIuMzY3ICAgYzMuMDMxLTAuNTkzLDYuMDI4LTEuMzEyLDguOTg2LTIuMTU2Yy0xLjQ4MywxLjE3OS0zLjA1MiwyLjI2Ni00LjY5NiwzLjI1Yy0zLjIzNiwxLjkzOC00LjY3OSw1Ljg3Mi0zLjQ2Myw5LjQ0MiAgIGMxLjIxNiwzLjU3MSw0Ljc1Nyw1LjgwOSw4LjUwNiw1LjM2N2MxLjMwMy0wLjE1MywyLjYwMi0wLjMyOSwzLjg5Ny0wLjUyOUMzNjUuNzgsMjA3LjI4MiwzNjMuODg1LDIwOC43NiwzNjEuOTMxLDIxMC4xN3oiIGZpbGw9IiNGRkZGRkYiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+              <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTcuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4Ij4KPGc+Cgk8cGF0aCBkPSJNMjIyLjg5MiwzODhoNTEuNDkxYzQuNDE4LDAsOC0zLjU4Miw4LThWMjY0LjA5M2gyNi43NTFjNC4xMDEsMCw3LjUzOC0zLjEwMSw3Ljk1OC03LjE4bDQuNTEtNDMuNzcyICAgYzAuMjMyLTIuMjUyLTAuNTAxLTQuNDk4LTIuMDE5LTYuMTc5Yy0xLjUxNy0xLjY4Mi0zLjY3NS0yLjY0MS01LjkzOS0yLjY0MWgtMzEuMjYxdi0xNy43M2MwLTMuNjYyLDEuMTU5LTMuOTM2LDIuOTI4LTMuOTM2ICAgaDI3LjY4MmM0LjQxOCwwLDgtMy41ODIsOC04di00Mi41YzAtNC40MDYtMy41NjItNy45ODItNy45NjgtOEwyNzQuODQ4LDEyNGMtMjYuNzUyLDAtNDEuMDI5LDExLjc3LTQ4LjI5NSwyMS42NDMgICBjLTEwLjE0NiwxMy43ODctMTEuNjYxLDI5Ljk0MS0xMS42NjEsMzguMzQzdjIwLjMzNGgtMTYuNDg5Yy00LjQxOCwwLTgsMy41ODItOCw4djQzLjc3MmMwLDQuNDE4LDMuNTgyLDgsOCw4aDE2LjQ4OVYzODAgICBDMjE0Ljg5MiwzODQuNDE4LDIxOC40NzMsMzg4LDIyMi44OTIsMzg4eiBNMjA2LjQwMiwyNDguMDkzdi0yNy43NzJoMTYuNDg5YzQuNDE4LDAsOC0zLjU4Miw4LTh2LTI4LjMzNCAgIGMwLTUuMTg1LDAuODMzLTE4LjM3Niw4LjU0Ny0yOC44NmM3LjM4Ni0xMC4wMzcsMTkuMy0xNS4xMjYsMzUuMzc2LTE1LjEyNmwzMC4xNzcsMC4xMjJ2MjYuNTMzaC0xOS42ODIgICBjLTkuNDIxLDAtMTguOTI4LDYuMTY0LTE4LjkyOCwxOS45MzZ2MjUuNzNjMCw0LjQxOCwzLjU4Miw4LDgsOGgzMC4zOTVsLTIuODYyLDI3Ljc3MmgtMjcuNTMzYy00LjQxOCwwLTgsMy41ODItOCw4VjM3MmgtMzUuNDkxICAgVjI1Ni4wOTNjMC00LjQxOC0zLjU4Mi04LTgtOEgyMDYuNDAyeiIgZmlsbD0iI0ZGRkZGRiIvPgoJPHBhdGggZD0iTTQzNy4wMjIsNzQuOTg0QzM4OC42NywyNi42MywzMjQuMzgxLDAsMjU2LDBDMTg3LjYyNCwwLDEyMy4zMzgsMjYuNjMsNzQuOTg0LDc0Ljk4NFMwLDE4Ny42MjQsMCwyNTYgICBjMCw2OC4zODgsMjYuNjMsMTMyLjY3OCw3NC45ODQsMTgxLjAyOEMxMjMuMzM1LDQ4NS4zNzUsMTg3LjYyMSw1MTIsMjU2LDUxMmM2OC4zODUsMCwxMzIuNjczLTI2LjYyNSwxODEuMDIxLTc0Ljk3MiAgIEM0ODUuMzcyLDM4OC42NzksNTEyLDMyNC4zODksNTEyLDI1NkM1MTIsMTg3LjYyMiw0ODUuMzcyLDEyMy4zMzYsNDM3LjAyMiw3NC45ODR6IE00MjUuNzA4LDQyNS43MTQgICBDMzgwLjM4MSw0NzEuMDM5LDMyMC4xMTEsNDk2LDI1Niw0OTZjLTY0LjEwNiwwLTEyNC4zNzQtMjQuOTYxLTE2OS43MDMtNzAuMjg2QzQwLjk2NSwzODAuMzg2LDE2LDMyMC4xMTMsMTYsMjU2ICAgYzAtNjQuMTAyLDI0Ljk2NS0xMjQuMzcsNzAuMjk3LTE2OS43MDJDMTMxLjYzLDQwLjk2NSwxOTEuODk4LDE2LDI1NiwxNmM2NC4xMDgsMCwxMjQuMzc4LDI0Ljk2NSwxNjkuNzA4LDcwLjI5NyAgIEM0NzEuMDM3LDEzMS42MjgsNDk2LDE5MS44OTYsNDk2LDI1NkM0OTYsMzIwLjExNSw0NzEuMDM3LDM4MC4zODcsNDI1LjcwOCw0MjUuNzE0eiIgZmlsbD0iI0ZGRkZGRiIvPgoJPHBhdGggZD0iTTQzMC4wMzgsMTE0Ljk2OWMtMi43ODQtMy40MzItNy44MjEtMy45NTctMTEuMjUzLTEuMTcyYy0zLjQzMSwyLjc4NC0zLjk1Niw3LjgyMi0xLjE3MiwxMS4yNTIgICBDNDQ3LjUyNiwxNjEuOTE5LDQ2NCwyMDguNDI1LDQ2NCwyNTZjMCw1NS41NjctMjEuNjM1LDEwNy44MDMtNjAuOTE5LDE0Ny4wODZDMzYzLjc5Nyw0NDIuMzY3LDMxMS41NjMsNDY0LDI1Niw0NjQgICBjLTUxLjI2LDAtMTAwLjUwNS0xOC44MDctMTM4LjY2My01Mi45NTZjLTMuMjkyLTIuOTQ2LTguMzUtMi42NjYtMTEuMjk2LDAuNjI2Yy0yLjk0NiwzLjI5Mi0yLjY2Niw4LjM1LDAuNjI2LDExLjI5NiAgIEMxNDcuNzYzLDQ1OS43NDUsMjAwLjc5Nyw0ODAsMjU2LDQ4MGM1OS44MzcsMCwxMTYuMDg5LTIzLjI5NywxNTguMzk0LTY1LjYwMUM0NTYuNzAxLDM3Mi4wOTQsNDgwLDMxNS44NCw0ODAsMjU2ICAgQzQ4MCwyMDQuNzY2LDQ2Mi4yNTYsMTU0LjY4MSw0MzAuMDM4LDExNC45Njl6IiBmaWxsPSIjRkZGRkZGIi8+Cgk8cGF0aCBkPSJNNDgsMjU2YzAtMTE0LjY5MSw5My4zMDktMjA4LDIwOC0yMDhjNTEuMjYsMCwxMDAuNTA0LDE4LjgwOCwxMzguNjYyLDUyLjk1OWMzLjI5MywyLjk0OCw4LjM1MSwyLjY2NiwxMS4yOTYtMC42MjUgICBjMi45NDctMy4yOTIsMi42NjctOC4zNS0wLjYyNS0xMS4yOTZDMzY0LjIzNyw1Mi4yNTYsMzExLjIwMywzMiwyNTYsMzJjLTU5LjgyOSwwLTExNi4wNzksMjMuMzAxLTE1OC4zODksNjUuNjExICAgQzU1LjMwMSwxMzkuOTIsMzIsMTk2LjE3MSwzMiwyNTZjMCw1MS4yNCwxNy43NDQsMTAxLjMyOCw0OS45NjMsMTQxLjAzOGMxLjU4MSwxLjk0OSwzLjg4OSwyLjk2LDYuMjE3LDIuOTYgICBjMS43NzEsMCwzLjU1My0wLjU4NSw1LjAzNi0xLjc4OGMzLjQzMS0yLjc4NCwzLjk1Ni03LjgyMiwxLjE3Mi0xMS4yNTNDNjQuNDc0LDM1MC4wODgsNDgsMzAzLjU4LDQ4LDI1NnoiIGZpbGw9IiNGRkZGRkYiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+              <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0MDkuNjAyIDQwOS42MDIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQwOS42MDIgNDA5LjYwMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIyNHB4IiBoZWlnaHQ9IjI0cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0zNDkuNjE3LDU5Ljk4OEMzMTAuOTM4LDIxLjMwNSwyNTkuNTA0LDAsMjA0LjgwMSwwUzk4LjY3MiwyMS4zMDUsNTkuOTg4LDU5Ljk4OEMyMS4zMDUsOTguNjcyLDAsMTUwLjA5OCwwLDIwNC44MDEgICAgYzAsNTQuNzExLDIxLjMwNSwxMDYuMTQsNTkuOTg4LDE0NC44MmMzOC42OCwzOC42OCw5MC4xMSw1OS45ODEsMTQ0LjgxMyw1OS45ODFjNTQuNzA3LDAsMTA2LjEzNy0yMS4zMDEsMTQ0LjgxNi01OS45ODEgICAgYzM4LjY4LTM4LjY4LDU5Ljk4NS05MC4xMDksNTkuOTg1LTE0NC44MkM0MDkuNjAyLDE1MC4wOTgsMzg4LjI5Nyw5OC42NjgsMzQ5LjYxNyw1OS45ODhMMzQ5LjYxNyw1OS45ODh6IE0zNDAuNTY2LDM0MC41NyAgICBjLTM2LjI2MSwzNi4yNjItODQuNDc2LDU2LjIzMS0xMzUuNzY1LDU2LjIzMWMtNTEuMjg1LDAtOTkuNS0xOS45NjktMTM1Ljc2Mi01Ni4yMzFjLTM2LjI2Ni0zNi4yNjEtNTYuMjM4LTg0LjQ4LTU2LjIzOC0xMzUuNzY5ICAgIGMwLTUxLjI4MSwxOS45NzItOTkuNDk2LDU2LjIzOC0xMzUuNzYyczg0LjQ4MS01Ni4yMzgsMTM1Ljc2Mi01Ni4yMzhjNTEuMjg1LDAsOTkuNSwxOS45NzIsMTM1Ljc2NSw1Ni4yMzggICAgYzM2LjI2MiwzNi4yNjIsNTYuMjM1LDg0LjQ3Nyw1Ni4yMzUsMTM1Ljc2MkMzOTYuODAxLDI1Ni4wOTQsMzc2LjgyOCwzMDQuMzA5LDM0MC41NjYsMzQwLjU3TDM0MC41NjYsMzQwLjU3eiBNMzQwLjU2NiwzNDAuNTciIGZpbGw9IiNGRkZGRkYiLz4KCQk8cGF0aCBkPSJNMzQ0LjAzMSw5MS45NzdjLTIuMjI2LTIuNzQ3LTYuMjU4LTMuMTY4LTkuMDA0LTAuOTM4Yy0yLjc0NiwyLjIyNy0zLjE2NCw2LjI1OC0wLjkzNyw5ICAgIGMyMy45MywyOS40OTYsMzcuMTA5LDY2LjY5OSwzNy4xMDksMTA0Ljc2MmMwLDQ0LjQ1My0xNy4zMDgsODYuMjQyLTQ4LjczNCwxMTcuNjY4Yy0zMS40MjYsMzEuNDI2LTczLjIxNSw0OC43My0xMTcuNjY0LDQ4LjczICAgIGMtNDEuMDA4LDAtODAuNDA2LTE1LjA0My0xMTAuOTMtNDIuMzYzYy0yLjYzNy0yLjM1OS02LjY4LTIuMTMzLTkuMDM5LDAuNWMtMi4zNTUsMi42MzMtMi4xMzMsNi42OCwwLjUsOS4wMzUgICAgQzExOC4yMTEsMzY3Ljc5NywxNjAuNjM3LDM4NCwyMDQuODAxLDM4NGM0Ny44NjcsMCw5Mi44NzEtMTguNjM3LDEyNi43MTUtNTIuNDhDMzY1LjM1OSwyOTcuNjc2LDM4NCwyNTIuNjcyLDM4NCwyMDQuODAxICAgIEMzODQsMTYzLjgxMiwzNjkuODA1LDEyMy43NDYsMzQ0LjAzMSw5MS45NzdMMzQ0LjAzMSw5MS45Nzd6IE0zNDQuMDMxLDkxLjk3NyIgZmlsbD0iI0ZGRkZGRiIvPgoJCTxwYXRoIGQ9Ik0zOC4zOTgsMjA0LjgwMWMwLTkxLjc1NCw3NC42NDktMTY2LjQwMywxNjYuNDAzLTE2Ni40MDNjNDEuMDA4LDAsODAuNDAyLDE1LjA0NywxMTAuOTI5LDQyLjM2OCAgICBjMi42MzMsMi4zNTksNi42OCwyLjEzMiw5LjAzNi0wLjVjMi4zNTktMi42MzMsMi4xMzItNi42OC0wLjUtOS4wMzZjLTMyLjg3NS0yOS40MjUtNzUuMzA1LTQ1LjYyOC0xMTkuNDY1LTQ1LjYyOCAgICBjLTQ3Ljg2MywwLTkyLjg2MywxOC42NC0xMjYuNzExLDUyLjQ4OGMtMzMuODQ4LDMzLjg0Ny01Mi40ODgsNzguODQ3LTUyLjQ4OCwxMjYuNzExYzAsNDAuOTkyLDE0LjE5NSw4MS4wNjIsMzkuOTY4LDExMi44MjggICAgYzEuMjY2LDEuNTYyLDMuMTEsMi4zNzEsNC45NzMsMi4zNzFjMS40MTgsMCwyLjg0NC0wLjQ2OSw0LjAzMS0xLjQzNGMyLjc0Mi0yLjIyNiwzLjE2NC02LjI1NywwLjkzOC05ICAgIEM1MS41NzgsMjgwLjA3LDM4LjM5OCwyNDIuODYzLDM4LjM5OCwyMDQuODAxTDM4LjM5OCwyMDQuODAxeiBNMzguMzk4LDIwNC44MDEiIGZpbGw9IiNGRkZGRkYiLz4KCTwvZz4KCTxnPgoJCTxwYXRoIGQ9Ik0yNTguNTksMTAyLjEyNWgtMTA3LjE4Yy0yNy4xNzYsMC00OS4yODUsMjIuMTEtNDkuMjg1LDQ5LjI4NnYxMDcuMTc5YzAsMjcuMTc3LDIyLjEwOSw0OS4yODYsNDkuMjg1LDQ5LjI4NmgxMDcuMTggICAgYzI3LjE3NiwwLDQ5LjI4NC0yMi4xMDksNDkuMjg0LTQ5LjI4NlYxNTEuNDExQzMwNy44NzQsMTI0LjIzNSwyODUuNzY2LDEwMi4xMjUsMjU4LjU5LDEwMi4xMjV6IE0yOTQuODk4LDI1OC41ODkgICAgYzAsMjAuMDItMTYuMjg4LDM2LjMwOS0zNi4zMDgsMzYuMzA5aC0xMDcuMThjLTIwLjAxOSwwLTM2LjMwNS0xNi4yODktMzYuMzA1LTM2LjMwOVYxNTEuNDExICAgIGMwLTIwLjAxOSwxNi4yODctMzYuMzA1LDM2LjMwNS0zNi4zMDVoMTA3LjE4YzIwLjAyLDAsMzYuMzA4LDE2LjI4NywzNi4zMDgsMzYuMzA1VjI1OC41ODl6IiBmaWxsPSIjRkZGRkZGIi8+CgkJPHBhdGggZD0iTTI2Mi41MDMsMTM5LjcyOGMtNC4zNTgsMC03LjkwNCwzLjU0NS03LjkwNCw3LjkwMWMwLDQuMzU2LDMuNTQ2LDcuOSw3LjkwNCw3LjljNC4zNTYsMCw3LjktMy41NDQsNy45LTcuOSAgICBDMjcwLjQwMywxNDMuMjczLDI2Ni44NTksMTM5LjcyOCwyNjIuNTAzLDEzOS43Mjh6IiBmaWxsPSIjRkZGRkZGIi8+CgkJPHBhdGggZD0iTTIwNC45OTgsMTU0LjU3Yy0yNy44MDYsMC01MC40MjgsMjIuNjIyLTUwLjQyOCw1MC40MjhjMCwyNy44MDgsMjIuNjIyLDUwLjQzMiw1MC40MjgsNTAuNDMyICAgIGMyNy44MDgsMCw1MC40MzItMjIuNjI0LDUwLjQzMi01MC40MzJDMjU1LjQzLDE3Ny4xOTIsMjMyLjgwNiwxNTQuNTcsMjA0Ljk5OCwxNTQuNTd6IE0yMDQuOTk4LDI0Mi40NTQgICAgYy0yMC42NTIsMC0zNy40NTMtMTYuODAzLTM3LjQ1My0zNy40NTZjMC0yMC42NDgsMTYuODAxLTM3LjQ0NiwzNy40NTMtMzcuNDQ2YzIwLjY1LDAsMzcuNDQ5LDE2Ljc5OCwzNy40NDksMzcuNDQ2ICAgIEMyNDIuNDQ4LDIyNS42NTEsMjI1LjY0OCwyNDIuNDU0LDIwNC45OTgsMjQyLjQ1NHoiIGZpbGw9IiNGRkZGRkYiLz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+            </div>
+            <div class="col-xs-12 col-md-3 price-col">
+              <p class="gym-price">{{gym.price}}€</p><br />
+            </div>
+
+
+          </div>
+
+        </div>
       </div>
+    </div>
 
-  </div>
-  </div>
-  <div class="row-gyms-info row">
-    <div *ngIf="gymsSaved">
-      <p class="user-gyms-title">Gyms Saved</p>
-      <div *ngFor="let gym of gymsSaved" class="col-xs-5 gym-card">
-        <img src="{{gym.imgUrl}}" alt="" class="gym-img">
-        <p class="gym-name">{{gym.name}}</p>
-        <p class="gym-name">{{gym.city}}, {{gym.country}}</p>
+    <div class="row-gyms-info row">
+      <div *ngIf="gymsUsed.length > 0">
+        <p class="user-gyms-title">Gyms Used</p>
+        <div *ngFor="let gym of gymsUsed" class="col-xs-12 col-md-3 gym-card-used">
+          <div class="img-gym-container-used">
+          <img src="{{gym.imgUrl}}" alt="" class="gym-img-used">
+          </div>
+          <p class="gym-name-used">{{gym.name}}</p><br />
+          <p class="gym-city-used">{{gym.city}}, {{gym.country}}</p>
+          <a [routerLink]="['/gyms-comments/', gym._id]" class="gym-card-rate">Rate it!</a>
+        </div>
+      </div>
+    </div>
+
+  <div class="row-gyms-info row gyms-rated-row">
+  <div *ngIf="gymsRated">
+    <p class="user-gyms-title">Gyms Rated</p>
+    <div *ngFor="let comment of comments" class="col-md-12">
+      <div class="comment-card row">
+        <div class="col-md-1 col-xs-12">
+          <img class="user-img-comment" src="{{comment.gym.imgUrl}}" alt="">
+        </div>
+        <div class="col-md-11 col-xs-12 comments-user">
+          <p class="user-name-comment">{{comment.gym.name}}</p>
+          <p class="user-info-city-comment">&nbsp;({{comment.gym.city}}, {{comment.gym.country}})</p><br />
+          <p class="user-info-comment">{{comment.comment}}</p><br />
+          <div class="stars-container">
+            <div *ngFor="let star of stars" class="stars-rate">
+              <i *ngIf="star <= comment.rate" class="fa fa-star pin-profile" aria-hidden="true"></i>
+              <i *ngIf="star > comment.rate"class="fa fa-star-o pin-profile" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
   </div>
-
-  <div class="row-gyms-info row">
-    <div *ngIf="gymsUsed">
-      <p class="user-gyms-title">Gyms Used</p>
-      <div *ngFor="let gym of gymsUsed" class="col-xs-5 gym-card">
-        <img src="{{gym.imgUrl}}" alt="" class="gym-img">
-        <p class="gym-name">{{gym.name}}</p><br />
-        <p class="gym-city"><i class="fa fa-map-marker pin-profile" aria-hidden="true"></i> {{gym.city}}, {{gym.country}}</p>
-        <button (click)="modalOpen()" class="btn btn-primary">Modal Demo</button>
-        <modal (modalOutput)="getData($event)"></modal>
-      </div>
-    </div>
   </div>
 
-<div class="row-gyms-info row">
-<div *ngIf="gymsRated">
-  <p class="user-gyms-title">Gyms Rated</p>
-  <ul *ngFor="let gym of gymsRated">
-    <li>{{gym.name}}</li>
-  </ul>
 </div>
 </div>

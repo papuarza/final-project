@@ -31,6 +31,7 @@ header {
   color: #fff;
   font-weight: 100;
   line-height: 4.5rem;
+  font-size: 3.5rem;
 }
 
 .gym-row-title-big {
@@ -146,10 +147,42 @@ header {
     margin: 0px 0px 10px 0px;
   }
 
-
-.category-img5{
+.img-left {
   background-image: url("https://static.pexels.com/photos/260352/pexels-photo-260352.jpeg");
 }
+
+.roma-img {
+  background-image: url("http://www.elmundoenmimaleta.com/wp-content/uploads/2013/03/roma-guay.jpg");
+}
+
+.new-york-img {
+  background-image: url("http://www.newyorkhotels.org/img_new/survey.jpg");
+}
+
+.madrid-img{
+  background-image: url("https://images.trvl-media.com/media/content/shared/images/travelguides/destination/178281/Madrid-26512.jpg")
+}
+
+.sydney-img {
+  background-image: url("https://law.anu.edu.au/sites/all/files/sydney-harbour.jpg")
+}
+
+.cabo-img {
+  background-image: url("https://s-media-cache-ak0.pinimg.com/originals/a1/19/a2/a119a2eeaaf5c0f9fb6274b05da89048.jpg")
+}
+
+.soccer-court {
+  background-image: url("https://static.pexels.com/photos/114296/pexels-photo-114296.jpeg")
+}
+
+.basketball-court {
+  background-image: url("http://blog.estately.com/assets/22_11881447_14_1360102007_636x435.jpg")
+}
+
+.paddle-court {
+  background-image: url("https://www.midtown.com/sites/default/files/styles/full-width-carousel-lg/public/Images/PaddleCourts_1170x640.jpg?itok=vfqFULf-")
+}
+
 .category-img2{
   background-image: url("https://static.pexels.com/photos/175947/pexels-photo-175947.jpeg");
 }
@@ -261,9 +294,20 @@ header-user-link {
   color: #FF544D;
 }
 
+.opacity-bg-color{
+    background-image: linear-gradient(to bottom right,#111411,#121414);
+    opacity: 0.95;
+}
+
 .first-row-landing {
   margin-top: -10vh;
-  background-image: linear-gradient(to bottom right,#111411,#121414);
+  background-image: url('http://cdn.wallpapersafari.com/85/22/f2zt9d.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+
+  background-color: linear-gradient(to bottom right,#111411,#121414);
   /*background: -webkit-linear-gradient(left, #FF7754, #FC277C);
     background: linear-gradient(to right, #FF7754, #FC277C);
     background-image: linear-gradient(to right, rgb(255, 84, 77), rgb(254, 114, 91));
@@ -282,4 +326,63 @@ header-user-link {
     animation-fill-mode: forwards;
     -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;*/
+}
+
+@media screen and (max-width: 500px) {
+    body {
+      font-size: 5px;
+    }
+    .home-title {
+      font-size: 3.5rem;
+      line-height: 4rem;
+      width: 100%;
+    }
+
+    .search-input {
+      width: 300px;
+      font-size: 1.5rem;
+      margin: 10% 0% 4% 7%;
+      display: block;
+    }
+
+    .search-home-button {
+      font-size: 2rem;
+      margin: 3vh 0px 0px 30%;
+      display: block;
+      width: 110px;
+    }
+
+    .search-home-button:hover {
+      font-size: 2rem;
+      margin: 3vh 0px 0px 30%;
+      display: block;
+      width: 110px;
+    }
+
+    .main-body {
+      width: 100vw;
+    }
+
+    .info-row {
+      display: none;
+    }
+
+    .first-row-landing {
+      margin: 30px 0px 0px 0px;
+      height: 100vh;
+      padding: 20px 0px 0px 0px;
+    }
+
+    .home-title-principle {
+      font-size: 5rem;
+      line-height: 5.2rem;
+    }
+
+    .category-item {
+      margin: 0px 0px 30px 0px;
+    }
+
+    .gyms-row {
+      display: none;
+    }
 }

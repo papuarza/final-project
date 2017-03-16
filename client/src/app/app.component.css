@@ -5,7 +5,7 @@ body {
 }
 
 .gym-links-header {
-  margin: 0px 0px 0px 10px;
+  margin: 0px 10px 0px 0px;
   color: rgb(255, 84, 77);
 }
 
@@ -253,8 +253,10 @@ header {
 }
 
 footer {
-  background-color: #3A3937;
+  border-top: 1px solid #3A3937;
   height: 100px;
+  position: fixed;
+  bottom: 0;
 }
 
 .search-home-button:hover {
@@ -313,4 +315,44 @@ header-user-link {
     animation-fill-mode: forwards;
     -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;*/
+}
+
+@media screen and (max-width: 500px) {
+  .header-row {
+    width: 100%;
+  }
+
+  .logo-header {
+    font-size: 25px;
+    padding: 0px;
+  }
+
+  .gym-sign-header{
+    margin: 5px 0px 0px 0px;
+    padding: 0px 0px 0px 20px;
+    display: none;
+  }
+
+  .mobile-response-gyms{
+    display: block;
+  }
+
+  .header-user-link {
+    font-size: 14px;
+    padding: 0px;
+    margin: 5px 5px 0px 5px;
+    display: inline;
+  }
+
+  .header-user-link:hover {
+    font-size: 14px;
+    padding: 0px 7px;
+    margin: 5px 5px 0px 5px;
+    display: inline;
+  }
+
+  .user-pic-header {
+    display:none;
+  }
+
 }

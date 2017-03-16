@@ -4,20 +4,22 @@
 <link href="https://fonts.googleapis.com/css?family=News+Cycle" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
 <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
-
-  <header class="row">
-    <div class="col-md-4 gym-sign-header">
+<!-- <link rel="stylesheet" href="jquery.rateyo.css"/> -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
+  <header class="row header-row">
+    <div class="col-xs-4 col-md-4 gym-sign-header">
       <div *ngIf="!user">
-                <span>Are you a gym?</span>
+                <span class="mobile-response-gyms">Are you a gym?</span>
                 <a [routerLink]="['gym/login']" class="gym-links-header"> LogIn </a>
                 <a [routerLink]="['gym/signup']" class="gym-links-header"> SignUp </a>
       </div>
     </div>
-    <div class="col-md-4 logo-header">
+    <div class="col-xs-4 col-md-4 logo-header">
       <a [routerLink]="['']" class="logo-header">KUNTZA</a>
       <img src="" alt="">
     </div>
-    <div class="col-md-4 user-header">
+    <div class="col-xs-8 col-md-4 user-header">
       <div *ngIf="!user" class="user-log">
         <a [routerLink]="['user/login']" class="header-user-link"> LogIn </a>
         <a [routerLink]="['user/signup']" class="header-user-link"> SignUp </a>
@@ -31,6 +33,8 @@
 
   </header>
 <router-outlet></router-outlet>
-  <!-- <footer>
 
-  </footer> -->
+
+  <footer>
+
+  </footer>

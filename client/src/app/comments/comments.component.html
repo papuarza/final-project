@@ -1,0 +1,49 @@
+<div *ngIf="singleGym">
+
+  <div class="row comments-row">
+
+    <div class="form-log-sign col-md-6">
+      <form>
+
+        <label> Rate </label>
+        <div class="stars">
+  <form action="">
+    <input class="star star-5" id="star-5" type="radio" name="star" value="5" [(ngModel)]="formInfo.rate"/>
+    <label class="star star-5" for="star-5"></label>
+    <input class="star star-4" id="star-4" type="radio" name="star" value="4" [(ngModel)]="formInfo.rate"/>
+    <label class="star star-4" for="star-4"></label>
+    <input class="star star-3" id="star-3" type="radio" name="star" value="3" [(ngModel)]="formInfo.rate"/>
+    <label class="star star-3" for="star-3"></label>
+    <input class="star star-2" id="star-2" type="radio" name="star" value="2" [(ngModel)]="formInfo.rate"/>
+    <label class="star star-2" for="star-2"></label>
+    <input class="star star-1" id="star-1" type="radio" name="star" value="1" [(ngModel)]="formInfo.rate"/>
+    <label class="star star-1" for="star-1"></label>
+  </form>
+</div>
+        <label class="form-title"> Comments </label>
+        <textarea type="text" [(ngModel)]="formInfo.comments" name="username" id="comments-input" cols="40"
+       rows="3"></textarea>
+        <br>
+
+
+        <button (click)="rate()"> Rate it! </button>
+      </form>
+
+      <p class="error"> {{ error }} </p>
+    </div>
+
+    <div class="col-md-6 img-column">
+      <div class="header-img">
+        <img src="{{ singleGym.imgUrl }}" alt="">
+        <div class="rate-text">
+          <p class="rate-title">{{singleGym.name}}</p>
+          <p class="rate-subtitle">{{singleGym.city}}, {{singleGym.country}}</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">

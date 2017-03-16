@@ -6,17 +6,17 @@
     <h3 class="price-card-title">Pass Information</h3>
     <div class="card-text-info">
       <p class="card-price-title">1-Day Pass <br /><span class="card-price-info">{{singleGym.price}}€</span></p>
-      <p class="card-extra-info">Expiration Date: <span class="card-extra-info-bold">1 year from buy day</span></p>
+      <p class="card-extra-info">Expiration Date: <span class="card-extra-info-bold">1 year from buy day</span></p><br />
       <div *ngIf="user">
-        <button (click)="buyPass()"> Buy a Pass </button>
+        <button class="card-sign-notice" (click)="buyPass()"> Buy a Pass </button>
       </div>
       <div *ngIf="!user">
-        <p class="card-sign-notice">Sign in to buy a pass!</p>
+        <a [routerLink]="['../../user/login']" class="card-sign-notice">Sign in to buy a pass!</a>
       </div>
-      <p class="card-extra-info">Including all gyms facilities and classes. For personal training ask on each gym</p>
+      <br /><p class="card-extra-info">The price includes all gyms facilities and classes. For personal training ask on each gym</p>
     </div>
   </div>
-  <div class="col-xs-7 info-column">
+  <div class="col-md-7 col-xs-12 info-column">
     <p class="single-gym-title">{{singleGym.name}}</p>
     <p class="single-gym-adress">
       {{singleGym.adress}},
@@ -29,22 +29,22 @@
     </p>
     <p class="single-gym-subtitle">Classes</p>
     <ul>
-      <li class="classes-gym"><span class="classes-gym-tittle">TRX: </span>{{singleGym.isTRX}}</li>
-      <li class="classes-gym"><span class="classes-gym-tittle">Crossfit: </span>{{singleGym.isCrossfit}}</li>
-      <li class="classes-gym"><span class="classes-gym-tittle">Spinning: </span>{{singleGym.isSpinning}}</li>
-      <li class="classes-gym"><span class="classes-gym-tittle">Personal Training: </span>{{singleGym.isPersonalTraining}}</li>
+      <li class="classes-gym"><span class="classes-gym-tittle">TRX: </span><span *ngIf="singleGym.isTRX">Yes</span><span *ngIf="!singleGym.isTRX">No</span></li>
+      <li class="classes-gym"><span class="classes-gym-tittle">Crossfit: </span><span *ngIf="singleGym.isCrossfit">Yes</span><span *ngIf="!singleGym.isCrossfit">No</span></li>
+      <li class="classes-gym"><span class="classes-gym-tittle">Spinning: </span><span *ngIf="singleGym.isSpinning">Yes</span><span *ngIf="!singleGym.isSpinning">No</span></li>
+      <li class="classes-gym"><span class="classes-gym-tittle">Personal Training: </span><span *ngIf="singleGym.isPersonalTraining">Yes</span><span *ngIf="!singleGym.isWifi">No</span></li>
       <li class="classes-gym"><span class="classes-gym-tittle">Other Classes: </span>{{singleGym.otherClasses}}</li>
     </ul>
     <p class="single-gym-subtitle">Facilities</p>
       <ul>
-        <li class="classes-gym"><span class="classes-gym-tittle">Wifi: </span>{{singleGym.isWifi}}</li>
-        <li class="classes-gym"><span class="classes-gym-tittle">Parking: </span>{{singleGym.isParking}}</li>
-        <li class="classes-gym"><span class="classes-gym-tittle">Spa: </span>{{singleGym.isSpa}}</li>
-        <li class="classes-gym"><span class="classes-gym-tittle">Pool: </span>{{singleGym.isPool}}</li>
-        <li class="classes-gym"><span class="classes-gym-tittle">Basketball Court: </span>{{singleGym.isBasketballCourt}}</li>
-        <li class="classes-gym"><span class="classes-gym-tittle">Soccer Court: </span>{{singleGym.isSoccerCourt}}</li>
-        <li class="classes-gym"><span class="classes-gym-tittle">Tennis Court: </span>{{singleGym.isTennisCourt}}</li>
-        <li class="classes-gym"><span class="classes-gym-tittle">Paddle Court: </span>{{singleGym.isPaddleCourt}}</li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Wifi: </span><span *ngIf="singleGym.isWifi">Yes</span><span *ngIf="!singleGym.isWifi">No</span></li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Parking: </span><span *ngIf="singleGym.isParking">Yes</span><span *ngIf="!singleGym.isParking">No</span></li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Spa: </span><span *ngIf="singleGym.isSpa">Yes</span><span *ngIf="!singleGym.isSpa">No</span></li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Pool: </span><span *ngIf="singleGym.isPool">Yes</span><span *ngIf="!singleGym.isPool">No</span></li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Basketball Court: </span><span *ngIf="singleGym.isBasketballCourt">Yes</span><span *ngIf="!singleGym.isBasketballCourt">No</span></li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Soccer Court: </span><span *ngIf="singleGym.isSoccerCourt">Yes</span><span *ngIf="!singleGym.isSoccerCourt">No</span></li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Tennis Court: </span><span *ngIf="singleGym.isTennisCourt">Yes</span><span *ngIf="!singleGym.isTennisCourt">No</span></li>
+        <li class="classes-gym"><span class="classes-gym-tittle">Paddle Court: </span><span *ngIf="singleGym.isPaddleCourt">Yes</span><span *ngIf="!singleGym.isPaddleCourt">No</span></li>
       </ul>
       <p class="single-gym-subtitle">Schedule</p>
       <ul>
@@ -57,9 +57,36 @@
         <li class="classes-gym"><span class="classes-gym-tittle">Sunday: </span>{{singleGym.schedule.Sunday}}</li>
       </ul>
       <p class="single-gym-subtitle">Directions</p>
-    <sebm-google-map [latitude]="lat" [longitude]="lng">
+    <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="14" [scrollwheel]="false">
   <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
 </sebm-google-map>
+<div class="row sixth-row">
+  <br /><p class="single-gym-subtitle">Comments</p>
+  <div *ngFor="let comment of comments" class="col-md-12">
+    <div class="comment-card row">
+      <div class="col-md-2 col-xs-4">
+        <img class="user-img-comment" src="{{comment.user.imgUrl}}" alt="">
+      </div>
+      <div class="col-md-10 col-xs-8">
+        <p class="user-name-comment">{{comment.user.name}} {{comment.user.lastName}}</p>
+        <p class="user-info-city-comment">&nbsp;({{comment.user.city}}, {{comment.user.country}})</p><br />
+        <p class="user-info-comment">{{comment.comment}}</p><br />
+        <div class="stars-container">
+          <div *ngFor="let star of stars" class="stars-rate">
+            <i *ngIf="star <= comment.rate" class="fa fa-star pin-profile" aria-hidden="true"></i>
+            <i *ngIf="star > comment.rate"class="fa fa-star-o pin-profile" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
   </div>
+
+  <!-- <a [routerLink]="['upload-photo/']" class="button-profile">UPLOAD PHOTOS</a> -->
+</div>
+  </div>
+
 
 </div>

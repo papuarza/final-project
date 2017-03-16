@@ -9,6 +9,7 @@ const passport = require("passport");
 // Our user model
 const User           = require("./user.model");
 const RelationUserGym = require("../../relation/relation.model");
+const RelationUserGymRate = require("../../relation/relationRate.model");
 
 // Bcrypt let us encrypt passwords
 const bcrypt         = require("bcrypt");
@@ -157,7 +158,6 @@ exports.listedGym = function(req, res, next) {
 						} else {
 							savedGyms.push(gyms.gym);
 						}
-						console.log(savedGyms)
 						res.json({ratedGyms, usedGyms, savedGyms});
 					}
 				});
@@ -165,4 +165,28 @@ exports.listedGym = function(req, res, next) {
 
 
 		});
+	};
+
+	exports.listedComments = function(req, res, next) {
+		let listedComments = [];
+		console.log(req.params.id)
+			RelationUserGymRate.find({
+					user: req.params.id
+			}, (err, relation) => {
+					if (err) {
+							return next(err);
+					}
+					console.log(relation)
+					relation.forEach(function(elem, indexOf, arr) {
+						elem.populate('gym', (err, comments) => {
+						if (err) {return next(err);}
+						if(indexOf < arr.length - 1){
+							listedComments.push(comments);
+						} else {
+							listedComments.push(comments);
+							res.json(listedComments);
+						}
+					});
+				});
+			});
 	};

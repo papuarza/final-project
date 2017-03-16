@@ -1,3 +1,93 @@
-<p>
-  edit-gym works!
-</p>
+<div class="row edit-row">
+  <h3 class="info-title">Contact/Business Info</h3>
+  <div class="col-md-6">
+
+    <label class="label-edit-profile">Username</label>
+    <input class="input-edit-profile" [(ngModel)]="formInfo.username"/><br />
+    <label class="label-edit-profile">Name</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.name" /><br />
+    <label class="label-edit-profile">City</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.city" /><br />
+    <label class="label-edit-profile">Country</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.country" /><br />
+    <label class="label-edit-profile">Email</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.email" /><br />
+    <label class="label-edit-profile">Facebook</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.facebook" /><br />
+    <label class="label-edit-profile">Twitter</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.twitter" /><br />
+    <label class="label-edit-profile">Instagram</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.instagram" />
+  </div>
+  <div class="col-md-6">
+    <label class="label-edit-profile">Webpage</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.webPage" /><br />
+    <label class="label-edit-profile">Price(€)</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.price" /><br />
+    <label class="label-edit-profile">Schedule</label><br />
+    <div class="week-schedule">
+      <label class="label-edit-profile-schedule">Monday</label>
+      <input class="input-edit-profile-schedule" type="text" [(ngModel)]="formInfo.schedule.Monday" /><br />
+      <label class="label-edit-profile-schedule">Tuesday</label>
+      <input class="input-edit-profile-schedule" type="text" [(ngModel)]="formInfo.schedule.Tuesday" /><br />
+      <label class="label-edit-profile-schedule">Wednesday</label>
+      <input class="input-edit-profile-schedule" type="text" [(ngModel)]="formInfo.schedule.Wednesday" /><br />
+      <label class="label-edit-profile-schedule">Thursday</label>
+      <input class="input-edit-profile-schedule" type="text" [(ngModel)]="formInfo.schedule.Thursday" /><br />
+      <label class="label-edit-profile-schedule">Friday</label>
+      <input class="input-edit-profile-schedule" type="text" [(ngModel)]="formInfo.schedule.Friday" /><br />
+      <label class="label-edit-profile-schedule">Saturday</label>
+      <input class="input-edit-profile-schedule" type="text" [(ngModel)]="formInfo.schedule.Saturday" /><br />
+      <label class="label-edit-profile-schedule">Sunday</label>
+      <input class="input-edit-profile-schedule" type="text" [(ngModel)]="formInfo.schedule.Sunday" /><br />
+    </div>
+
+  </div>
+
+</div>
+<div class="row second-edit-row">
+  <h3 class="info-title">Facilities/Classes Info</h3>
+  <div class="col-md-6">
+    <label class="label-edit-profile">Wi-Fi</label>
+    <input class="input-edit-profile" [(ngModel)]="formInfo.isWifi"/><br />
+    <label class="label-edit-profile">Parking</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.isParking" /><br />
+    <label class="label-edit-profile">Spa</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.isSpa" /><br />
+    <label class="label-edit-profile">Basketball Court</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.isBasketballCourt" /><br />
+    <label class="label-edit-profile">Soccer Court</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.isSoccerCourt" /><br />
+    <label class="label-edit-profile">Tennis Court</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.isTennisCourt" /><br />
+    <label class="label-edit-profile">Paddle Court</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.isPaddleCourt" />
+  </div>
+  <div class="col-md-6">
+    <label class="label-edit-profile">Pool</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.isPool" /><br />
+    <label class="label-edit-profile">TRX</label>
+    <input class="input-edit-profile" [(ngModel)]="formInfo.isTRX"/><br />
+    <label class="label-edit-profile">Crossfit</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.isCrossfit" /><br />
+    <label class="label-edit-profile">Spinning</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.isSpinning" /><br />
+    <label class="label-edit-profile">Personal Training</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.isPersonalTraining" /><br />
+    <label class="label-edit-profile">Other Classes</label>
+    <input class="input-edit-profile" type="text" [(ngModel)]="formInfo.otherClasses" /><br />
+  </div>
+</div>
+
+<div class="row second-edit-row">
+  <h3 class="info-title">Map Info</h3>
+
+    <div class="map-row">
+      <sebm-google-map [latitude]="formInfo.position.longitud" [longitude]="formInfo.position.latitud" [zoom]="14" [draggable]="false" [disableDoubleClickZoom]="false" [scrollwheel]="false">
+        <sebm-google-map-marker [latitude]="formInfo.position.longitud" [longitude]="formInfo.position.latitud"></sebm-google-map-marker>
+      </sebm-google-map>
+</div>
+
+<div class="button-row">
+    <button (click)="editGym()" [routerLink]="['']" class="edit-button"> Edit </button>
+</div>

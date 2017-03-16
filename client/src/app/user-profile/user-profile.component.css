@@ -4,7 +4,7 @@
 }
 
 .profile-pic-container{
-  height: auto;
+  height: 200px;
   width: 200px;
   padding: 1px;
   /*border: 1px solid rgb(255, 84, 77);*/
@@ -35,9 +35,20 @@
   background-image: linear-gradient(to bottom right,#111411,#121414);
 }
 
+.img-gym-container {
+  width: 200px;
+  height: 200px;
+}
+
+.img-gym-container-used {
+  width: 100%;
+  height: 300px;
+}
+
 .profile-pic {
   width: 100%;
-  height: auto;
+  height: 200px;
+  object-fit: cover;
   border-radius: 360px;
 }
 
@@ -66,6 +77,28 @@
 
 .gym-img {
   width: 200px;
+  height: 200px;
+    object-fit: cover;
+  border-radius: 3px;
+  display: inline-flex;
+  float: left;
+}
+
+.gym-card-rate {
+  background-color: rgb(255, 84, 77);
+  color: #fff;
+  font-size: 2rem;
+  padding: 4px 10px;
+  margin: 15px 28%;
+  border-radius: 5px;
+  display: block;
+  width: 50%;
+}
+
+.gym-img-used {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
   border-radius: 3px;
   display: inline-flex;
   float: left;
@@ -88,11 +121,44 @@
   padding: 0px;
 }
 
+.gym-card-used {
+  border: 1px solid rgb(255, 84, 77);
+  border-radius: 3px;
+  margin: 0px 50px 30px 0px;
+  padding: 0px;
+  text-align: center;
+}
+
 .gym-name {
   color: #fff;
   margin: 20px 0px 0px 20px;
   display: inline-block;
   font-size: 1.4rem;
+  line-height: 1.5rem;
+}
+
+.gym-name-used {
+  color: #fff;
+  display: inline-block;
+    margin: 20px 0px 0px 0px;
+  font-size: 1.4rem;
+  line-height: 1.5rem;
+}
+
+.info-col {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 10px 0px 10px;
+}
+
+.price-col {
+  padding: 0px;
+}
+
+.gym-price {
+  color: #fff;
+  margin: 30px 0px 0px 20px;
+  display: inline-block;
+  font-size: 4rem;
   line-height: 1.5rem;
 }
 
@@ -105,12 +171,34 @@
   line-height: 1.5rem;
 }
 
+.gym-city-used {
+  color: #fff;
+  font-weight: 100;
+  display: inline-block;
+  margin: 0px 0px 0px 0px;
+  font-size: 1.4rem;
+  line-height: 1.5rem;
+}
+
+.gym-email {
+  color: #fff;
+  font-weight: 100;
+  display: inline-block;
+  margin: 0px 0px 0px 20px;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
+
+.social-logo {
+  margin: 0px 0px 0px 20px;
+}
+
 .user-gyms-title{
   font-weight: 100;
   font-size: 3rem;
   padding: 0px 0px 10px 0px;
-  /*border-bottom: 1px solid #fff;*/
-  margin: 0px 0px 10px 0px;
+  border-bottom: 1px solid #fff;
+  margin: 0px 0px 40px 0px;
 }
 
 .user-data-username {
@@ -129,4 +217,124 @@
   font-weight: 100;
   box-sizing: border-box;
   margin: 0px 0px 5px 0px;
+}
+
+.comment-card{
+  margin: 20px 0px 0px 0px;
+}
+
+.user-img-comment {
+  border-radius: 360px;
+  width: 80px;
+  height: 80px;
+  float: left;
+}
+
+.gyms-rated-row {
+  margin: 0px 0px 40px 0px;
+}
+
+.user-name-comment {
+  color: rgb(255, 84, 77);
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin:0px;
+  display: inline-flex;
+  margin: 0px 0px 0px 20px;
+}
+
+.user-info-city-comment {
+  color: rgb(255, 84, 77);
+  font-weight: 100;
+  font-size: 1.2rem;
+  margin:0px;
+  display: inline-flex;
+  margin: 0px 0px 0px 0px;
+}
+
+.user-info-comment {
+  color: #fff;
+  font-weight: 100;
+  margin:0px;
+  font-size: 2.5rem;
+  margin: 0px 0px 0px 20px;
+  display: inline-flex;
+}
+
+.stars-rate {
+  display: inline-flex;
+}
+
+.stars-container {
+  margin: 0px 0px 0px 19px;
+    display: inline-flex;
+}
+
+i {
+  color: #fff;
+  display: inline-flex;
+  padding: 0px 0px 0px 5px;
+}
+
+@media screen and (max-width: 500px) {
+    .welcome-column {
+      padding: 0px 20px 0px 20px;
+    }
+
+    .button-profile {
+      font-size: 1.2rem;
+      padding: 10px 15px;
+    }
+
+    .gym-card {
+      padding: 0px 0px 20px 0px;
+    }
+
+    .gym-img{
+      width: 100%;
+    }
+
+    .info-col{
+      text-align: center;
+    }
+
+    .gym-name {
+      margin: 20px 0px 0px 0px;
+    }
+
+
+    .gym-city {
+      margin: 20px 0px 0px 0px;
+    }
+
+    .gym-email {
+      margin: 20px 0px 0px 0px;
+    }
+    .price-col {
+      text-align: center;
+    }
+
+    .gym-price {
+      margin: 20px 0px 10px 0px;
+    }
+
+    .gym-card-rate{
+      margin: 15px 24%;
+    }
+
+    .comments-user {
+      text-align: center;
+    }
+
+    .comment-card{
+      margin: 50px 0px 20px 0px;
+    }
+
+    .user-img-comment{
+      margin: 0px 0px 15px 30%;
+    }
+
+    .user-info-comment{
+      font-size: 2rem;
+    }
 }

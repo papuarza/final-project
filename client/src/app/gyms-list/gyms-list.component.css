@@ -4,12 +4,14 @@
 
 .gym-card-img {
   width: 100%;
+  height: 300px;
+  object-fit: cover;
   border-radius: 3px;
 }
 
 .gym-card-img-container {
   width: 300px;
-  height: auto;
+  height: 300px;
   float: left;
   border-radius: 5px;
   display: inline;
@@ -17,6 +19,18 @@
 .filter-item {
   padding: 10px 0px 10px 0px;
   border-right: 1px solid #D3D3D3;
+}
+
+.icon-filter {
+  margin: 10px 0px 0px 2px;
+}
+
+.selected {
+  padding: 10px 0px 10px 0px;
+  border-right: 1px solid #D3D3D3;
+  color:#fff;
+  background-color: rgb(255, 84, 77);
+  cursor: pointer;
 }
 
 .filter-item:hover {
@@ -74,7 +88,7 @@
 }
 
 .gym-card {
-  margin: 0px 0px 30px 0px;
+  margin: 0px 0px 80px 0px;
   padding: 0px 0px 30px 0px;
   display: inline;
 }
@@ -97,4 +111,22 @@ p {
 
 #map {
   height: 100vh;
+}
+
+@media screen and (max-width: 500px) {
+    .filter-item {
+      font-size: 12px;
+    }
+
+    .filter-row {
+      margin: -90px 0px 0px 0px;
+    }
+
+    .gym-card-img-container{
+      margin: 0px 0px 30px -15px;
+    }
+
+    .filter-item:hover {
+      padding: 15px 0px 10px 0px;
+    }
 }

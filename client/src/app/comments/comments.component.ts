@@ -6,21 +6,19 @@ import { Router } from '@angular/router';
 import { SebmGoogleMap } from 'angular2-google-maps/core';
 
 @Component({
-  selector: 'app-gyms-single',
-  templateUrl: './gyms-single.component.html',
-  styleUrls: ['./gyms-single.component.css']
+  selector: 'app-comments',
+  templateUrl: './comments.component.html',
+  styleUrls: ['./comments.component.css']
 })
-export class GymsSingleComponent implements OnInit {
+export class CommentsComponent implements OnInit {
   gymId: String;
   user: any;
   singleGym: any;
   error: any;
-  title: string = 'My first angular2-google-maps project';
-  lat: number;
-  lng: number;
-  comments: any;
-  zoom: number = 10;
-    stars: Array<Number> = [1,2,3,4,5];
+  formInfo = {
+    comments: '',
+    rate: ''
+  };
   constructor(private router: Router, private route: ActivatedRoute,private loggedin: LoggedinService, private session: SessionService ) {
     this.user = loggedin.getUser();
   }
@@ -33,19 +31,13 @@ ngOnInit() {
   this.session.getItemGym(this.gymId)
     .subscribe((singleGym) => {
       this.singleGym = singleGym
-      this.lat = singleGym.position.latitud;
-      this.lng = singleGym.position.longitud;
     });
-    this.session.getCommentsRelated(this.gymId)
-      .subscribe((listedComments) => {
-        this.comments = listedComments;
-        console.log(this.comments)
-      });
-
+  this.loggedin.getEmitter().subscribe((user) => {console.log(user); this.user = user});
 }
 
-  buyPass() {
-      this.session.buyPass(this.user._id, this.singleGym._id)
+  rate() {
+    console.log("Form:",this.formInfo)
+      this.session.rate(this.user._id, this.singleGym._id, this.formInfo)
       .subscribe(
         (gym) => this.successCb(gym),
         (err) => this.errorCb(err)
@@ -62,4 +54,7 @@ successCb(gym) {
   this.error = null;
   this.router.navigate([''])
 }
+
+
+
 }

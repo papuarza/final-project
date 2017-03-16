@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'app works!';
   user: any;
+  gym: any;
   formInfo = {
     username: '',
     password: ''
@@ -26,6 +27,7 @@ export class AppComponent {
 
   constructor(private session: SessionService,private router: Router, private loggedin: LoggedinService) {
     loggedin.getEmitter().subscribe((user) => {this.user = user});
+    loggedin.getEmitterGym().subscribe((gym) => {this.gym = gym});
   }
 
   ngOnInit() {
@@ -33,6 +35,10 @@ export class AppComponent {
      .subscribe(
        (user) => this.successCb(user)
      );
+     this.session.isLoggedInGym()
+      .subscribe(
+        (gym) => this.successCbGym(gym)
+      );
 
     // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -57,9 +63,15 @@ export class AppComponent {
     this.error = null;
   }
 
+  successCbGym(gym) {
+    this.gym = gym;
+    this.loggedin.checkLoggedGym(gym);
+    this.error = null;
+  }
+
   logOutSucess(user) {
-    this.loggedin.checkLogged(null);
     this.router.navigate([''])
+    this.loggedin.checkLogged(null);
     this.user = null;
   }
 

@@ -2,3 +2,7 @@
 *:focus {
     outline: none;
 }
+
+body {
+  width: 100%;
+}
