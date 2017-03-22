@@ -54,6 +54,9 @@ exports.createUser = function(req, res, next) {
   var password = req.body.password;
 	var name = req.body.name;
 	var lastName = req.body.lastName;
+	var city = req.body.city;
+	var country = req.body.country;
+	var email = req.body.email;
 
   if (!username || !password) {
     res.status(400).json({ message: "Provide username and password" });
@@ -73,7 +76,10 @@ exports.createUser = function(req, res, next) {
       username,
       password: hashPass,
 			name,
-			lastName
+			lastName,
+			city,
+			country,
+			email
     });
 
     newUser.save((err) => {
@@ -158,7 +164,10 @@ exports.listedGym = function(req, res, next) {
 						} else {
 							savedGyms.push(gyms.gym);
 						}
-						res.json({ratedGyms, usedGyms, savedGyms});
+						setTimeout(sendIt,1000);
+						function sendIt (){
+							res.json({ratedGyms, usedGyms, savedGyms})
+						}
 					}
 				});
 			});
@@ -169,14 +178,12 @@ exports.listedGym = function(req, res, next) {
 
 	exports.listedComments = function(req, res, next) {
 		let listedComments = [];
-		console.log(req.params.id)
 			RelationUserGymRate.find({
 					user: req.params.id
 			}, (err, relation) => {
 					if (err) {
 							return next(err);
 					}
-					console.log(relation)
 					relation.forEach(function(elem, indexOf, arr) {
 						elem.populate('gym', (err, comments) => {
 						if (err) {return next(err);}
@@ -184,7 +191,10 @@ exports.listedGym = function(req, res, next) {
 							listedComments.push(comments);
 						} else {
 							listedComments.push(comments);
-							res.json(listedComments);
+							setTimeout(sendIt,1000);
+							function sendIt (){
+								res.json(listedComments);
+							}
 						}
 					});
 				});
@@ -192,8 +202,8 @@ exports.listedGym = function(req, res, next) {
 	};
 
 
-	exports.changeUserStatus = function(req, res, next) {
-		// console.log(req.body)
+	exports.changeUserStatusRate = function(req, res, next) {
+		console.log("Hola")
 		var userId = req.body.data.userId;
 		var gymId = req.body.data.gymId;
 		// console.log(userId, gymId)

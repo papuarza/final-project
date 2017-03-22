@@ -41,8 +41,7 @@ export class GymProfileComponent implements OnInit {
   }
 
 ngOnInit() {
-  // this.loggedin.getEmitter().subscribe((gym) => {
-  //   this.gym = gym
+  console.log(this.gym)
     this.session.getUserRelated(this.gym._id)
       .subscribe((users) => {
         this.usersSaved = users.savedUsers;
@@ -72,7 +71,6 @@ changeUserStatus(userId) {
   .subscribe((users) => {
     this.usersSaved = users.savedUsers;
     this.usersUsed = users.usedUsers;
-    console.log(this.usersSaved, this.usersUsed)
   });
   }
 }

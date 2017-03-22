@@ -27,6 +27,7 @@ const gymSchema = new Schema({
   isSpa: Boolean,
   isPool: Boolean,
   isTRX: Boolean,
+  promrate: Number,
   isPersonalTraining: Boolean,
   isCrossfit: Boolean,
   isSpinning: Boolean,

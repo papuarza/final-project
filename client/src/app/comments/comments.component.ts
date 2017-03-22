@@ -32,20 +32,20 @@ ngOnInit() {
     .subscribe((singleGym) => {
       this.singleGym = singleGym
     });
-  this.loggedin.getEmitter().subscribe((user) => {console.log(user); this.user = user});
+  this.loggedin.getEmitter().subscribe((user) => {this.user = user});
 }
 
   rate() {
-    console.log("Form:",this.formInfo)
       this.session.rate(this.user._id, this.singleGym._id, this.formInfo)
       .subscribe(
         (gym) => this.successCb(gym),
         (err) => this.errorCb(err)
       );
-        this.session.changeUserStatusRate(this.user._id, this.singleGym)
-        .subscribe((users) => {
-          console.log(users)
-        });
+      this.session.changeUserStatusRate(this.user._id, this.singleGym._id)
+      .subscribe(
+        (gym) => this.successCb(gym),
+        (err) => this.errorCb(err)
+      );
   }
 
 errorCb(err) {

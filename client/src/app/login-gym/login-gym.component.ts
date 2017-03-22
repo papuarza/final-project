@@ -25,7 +25,7 @@ export class LoginGymComponent implements OnInit {
     }
 
   loginGym() {
-      this.session.login(this.formInfo)
+      this.session.loginGym(this.formInfo)
         .subscribe(
           (gym) => this.successCb(gym),
           (err) => this.errorCb(err)

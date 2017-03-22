@@ -74,11 +74,46 @@ header {
   height: 60px;
   color: #BFBFBF;
   border-radius: 5px;
-  margin: 6% 0% 6% 7%;
+  margin: 6% 0% 0% 7%;
   padding: 10px;
   display: inline-flex;
   border: 0px;
   box-sizing: border-box;
+}
+
+.suggestions {
+  background-color: #fff;
+  color: #BFBFBF;
+  width: 400px;
+  margin: 0% 0% 0% 7%;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 5000;
+}
+
+.container-ul {
+  padding: 0px 20px;
+  color: #BFBFBF;
+}
+
+.item-filter {
+  color: #BFBFBF;
+  font-weight: 100;
+  font-size: 1.5rem;
+}
+
+
+.lista-autocomplete {
+  background-color: #fff;
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgb(255, 84, 77);
+  padding: 0px 0px 10px 0px;
+  margin: 0px 0px 5px 0px;
+  list-style-type: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #BFBFBF;
+  font-weight: 100;
 }
 
 .search-home-button {
@@ -178,8 +213,9 @@ header {
 
 .asuncion-img {
     background-image: url("http://media.ldscdn.org/images/media-library/temples/asuncion-paraguay/asuncion-paraguay-temple-lds-249029-wallpaper.jpg");
-
 }
+
+
 
 .basketball-court {
   background-image: url("http://blog.estately.com/assets/22_11881447_14_1360102007_636x435.jpg");
@@ -305,6 +341,7 @@ header-user-link {
 .opacity-bg-color{
     background-image: linear-gradient(to bottom right,#111411,#121414);
     opacity: 0.95;
+    height: 550px;
 }
 
 .first-row-landing {
@@ -313,6 +350,7 @@ header-user-link {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  height: 550px;
 
 
   background-color: linear-gradient(to bottom right,#111411,#121414);
@@ -349,7 +387,7 @@ header-user-link {
     .search-input {
       width: 300px;
       font-size: 1.5rem;
-      margin: 10% 0% 4% 7%;
+      margin: 10% 0% 0% 7%;
       display: block;
     }
 

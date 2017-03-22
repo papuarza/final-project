@@ -37,7 +37,6 @@ app.use(session({
   secret: "passport-local-strategy",
   resave: true,
   saveUninitialized: true,
-  // cookie : { httpOnly: true, maxAge: 2419200000 },
   store: new MongoStore({
         mongooseConnection: mongoose.connection
     })

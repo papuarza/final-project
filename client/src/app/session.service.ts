@@ -141,8 +141,8 @@ export class SessionService {
       .map((res) => res.json());
   }
 
-  changeUserStatusRate(gymId, userId){
-    return this.http.post(baseURL+`auth/gym/`+userId+`/change-user-status`, {data: {gymId: gymId, userId: userId}})
+  changeUserStatusRate(userId, gymId){
+    return this.http.post(baseURL+`auth/user/`+userId+`/change-user-status`, {data: {gymId: gymId, userId: userId}})
       .map((res) => res.json());
   }
 }

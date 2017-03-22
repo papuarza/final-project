@@ -7,10 +7,18 @@
         </span>
         Descubre los<br /> mejores gimnasios de cada ciudad y disfruta <br />entrenando en cada uno de tus destinos.
       </h1>
-      <input value="" class="search-input" placeholder="Where´s your next training?" id="pac-input" (keydown)="autocomplete($event)"/>
+      <input class="search-input validate filter-input" placeholder="Where´s your next training?" id="country" type="text" [(ngModel)]=query (keyup)=filter() autocomplete="off"/>
       <a [routerLink]="['gyms-list']" class="search-home-button">Search</a>
+      <div class="suggestions" *ngIf="filteredList.length > 0">
+          <ul *ngFor="let item of filteredList" class="container-ul">
+              <li class="lista-autocomplete">
+                  <a (click)="select(item)" class="item-filter">{{item}}</a>
+              </li>
+          </ul>
     </div>
+        </div>
   </section>
+
   <section class="row category-row">
     <h3 class="sub-row-title">Choose your training</h3>
     <div class="col-md-3 category-item">

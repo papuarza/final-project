@@ -93,6 +93,13 @@
   display: inline;
 }
 
+.icon-rate {
+  width: 30px;
+  height: 30px;
+  float: right;
+  margin: -5px 15px 0px 0px;
+}
+
 .gym-card-name {
   font-size: 2.5rem;
   color:rgb(255, 84, 77);

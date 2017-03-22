@@ -134,12 +134,15 @@ exports.createGym = function(req, res, next) {
 };
 
 exports.logInGym = function(req, res, next) {
-	passport.authenticate('local', function(err, gym, info) {
+	passport.authenticate('local', {
+		username: req.body.username, // redundant, could override
+   password: req.body.password, // same here
+   anotherField: true}, function(err, user, info) {
 		if (err) { return next(err); }
 
-		if (!gym) { return res.status(401).json(info); }
+		if (!user) { return res.status(401).json(info); }
 
-		req.login(gym, function(err) {
+		req.login(user, function(err) {
 			if (err) {
 				return res.status(500).json({
 					message: 'something went wrong :('

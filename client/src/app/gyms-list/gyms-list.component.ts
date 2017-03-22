@@ -25,9 +25,10 @@ export class GymsListComponent implements OnInit {
   ngOnInit() {
     this.session.getListGym()
       .subscribe((gyms) => {
-        this.gyms = gyms;
-      });
-    }
+      this.gyms = gyms;
+      console.log(gyms)
+    });
+  }
 
     filterGyms($event){
       $event.target.classList.toggle("selected");

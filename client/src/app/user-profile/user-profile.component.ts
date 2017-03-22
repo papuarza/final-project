@@ -29,6 +29,7 @@ export class UserProfileComponent implements OnInit {
       // this.user = user;
       this.session.getGymRelated(this.user._id)
         .subscribe((gyms) => {
+          console.log(gyms)
           this.gymsSaved = gyms.savedGyms;
           this.gymsUsed = gyms.usedGyms;
           this.gymsRated = gyms.ratedGyms;
